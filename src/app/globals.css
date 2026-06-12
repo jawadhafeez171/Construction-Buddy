@@ -1,26 +1,600 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Distinctive Navy & Gold palette ────────────────────────────────────
+     Logo colours:  Charcoal black · Amber gold · White
+     Site palette:  Deep royal navy primary (unique vs competitors)
+                    Gold appears only as accent echoing the logo
+  ─────────────────────────────────────────────────────────────────────── */
+
+  --background: #FAF7F0;
+  /* Warm ivory — as before */
+  --foreground: #0D1F3C;
+  /* Deep royal navy — confident, trustworthy */
+
+  --primary: #1B4D8E;
+  /* Royal navy blue — premium, distinctive */
+  --primary-hover: #153D72;
+  /* Deeper navy for hover */
+  --primary-glow: rgba(27, 77, 142, 0.10);
+
+  --gold: #C8860A;
+  /* Logo gold — used as sparring accent only */
+  --gold-light: #EAB308;
+
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-solid: #ffffff;
+  --surface-hover: rgba(255, 255, 255, 0.99);
+
+  --border: rgba(13, 31, 60, 0.09);
+  /* Navy-tinted border */
+  --border-hover: rgba(27, 77, 142, 0.30);
+  /* Navy border on hover */
+
+  --text-muted: #5A6E8A;
+  /* Cool slate — readable on off-white */
+  --font-sans: var(--font-outfit), sans-serif;
+
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.7;
+
+  /* Warm drafting grid — ivory canvas with subtle amber tint */
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(200, 134, 10, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(200, 134, 10, 0.03) 0%, transparent 45%),
+    linear-gradient(to right, rgba(13, 31, 60, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 31, 60, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 8rem 0;
+  position: relative;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+
+.section-title span {
+  /* Keep gold gradient on section title accents — echoes logo, adds warmth */
+  background: linear-gradient(135deg, #C8860A 0%, #EAB308 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 4rem auto;
+  font-size: 1.125rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1B4D8E 0%, #2260B0 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(27, 77, 142, 0.28);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #153D72 0%, #1B4D8E 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(27, 77, 142, 0.45);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  background-color: var(--primary-glow);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Glass Card */
+.card-glass {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-glass:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 20px 40px rgba(27, 77, 142, 0.10);
+  transform: translateY(-4px);
+}
+
+/* Glowing blur blob */
+.blur-blob {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(27, 77, 142, 0.07) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.text-gradient {
+  /* Navy-to-blue gradient for hero headline accents */
+  background: linear-gradient(135deg, #1B4D8E 0%, #2E7DD1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Logo Styling & Hover Interactions */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo-link:hover {
+  transform: scale(1.04);
+  color: inherit;
+}
+
+.logo-link img {
+  height: 60px;
+  width: auto;
+  display: block;
+  border-radius: 0;
+  /* Warm drop-shadow so logo lifts off the glass header */
+  filter:
+    drop-shadow(0 2px 6px rgba(20, 34, 32, 0.12)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
+  transition: filter 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo-link:hover img {
+  /* Golden amber glow on hover — matches logo's own yellow/gold accent */
+  filter:
+    drop-shadow(0 0 12px rgba(234, 179, 8, 0.45)) drop-shadow(0 4px 16px rgba(20, 34, 32, 0.18)) brightness(1.05);
+  transform: scale(1.02);
+}
+
+/* Mobile & Tablet Responsive Navigation Optimization */
+.nav-desktop {
+  display: flex !important;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hamburger-btn {
+  display: none !important;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 14px;
+  cursor: pointer;
+  z-index: 110;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+  /* Forces perfect right-alignment */
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--foreground);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left center;
+  border-radius: 4px;
+}
+
+/* Open animation state for the hamburger lines */
+.hamburger-btn.open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(2px, -1.5px);
+  background-color: #ffffff;
+  /* Contrast white close button on dark overlay */
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(2px, 1.5px);
+  background-color: #ffffff;
+  /* Contrast white close button on dark overlay */
+}
+
+.nav-mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(13, 31, 60, 0.98);
+  /* Luxury Frosted Deep Royal Navy Glass */
+  z-index: 105;
+  flex-direction: column;
+  align-items: flex-end;
+  /* Right-aligns all container items */
+  justify-content: center;
+  gap: 2.5rem;
+  padding-right: 3.5rem;
+  /* Perfect right-aligned inset margin */
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+.nav-mobile-overlay.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Premium Glassmorphic Overlay Grid Background */
+.nav-overlay-grid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.06;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 45px 45px;
+}
+
+.nav-mobile-links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+  z-index: 10;
+  width: 100%;
+}
+
+.nav-mobile-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Staggered Entrance Animations using CSS Variables */
+.nav-mobile-overlay.open .nav-mobile-link {
+  animation: slideInFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.08s);
+}
+
+.nav-mobile-num {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  transition: all 0.3s ease;
+}
+
+.nav-mobile-text {
+  font-family: var(--font-sans);
+  font-size: 2.1rem;
+  /* Clean large luxurious text */
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+  /* Bright contrast white in dark mode */
+  letter-spacing: -0.03em;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effects */
+.nav-mobile-link:hover .nav-mobile-text {
+  color: var(--gold);
+  /* Turn luxurious amber gold on hover */
+  transform: translateX(-12px);
+  text-shadow: 0 4px 20px rgba(200, 134, 10, 0.2);
+}
+
+.nav-mobile-link:hover .nav-mobile-num {
+  color: #ffffff;
+  /* Number shifts to white for sharp contrast */
+  transform: scale(1.1);
+}
+
+/* Call to Action Button in Overlay */
+.nav-mobile-cta {
+  opacity: 0;
+  transform: translateY(20px);
+  box-shadow: 0 4px 18px rgba(27, 77, 142, 0.15);
+  align-self: flex-end;
+}
+
+.nav-mobile-overlay.open .nav-mobile-cta {
+  animation: slideInFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.08s);
+}
+
+/* Dropdown Footer Widget */
+.nav-mobile-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(15px);
+  text-align: right;
+}
+
+.nav-mobile-overlay.open .nav-mobile-footer {
+  animation: slideInFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.08s);
+}
+
+.nav-footer-line {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  /* Readable soft white in dark mode */
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+@keyframes slideInFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 991px) {
+  .nav-desktop {
+    display: none !important;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+  }
+
+  .nav-mobile-overlay {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-link div div span {
+    font-size: 1.35rem !important;
+  }
+
+  .logo-link div div:nth-child(2) {
+    font-size: 0.5rem !important;
+  }
+}
+
+/* Mobile Bottom Navigation Bar Styles */
+.mobile-bottom-nav {
+  display: none;
+  /* Hidden by default on desktop */
+  position: fixed;
+  bottom: 1.25rem;
+  /* Float styled above the screen edge for modern feel */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2.5rem);
+  max-width: 480px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.88);
+  /* Frosted pure white glass */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(13, 31, 60, 0.08);
+  border-radius: 20px;
+  /* Floating rounded capsule design */
+  box-shadow:
+    0 12px 32px rgba(13, 31, 60, 0.12),
+    0 4px 12px rgba(13, 31, 60, 0.04);
+  z-index: 99;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.mobile-bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 20%;
+  /* 5 columns now */
+  height: 100%;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 0.2rem;
+}
+
+.mobile-bottom-nav-icon {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-bottom-nav-label {
+  font-family: var(--font-sans);
+  letter-spacing: 0.01em;
+}
+
+/* Hover/Active states for standard navigation items */
+.mobile-bottom-nav-item:not(.call-center):hover,
+.mobile-bottom-nav-item:not(.call-center):active {
+  color: var(--primary);
+}
+
+.mobile-bottom-nav-item:not(.call-center):hover .mobile-bottom-nav-icon {
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Central Floating gold Call Action FAB */
+.mobile-bottom-nav-item.call-center {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, #C8860A 0%, #EAB308 100%);
+  /* Warm golden premium gradient */
+  color: #ffffff !important;
+  border-radius: 50%;
+  transform: translateY(-12px);
+  /* Pop out vertically above the capsule bar! */
+  box-shadow:
+    0 8px 20px rgba(200, 134, 10, 0.35),
+    0 2px 6px rgba(200, 134, 10, 0.15);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-bottom-nav-item.call-center:hover,
+.mobile-bottom-nav-item.call-center:active {
+  background: linear-gradient(135deg, #1B4D8E 0%, #2E7DD1 100%);
+  /* Shifts to premium royal navy on click/hover! */
+  transform: translateY(-15px) scale(1.08);
+  /* Modern dynamic hover state */
+  box-shadow:
+    0 10px 24px rgba(27, 77, 142, 0.4),
+    0 4px 10px rgba(27, 77, 142, 0.2);
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+    /* Active only on mobile/tablet screens */
+  }
+
+  body {
+    padding-bottom: 90px;
+    /* Leaves perfect breathing room at the bottom for the floating nav bar */
+  }
+}
+
+/* Premium Logo Text Unified Shine & Glow Effects */
+.logo-unified-shine {
+  position: relative;
+  background:
+    linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.8) 50%, transparent 65%) no-repeat,
+    linear-gradient(to right, #000000 0%, #000000 68%, #BF953F 68%, #FCF6BA 78%, #B38728 88%, #AA771C 100%);
+  background-size: 200% auto, 100% auto;
+  background-position: 200% center, 0 center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: unifiedShineSweep 5.5s ease-in-out infinite;
+  transition: all 0.35s ease;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+/* Hover glow aura and gradient shifts */
+.logo-link:hover .logo-unified-shine {
+  background:
+    linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.8) 50%, transparent 65%) no-repeat,
+    linear-gradient(to right, #1B4D8E 0%, #2E7DD1 68%, #FCF6BA 68%, #BF953F 78%, #FBF5B7 88%, #AA771C 100%);
+  background-size: 200% auto, 100% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes unifiedShineSweep {
+  0% {
+    background-position: 200% center, 0 center;
+  }
+
+  45% {
+    background-position: 200% center, 0 center;
+  }
+
+  100% {
+    background-position: -200% center, 0 center;
+  }
 }
