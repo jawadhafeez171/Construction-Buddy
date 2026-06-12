@@ -72,7 +72,7 @@ export default function Home() {
 
           {/* Desktop Navigation Links */}
           <nav className="nav-desktop">
-            <a href="#services" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Services</a>
+            <Link href="/services" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Services</Link>
             <a href="#packages" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Packages</a>
             <a href="#projects" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Projects</a>
             <Link href="/blog" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Blog</Link>
@@ -105,15 +105,15 @@ export default function Home() {
 
             {/* Menu Links with Staggered Slide In */}
             <div className="nav-mobile-links-container">
-              <a
-                href="#services"
+              <Link
+                href="/services"
                 onClick={() => setIsMenuOpen(false)}
                 className="nav-mobile-link"
                 style={{ '--index': 1 } as React.CSSProperties}
               >
                 <span className="nav-mobile-num">01</span>
                 <span className="nav-mobile-text">Services</span>
-              </a>
+              </Link>
               <a
                 href="#packages"
                 onClick={() => setIsMenuOpen(false)}

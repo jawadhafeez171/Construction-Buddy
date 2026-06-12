@@ -40,7 +40,7 @@ export default function SiteHeader() {
 
         {/* Desktop Nav */}
         <nav className="nav-desktop">
-          <Link href="/#services" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Services</Link>
+          <Link href="/services" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Services</Link>
           <Link href="/#packages" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Packages</Link>
           <Link href="/#projects" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Projects</Link>
           <Link href="/blog" style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.95rem' }}>Blog</Link>
@@ -65,7 +65,7 @@ export default function SiteHeader() {
           <div className="blur-blob" style={{ bottom: '15%', left: '10%', opacity: 0.25, background: 'radial-gradient(circle, rgba(200, 134, 10, 0.12) 0%, transparent 70%)' }}></div>
 
           <div className="nav-mobile-links-container">
-            <Link href="/#services" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 1 } as React.CSSProperties}>
+            <Link href="/services" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 1 } as React.CSSProperties}>
               <span className="nav-mobile-num">01</span>
               <span className="nav-mobile-text">Services</span>
             </Link>

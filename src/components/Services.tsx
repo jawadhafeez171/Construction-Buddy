@@ -1,43 +1,6 @@
+import Link from 'next/link';
+import { services } from '@/lib/servicesData';
 import styles from './Services.module.css';
-
-const services = [
-  {
-    title: 'Architectural & Structural Drawings',
-    description: 'Precision drafting and robust structural planning to lay the perfect foundation for your vision.',
-    icon: '📐',
-    image: '/service_architectural.webp',
-  },
-  {
-    title: 'Home Construction',
-    description: 'End-to-end home building services, ensuring quality materials and timely delivery.',
-    icon: '🏗️',
-    image: '/service_home_construction.webp',
-  },
-  {
-    title: 'Commercial Construction',
-    description: 'Delivering large-scale commercial projects — offices, retail spaces, and mixed-use developments — on time and to spec.',
-    icon: '🏙️',
-    image: '/service_commercial.webp',
-  },
-  {
-    title: 'Interior Design',
-    description: 'Transforming spaces with aesthetic elegance and functional brilliance.',
-    icon: '✨',
-    image: '/service_interior.webp',
-  },
-  {
-    title: 'Waterproofing Solutions',
-    description: 'Advanced waterproofing to protect your structures from leaks and weather damage.',
-    icon: '💧',
-    image: '/service_waterproofing.webp',
-  },
-  {
-    title: 'Building Information Modelling',
-    description: 'State-of-the-art 3D modelling for accurate visualization and project management.',
-    icon: '🏢',
-    image: '/service_bim.webp',
-  },
-];
 
 export default function Services() {
   return (
@@ -52,7 +15,7 @@ export default function Services() {
 
         <div className={styles.grid}>
           {services.map((service, index) => (
-            <div key={index} className={styles.card}>
+            <Link key={index} href={`/services/${service.slug}`} className={styles.card}>
               {/* Image Banner */}
               <div className={styles.imageWrapper}>
                 <img
@@ -73,7 +36,7 @@ export default function Services() {
                   Learn More <span className={styles.arrow}>→</span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
