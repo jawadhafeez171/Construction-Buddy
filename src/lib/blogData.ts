@@ -24,7 +24,7 @@ export const blogPosts: BlogPost[] = [
     date: 'May 28, 2026',
     author: 'Ravi Shankar',
     authorRole: 'Chief Architect & BIM Specialist',
-    image: '/blog_bim.png',
+    image: '/blog_bim.webp',
     tags: ['BIM', 'Technology', 'Architecture', 'Innovation'],
     featured: true,
     content: `
@@ -62,7 +62,7 @@ BIM is not optional for premium construction anymore. If your builder isn't offe
     date: 'May 15, 2026',
     author: 'Deepa Krishnamurthy',
     authorRole: 'Senior Waterproofing Engineer',
-    image: '/blog_waterproofing.png',
+    image: '/blog_waterproofing.webp',
     tags: ['Waterproofing', 'Monsoon', 'Maintenance', 'Tips'],
     featured: false,
     content: `
@@ -108,7 +108,7 @@ Call us before the next monsoon, not after it.
     date: 'April 30, 2026',
     author: 'Suresh Babu',
     authorRole: 'Project Cost Manager',
-    image: '/blog_cost.png',
+    image: '/blog_cost.webp',
     tags: ['Pricing', 'Planning', 'Home Construction', 'Budgeting'],
     featured: false,
     content: `
@@ -165,7 +165,7 @@ Ready to get your customised quote? Call us at +91 99028 00693.
     date: 'April 10, 2026',
     author: 'Ananya Reddy',
     authorRole: 'Lead Interior Designer',
-    image: '/blog_interior.png',
+    image: '/blog_interior.webp',
     tags: ['Interior Design', 'Trends', 'Lifestyle', 'Decor'],
     featured: false,
     content: `
@@ -212,7 +212,7 @@ Your home should feel like you. Let's design it together.
     date: 'March 22, 2026',
     author: 'Ravi Shankar',
     authorRole: 'Chief Architect & BIM Specialist',
-    image: '/blog_architect.png',
+    image: '/blog_architect.webp',
     tags: ['Architecture', 'Tips', 'Planning', 'Guide'],
     featured: false,
     content: `
@@ -265,7 +265,7 @@ Let's talk about your project.
     date: 'March 5, 2026',
     author: 'Suresh Babu',
     authorRole: 'Project Cost Manager',
-    image: '/blog_commercial.png',
+    image: '/blog_commercial.webp',
     tags: ['Commercial', 'Office', 'Retail', 'Planning'],
     featured: false,
     content: `

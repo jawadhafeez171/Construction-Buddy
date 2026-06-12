@@ -54,7 +54,7 @@ export default function ContactModal({ onClose }: ContactModalProps) {
         {/* ── Left: Image Panel ── */}
         <div className={styles.imagePanel}>
           <img
-            src="/service_home_construction.png"
+            src="/service_home_construction.webp"
             alt="Beautiful home construction in Bengaluru"
             className={styles.image}
           />

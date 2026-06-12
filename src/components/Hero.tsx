@@ -6,7 +6,7 @@ import ContactModal from './ContactModal';
 
 const SLIDES = [
   {
-    image: '/hero_stage_foundation.png',
+    image: '/hero_stage_foundation.webp',
     title: (
       <>
         Lay a Strong <span className="text-gradient">Foundation.</span>
@@ -16,7 +16,7 @@ const SLIDES = [
     badge: 'Stage 1: Excavation & Foundation'
   },
   {
-    image: '/hero_stage_brickwork.png',
+    image: '/hero_stage_brickwork.webp',
     title: (
       <>
         Watch Your Dream <span className="text-gradient">Take Shape.</span>
@@ -26,7 +26,7 @@ const SLIDES = [
     badge: 'Stage 2: Structural Brickwork'
   },
   {
-    image: '/hero_stage_plastering.png',
+    image: '/hero_stage_plastering.webp',
     title: (
       <>
         Precision Plastering & <span className="text-gradient">Waterproofing.</span>
@@ -36,7 +36,7 @@ const SLIDES = [
     badge: 'Stage 3: Plastering & Framing'
   },
   {
-    image: '/hero_stage_finished.png',
+    image: '/hero_stage_finished.webp',
     title: (
       <>
         Build the Home Your Family<br />
