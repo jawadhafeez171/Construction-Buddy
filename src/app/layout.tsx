@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     ],
     apple: { url: '/icon.webp', sizes: '512x512', type: 'image/webp' },
   },
+  verification: {
+    google: '-n5GdoCgJBBozpVE4FJ-GaeIBPetlO43wGz60fpffyw',
+  },
 };
 
 export default function RootLayout({
