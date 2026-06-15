@@ -26,7 +26,7 @@ export default function SiteHeader() {
       }}>
         {/* Logo */}
         <Link href="/" className="logo-link" style={{ display: 'block', textDecoration: 'none' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-sans)', lineHeight: 1.15 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-logo)', lineHeight: 1.15 }}>
             <div style={{ display: 'flex', gap: '0.2rem', alignItems: 'baseline' }}>
               <span className="logo-unified-shine" style={{ fontSize: '1.65rem', fontWeight: 800, letterSpacing: '-0.02em' }}>
                 Construction Buddy
@@ -41,8 +41,10 @@ export default function SiteHeader() {
         {/* Desktop Nav */}
         <nav className="nav-desktop">
           <Link href="/services" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Services</Link>
+          <Link href="/calculator" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Cost Calculator</Link>
           <Link href="/#packages" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Packages</Link>
           <Link href="/#projects" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Projects</Link>
+          <Link href="/refer" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Refer &amp; Earn</Link>
           <Link href="/blog" style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.95rem' }}>Blog</Link>
           <Link href="/#contact" className="btn btn-outline" style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}>Get in Touch</Link>
         </nav>
@@ -69,16 +71,24 @@ export default function SiteHeader() {
               <span className="nav-mobile-num">01</span>
               <span className="nav-mobile-text">Services</span>
             </Link>
-            <Link href="/#packages" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 2 } as React.CSSProperties}>
+            <Link href="/calculator" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 2 } as React.CSSProperties}>
               <span className="nav-mobile-num">02</span>
+              <span className="nav-mobile-text">Cost Calculator</span>
+            </Link>
+            <Link href="/#packages" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 3 } as React.CSSProperties}>
+              <span className="nav-mobile-num">03</span>
               <span className="nav-mobile-text">Packages</span>
             </Link>
-            <Link href="/#projects" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 3 } as React.CSSProperties}>
-              <span className="nav-mobile-num">03</span>
+            <Link href="/#projects" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 4 } as React.CSSProperties}>
+              <span className="nav-mobile-num">04</span>
               <span className="nav-mobile-text">Projects</span>
             </Link>
-            <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 4 } as React.CSSProperties}>
-              <span className="nav-mobile-num">04</span>
+            <Link href="/refer" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 5 } as React.CSSProperties}>
+              <span className="nav-mobile-num">05</span>
+              <span className="nav-mobile-text">Refer &amp; Earn</span>
+            </Link>
+            <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 6 } as React.CSSProperties}>
+              <span className="nav-mobile-num">06</span>
               <span className="nav-mobile-text">Blog</span>
             </Link>
 
@@ -88,13 +98,13 @@ export default function SiteHeader() {
               href="/#contact"
               onClick={() => setIsMenuOpen(false)}
               className="btn btn-primary nav-mobile-cta"
-              style={{ '--index': 5, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem' } as React.CSSProperties}
+              style={{ '--index': 7, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem' } as React.CSSProperties}
             >
               Get in Touch
             </Link>
           </div>
 
-          <div className="nav-mobile-footer" style={{ '--index': 6 } as React.CSSProperties}>
+          <div className="nav-mobile-footer" style={{ '--index': 8 } as React.CSSProperties}>
             <div className="nav-footer-line">📍 Bengaluru, Karnataka</div>
             <div className="nav-footer-line">✉️ info@constructionbuddy.in</div>
             <div className="nav-footer-line" style={{ color: 'var(--gold)', fontWeight: 700 }}>📞 +91 99028 00693</div>

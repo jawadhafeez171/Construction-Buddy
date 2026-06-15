@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Outfit, Playfair_Display } from "next/font/google";
+import { Outfit, DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-logo-loaded",
 });
 
-const playfair = Playfair_Display({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-sans-loaded",
+});
+
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display-loaded",
 });
 
 export const metadata: Metadata = {
@@ -18,7 +24,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.webp',    type: 'image/webp', sizes: '512x512' },
+      { url: '/icon.webp', type: 'image/webp', sizes: '512x512' },
     ],
     apple: { url: '/icon.webp', sizes: '512x512', type: 'image/webp' },
   },
@@ -33,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${playfair.variable} antialiased`} suppressHydrationWarning>
+    <html lang="en" className={`${outfit.variable} ${dmSans.variable} ${dmSerifDisplay.variable} antialiased`} suppressHydrationWarning>
       <body className="min-h-screen" suppressHydrationWarning>{children}</body>
     </html>
   );

@@ -6,9 +6,12 @@ import styles from './ContactModal.module.css';
 
 interface ContactModalProps {
   onClose: () => void;
+  initialPackage?: string;
+  initialArea?: number;
+  initialCost?: string;
 }
 
-export default function ContactModal({ onClose }: ContactModalProps) {
+export default function ContactModal({ onClose, initialPackage, initialArea, initialCost }: ContactModalProps) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -40,6 +43,18 @@ export default function ContactModal({ onClose }: ContactModalProps) {
       setSubmitted(true);
     }, 900);
   };
+
+  const modalHeading = initialPackage ? (
+    <>Inquire: <span>{initialPackage} Tier</span></>
+  ) : (
+    <>Build Your <span>Dream Home</span></>
+  );
+
+  const modalSubtitle = initialPackage
+    ? (initialArea && initialCost
+        ? `Request a detailed estimation sheet and custom brochure for the ${initialPackage} package, calculated for a ${initialArea.toLocaleString()} sqft built-up area at an estimated cost of ${initialCost}.`
+        : `Request a detailed estimation sheet, BOQ, and custom brochure for our premium ${initialPackage} package.`)
+    : "Share your details and our experts will reach out to craft a construction plan tailored just for you.";
 
   const modal = (
     <div
@@ -86,7 +101,10 @@ export default function ContactModal({ onClose }: ContactModalProps) {
               <h2 className={styles.successTitle}>We&apos;ll be in touch!</h2>
               <p className={styles.successDesc}>
                 Thank you, <strong>{name}</strong>. Our team will call you at{' '}
-                <strong>{phone}</strong> within 24 hours to discuss your dream home.
+                <strong>{phone}</strong> within 24 hours to discuss details and schedule a walkthrough for the{' '}
+                <strong>{initialPackage || 'construction'}</strong> plan
+                {initialArea && ` at ${initialArea.toLocaleString()} sqft built-up`}
+                {initialCost && ` (Estimated Total: ${initialCost})`}.
               </p>
               <button className={styles.successClose} onClick={onClose}>
                 Close
@@ -97,10 +115,10 @@ export default function ContactModal({ onClose }: ContactModalProps) {
               <div className={styles.formHeader}>
                 <span className={styles.formEyebrow}>Get Started</span>
                 <h2 id="modal-title" className={styles.formTitle}>
-                  Build Your <span>Dream Home</span>
+                  {modalHeading}
                 </h2>
                 <p className={styles.formSubtitle}>
-                  Share your details and our experts will reach out to craft a plan tailored just for you.
+                  {modalSubtitle}
                 </p>
               </div>
 
@@ -169,7 +187,7 @@ export default function ContactModal({ onClose }: ContactModalProps) {
                     </>
                   ) : (
                     <>
-                      Get My Free Consultation
+                      Request Package Consultation
                       <svg className={styles.submitArrow} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>

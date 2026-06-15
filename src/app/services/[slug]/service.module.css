@@ -108,7 +108,7 @@
 }
 
 .serviceTitle {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-display), serif;
   font-size: 2.85rem;
   font-weight: 700;
   line-height: 1.2;
@@ -196,7 +196,7 @@
 }
 
 .sectionHeading {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-display), serif;
   font-size: 1.75rem;
   font-weight: 700;
   color: #0c1724;
@@ -288,7 +288,7 @@
 }
 
 .timelineTitle {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-display), serif;
   font-size: 1.35rem;
   font-weight: 700;
   color: #0c1724;
@@ -414,7 +414,7 @@
 }
 
 .ctaTitle {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-display), serif;
   font-size: 1.35rem;
   font-weight: 700;
   line-height: 1.35;
@@ -544,7 +544,7 @@
 }
 
 .relatedTitle {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-display), serif;
   font-size: 2rem;
   font-weight: 700;
   color: #0c1724;

@@ -10,11 +10,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '',
     '/blog',
     '/services',
+    '/calculator',
+    '/refer',
+    '/compare-packages',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : route === '/services' ? 0.9 : 0.8,
+    priority: route === '' ? 1.0 : (route === '/services' || route === '/calculator' || route === '/refer' || route === '/compare-packages') ? 0.9 : 0.8,
   }));
 
   // Dynamic blog routes

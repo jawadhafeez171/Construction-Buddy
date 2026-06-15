@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Packages from '@/components/Packages';
 import Gallery from '@/components/Gallery';
+import ReferPromo from '@/components/ReferPromo';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function Home() {
         }}>
           {/* Logo Only Integration */}
           <a href="#" className="logo-link" style={{ display: 'block', textDecoration: 'none' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-sans)', lineHeight: 1.15 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-logo)', lineHeight: 1.15 }}>
               <div style={{ display: 'flex', gap: '0.2rem', alignItems: 'baseline' }}>
                 <span className="logo-unified-shine" style={{
                   fontSize: '1.65rem',
@@ -73,8 +74,10 @@ export default function Home() {
           {/* Desktop Navigation Links */}
           <nav className="nav-desktop">
             <Link href="/services" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Services</Link>
+            <Link href="/calculator" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Cost Calculator</Link>
             <a href="#packages" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Packages</a>
             <a href="#projects" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Projects</a>
+            <Link href="/refer" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Refer &amp; Earn</Link>
             <Link href="/blog" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Blog</Link>
             <a href="#contact" className="btn btn-outline" style={{
               padding: '0.5rem 1.25rem',
@@ -114,31 +117,49 @@ export default function Home() {
                 <span className="nav-mobile-num">01</span>
                 <span className="nav-mobile-text">Services</span>
               </Link>
-              <a
-                href="#packages"
+              <Link
+                href="/calculator"
                 onClick={() => setIsMenuOpen(false)}
                 className="nav-mobile-link"
                 style={{ '--index': 2 } as React.CSSProperties}
               >
                 <span className="nav-mobile-num">02</span>
+                <span className="nav-mobile-text">Cost Calculator</span>
+              </Link>
+              <a
+                href="#packages"
+                onClick={() => setIsMenuOpen(false)}
+                className="nav-mobile-link"
+                style={{ '--index': 3 } as React.CSSProperties}
+              >
+                <span className="nav-mobile-num">03</span>
                 <span className="nav-mobile-text">Packages</span>
               </a>
               <a
                 href="#projects"
                 onClick={() => setIsMenuOpen(false)}
                 className="nav-mobile-link"
-                style={{ '--index': 3 } as React.CSSProperties}
+                style={{ '--index': 4 } as React.CSSProperties}
               >
-                <span className="nav-mobile-num">03</span>
+                <span className="nav-mobile-num">04</span>
                 <span className="nav-mobile-text">Projects</span>
               </a>
+              <Link
+                href="/refer"
+                onClick={() => setIsMenuOpen(false)}
+                className="nav-mobile-link"
+                style={{ '--index': 5 } as React.CSSProperties}
+              >
+                <span className="nav-mobile-num">05</span>
+                <span className="nav-mobile-text">Refer &amp; Earn</span>
+              </Link>
               <Link
                 href="/blog"
                 onClick={() => setIsMenuOpen(false)}
                 className="nav-mobile-link"
-                style={{ '--index': 4 } as React.CSSProperties}
+                style={{ '--index': 6 } as React.CSSProperties}
               >
-                <span className="nav-mobile-num">04</span>
+                <span className="nav-mobile-num">06</span>
                 <span className="nav-mobile-text">Blog</span>
               </Link>
 
@@ -148,14 +169,14 @@ export default function Home() {
                 href="#contact"
                 onClick={() => setIsMenuOpen(false)}
                 className="btn btn-primary nav-mobile-cta"
-                style={{ '--index': 5, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem' } as React.CSSProperties}
+                style={{ '--index': 7, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem' } as React.CSSProperties}
               >
                 Get in Touch
               </a>
             </div>
 
             {/* Premium quick contact widget at the bottom right */}
-            <div className="nav-mobile-footer" style={{ '--index': 6 } as React.CSSProperties}>
+            <div className="nav-mobile-footer" style={{ '--index': 8 } as React.CSSProperties}>
               <div className="nav-footer-line">📍 Bengaluru, Karnataka</div>
               <div className="nav-footer-line">✉️ info@constructionbuddy.in</div>
               <div className="nav-footer-line" style={{ color: 'var(--gold)', fontWeight: 700 }}>📞 +91 99028 00693</div>
@@ -169,10 +190,11 @@ export default function Home() {
       <Services />
       <Packages />
       <Gallery />
+      <ReferPromo />
 
       {/* Premium Warm Forest Footer */}
       <footer id="contact" style={{
-        backgroundColor: '#0D1F3C', /* Deep royal navy — premium & distinctive */
+        backgroundColor: '#0D1824', /* Logo-ink dark navy — matches Construction wordmark */
         borderTop: '1px solid rgba(27, 77, 142, 0.20)',
         padding: '5rem 0 3rem 0',
         position: 'relative',
@@ -190,7 +212,7 @@ export default function Home() {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <a href="#" className="logo-link" style={{ display: 'block', textDecoration: 'none' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-sans)', lineHeight: 1.15 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-logo)', lineHeight: 1.15 }}>
                     <div style={{ display: 'flex', gap: '0.2rem', alignItems: 'baseline' }}>
                       <span style={{ fontSize: '1.65rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em' }}>
                         Construction
