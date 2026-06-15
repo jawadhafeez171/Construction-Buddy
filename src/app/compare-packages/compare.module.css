@@ -9,6 +9,7 @@
   padding-bottom: 6rem;
   font-family: var(--font-sans);
   color: var(--foreground);
+  overflow-x: hidden;
 }
 
 /* ══ HERO ══════════════════════════════════════════════════ */
@@ -60,7 +61,7 @@
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
+  width: min(700px, 100vw);
   height: 350px;
   background: radial-gradient(ellipse, rgba(200, 134, 10, 0.12) 0%, transparent 65%);
   pointer-events: none;
@@ -337,25 +338,14 @@
 /* ══ TABLE WRAPPER ════════════════════════════════════════ */
 .tableResponsiveWrapper {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: 18px;
   background: #ffffff;
   border: 1px solid rgba(13, 24, 36, 0.08);
   box-shadow: 0 8px 40px rgba(13, 24, 36, 0.05), 0 2px 8px rgba(13, 24, 36, 0.03);
   margin-top: 0.5rem;
   position: relative;
-}
-
-/* Subtle gradient scroll hint on right edge */
-.tableResponsiveWrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.6));
-  pointer-events: none;
-  border-radius: 0 18px 18px 0;
+  max-width: 100%;
 }
 
 .comparisonTable {
@@ -794,13 +784,14 @@
 @media (max-width: 992px) {
   .stickyTitleCol { display: none; }
   .stickyFlexWrapper { gap: 0.4rem; }
-  .heroStats { gap: 1.5rem; }
+  .heroStats { gap: 1.5rem; flex-wrap: wrap; }
 }
 
 @media (max-width: 768px) {
   .heroSection { padding: 7.5rem 0 4rem; }
-  .heroStats { gap: 1rem; }
+  .heroStats { gap: 1rem; flex-wrap: wrap; }
   .heroStatNumber { font-size: 1.4rem; }
+  .heroStatDivider { display: none; }
   .controlDeck { gap: 1.1rem; }
   .toggleTab { padding: 0.6rem 1.5rem; font-size: 0.92rem; }
   .comparisonTable th { padding: 1.4rem 1rem; }
@@ -815,4 +806,11 @@
   .filterGroup { gap: 0.4rem; }
   .filterBtn { padding: 0.35rem 0.75rem; font-size: 0.78rem; }
   .toggleTab { padding: 0.55rem 1.1rem; }
+  .heroStats { gap: 0.75rem; justify-content: center; }
+  .heroStat { min-width: 70px; }
+  /* Constrain table min-column width on tiny screens */
+  .comparisonTable th,
+  .comparisonTable td { min-width: 130px; }
+  .comparisonTable th:first-child,
+  .comparisonTable td:first-child { min-width: 140px; }
 }
