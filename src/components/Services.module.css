@@ -3,148 +3,274 @@
   position: relative;
 }
 
-.grid {
+/* ── 3-column primary grid ─────────────────────────────────── */
+.primaryGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  gap: 1.5rem;
   margin-top: 3rem;
 }
 
-/* ── Card ───────────────────────────────────────────────── */
-.card {
-  background: var(--surface-solid);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+/* ── Primary card ──────────────────────────────────────────── */
+.primaryCard {
+  position: relative;
+  border-radius: 20px;
   overflow: hidden;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s ease,
-              border-color 0.35s ease;
-  box-shadow: 0 2px 16px rgba(26, 23, 20, 0.06);
+  justify-content: flex-end;
+  height: 380px;
+  cursor: pointer;
+  isolation: isolate;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.38s ease;
+  box-shadow:
+    0 4px 20px rgba(13, 24, 36, 0.1),
+    0 1px 6px rgba(13, 24, 36, 0.05);
 }
 
-.card:hover {
+.primaryCard:hover {
   transform: translateY(-8px);
-  border-color: var(--border-hover);
-  box-shadow: 0 20px 48px rgba(27, 77, 142, 0.14);
+  box-shadow:
+    0 24px 52px rgba(13, 24, 36, 0.18),
+    0 8px 20px rgba(13, 24, 36, 0.1);
 }
 
-/* ── Image area ─────────────────────────────────────────── */
-.imageWrapper {
-  position: relative;
-  height: 200px;
-  overflow: hidden;
+/* ── Background image + scrim ─────────────────────────────── */
+.cardBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
-.cardImage {
+.cardBgImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card:hover .cardImage {
+.primaryCard:hover .cardBgImg {
   transform: scale(1.06);
 }
 
-/* Subtle gradient scrim at the bottom of the image */
-.imageOverlay {
+.cardScrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 40%,
-    rgba(26, 20, 16, 0.55) 100%
+    rgba(8, 14, 24, 0.08) 0%,
+    rgba(8, 14, 24, 0.3) 45%,
+    rgba(8, 14, 24, 0.85) 100%
   );
-  pointer-events: none;
+  transition: background 0.35s ease;
 }
 
-/* Icon badge floating over the image bottom-left */
-.iconBadge {
+.primaryCard:hover .cardScrim {
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 14, 24, 0.12) 0%,
+    rgba(8, 14, 24, 0.4) 45%,
+    rgba(8, 14, 24, 0.9) 100%
+  );
+}
+
+/* ── Top icon badge ────────────────────────────────────────── */
+.cardBadge {
   position: absolute;
-  bottom: -20px;
-  left: 1.5rem;
-  width: 48px;
-  height: 48px;
-  background: var(--surface-solid);
-  border: 2px solid var(--border-hover);
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 2;
+  width: 46px;
+  height: 46px;
+  background: rgba(255, 253, 249, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.primaryCard:hover .cardBadge {
+  transform: scale(1.1) rotate(-5deg);
+  background: rgba(200, 134, 10, 0.25);
+  border-color: rgba(200, 134, 10, 0.5);
+}
+
+.cardIcon {
   font-size: 1.5rem;
-  box-shadow: 0 4px 16px rgba(27, 77, 142, 0.16);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  line-height: 1;
+}
+
+/* ── Bottom content ────────────────────────────────────────── */
+.cardContent {
+  position: relative;
   z-index: 2;
-}
-
-.card:hover .iconBadge {
-  transform: scale(1.1) rotate(-4deg);
-  box-shadow: 0 8px 24px rgba(27, 77, 142, 0.26);
-}
-
-/* ── Card body ──────────────────────────────────────────── */
-.cardBody {
-  padding: 2.25rem 1.5rem 1.75rem;
+  padding: 1.5rem 1.5rem 1.4rem;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  gap: 0.5rem;
 }
 
 .cardTitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: var(--foreground);
-  line-height: 1.35;
+  color: #ffffff;
+  line-height: 1.25;
+  margin: 0;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
 
 .cardDesc {
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  line-height: 1.65;
-  flex-grow: 1;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.55;
+  margin: 0;
 }
 
-/* ── CTA link ───────────────────────────────────────────── */
+/* ── Card CTA ──────────────────────────────────────────────── */
 .cardCta {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin-top: 1.25rem;
-  font-size: 0.88rem;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: var(--primary);
-  letter-spacing: 0.02em;
+  color: #C8860A;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   transition: gap 0.25s ease;
 }
 
-.card:hover .cardCta {
+.primaryCard:hover .cardCta {
   gap: 0.65rem;
 }
 
-.arrow {
-  transition: transform 0.25s ease;
-  display: inline-block;
+/* ── Explore more row ──────────────────────────────────────── */
+.exploreRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1.4rem 1.75rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(13, 24, 36, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  flex-wrap: wrap;
 }
 
-.card:hover .arrow {
-  transform: translateX(4px);
+.exploreLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex: 1;
 }
 
-/* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .grid {
+.exploreLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.morePills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.morePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(27, 77, 142, 0.07);
+  border: 1px solid rgba(27, 77, 142, 0.15);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.22s ease;
+}
+
+.morePill:hover {
+  background: rgba(27, 77, 142, 0.14);
+  border-color: rgba(27, 77, 142, 0.3);
+  transform: translateY(-1px);
+  color: var(--primary);
+}
+
+/* ── Explore all CTA button ────────────────────────────────── */
+.exploreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--foreground);
+  color: #ffffff;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.01em;
+  flex-shrink: 0;
+}
+
+.exploreBtn:hover {
+  background: var(--primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(27, 77, 142, 0.3);
+  gap: 0.75rem;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .primaryGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .primaryCard:last-child {
+    grid-column: span 2;
+    height: 260px;
   }
 }
 
 @media (max-width: 600px) {
-  .grid {
+  .primaryGrid {
     grid-template-columns: 1fr;
+  }
+
+  .primaryCard {
+    height: 280px;
+  }
+
+  .primaryCard:last-child {
+    grid-column: span 1;
+  }
+
+  .exploreRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .exploreBtn {
+    width: 100%;
+    justify-content: center;
   }
 }

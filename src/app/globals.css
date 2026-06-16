@@ -243,76 +243,117 @@ button {
   display: none !important;
   flex-direction: column;
   justify-content: space-between;
-  width: 24px;
+  align-items: flex-end;
+  /* Right-aligns the shorter bar */
+  width: 26px;
   height: 14px;
   cursor: pointer;
-  z-index: 110;
+  z-index: 1010;
+  /* Sits on top of the slide-out sidebar (1005) */
   background: transparent;
   border: none;
   padding: 0;
   margin-left: auto;
-  /* Forces perfect right-alignment */
 }
 
 .hamburger-line {
-  width: 100%;
   height: 2px;
   background-color: var(--foreground);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: left center;
+  transform-origin: center;
   border-radius: 4px;
 }
 
-/* Open animation state for the hamburger lines */
+/* Asymmetrical widths for the dual-bar design */
+.hamburger-line:nth-child(1) {
+  width: 100%;
+}
+
+.hamburger-line:nth-child(2) {
+  width: 60%;
+  /* Shorter bar for the modern offset aesthetic */
+}
+
+.hamburger-line:nth-child(3) {
+  display: none;
+  /* Hide the third bar completely if present */
+}
+
+/* Morph into a balanced X close button inside the overlay */
 .hamburger-btn.open .hamburger-line:nth-child(1) {
-  transform: rotate(45deg) translate(2px, -1.5px);
-  background-color: #ffffff;
-  /* Contrast white close button on dark overlay */
+  width: 100%;
+  transform: translateY(6px) rotate(45deg);
+  background-color: var(--ink) !important;
+  /* Contrasting dark navy ink on light drawer background */
 }
 
 .hamburger-btn.open .hamburger-line:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
+  width: 100%;
+  transform: translateY(-6px) rotate(-45deg);
+  background-color: var(--ink) !important;
+  /* Contrasting dark navy ink on light drawer background */
 }
 
-.hamburger-btn.open .hamburger-line:nth-child(3) {
-  transform: rotate(-45deg) translate(2px, 1.5px);
-  background-color: #ffffff;
-  /* Contrast white close button on dark overlay */
-}
-
+/* ══ MOBILE SIDEBAR DRAWER (Right Slide-Out) ═════════════════ */
 .nav-mobile-overlay {
   display: none;
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  left: auto;
+  width: 85%;
+  max-width: 330px;
+  /* Slimmed down width for a more concise look */
   height: 100vh;
-  background-color: rgba(13, 24, 36, 0.98);
-  /* Logo-ink deep dark navy overlay */
-  z-index: 105;
+  background-color: #FAF7F0;
+  /* Warm Ivory canvas background */
+  z-index: 1005;
+  /* Lifted above the mobile bottom nav bar (999) */
   flex-direction: column;
-  align-items: flex-end;
-  /* Right-aligns all container items */
-  justify-content: center;
-  gap: 2.5rem;
-  padding-right: 3.5rem;
-  /* Perfect right-aligned inset margin */
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  align-items: flex-start;
+  /* Left-align links inside drawer */
+  justify-content: flex-start;
+  gap: 1.15rem;
+  /* Compact layout spacing */
+  padding: 5rem 2.25rem 1.75rem 2.25rem;
+  /* Room for header and safe spacing */
+  box-shadow: -10px 0 40px rgba(13, 24, 36, 0.12);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateX(100%);
   pointer-events: none;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
 }
 
 .nav-mobile-overlay.open {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
   pointer-events: auto;
 }
 
-/* Premium Glassmorphic Overlay Grid Background */
+/* Dimming backdrop overlay to cover the remaining viewport area */
+.nav-mobile-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(13, 24, 36, 0.40);
+  /* Soft dimming screen wash */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-mobile-overlay.open::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Premium Warm Glassmorphic Drafting Grid Background (contained inside drawer) */
 .nav-overlay-grid-bg {
   position: absolute;
   top: 0;
@@ -321,108 +362,114 @@ button {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.06;
+  opacity: 1;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-  background-size: 45px 45px;
+    linear-gradient(to right, rgba(13, 24, 36, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 24, 36, 0.03) 1px, transparent 1px);
+  background-size: 35px 35px;
 }
 
 .nav-mobile-links-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 1.5rem;
+  align-items: flex-start;
+  /* Left-aligned navigation flow */
+  gap: 0.9rem;
+  /* Tighter list item spacing */
   z-index: 10;
   width: 100%;
 }
 
 .nav-mobile-link {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  /* Center vertically for neat checklist feel */
   gap: 0.85rem;
   text-decoration: none;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
 
 /* Staggered Entrance Animations using CSS Variables */
 .nav-mobile-overlay.open .nav-mobile-link {
-  animation: slideInFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--index) * 0.08s);
+  animation: slideInFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.06s);
 }
 
 .nav-mobile-num {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--gold);
   letter-spacing: 0.08em;
   opacity: 0.75;
   transition: all 0.3s ease;
+  min-width: 22px;
 }
 
 .nav-mobile-text {
   font-family: var(--font-sans);
-  font-size: 2.1rem;
-  /* Clean large luxurious text */
+  font-size: 1.45rem;
+  /* Compact size for concise sidebar proportions */
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.92);
-  /* Bright contrast white in dark mode */
-  letter-spacing: -0.03em;
+  color: var(--ink);
+  letter-spacing: -0.02em;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hover effects */
+/* Hover effects (slides text right instead of left in a drawer layout) */
 .nav-mobile-link:hover .nav-mobile-text {
-  color: var(--gold);
-  /* Turn luxurious amber gold on hover */
-  transform: translateX(-12px);
-  text-shadow: 0 4px 20px rgba(200, 134, 10, 0.2);
+  color: var(--primary);
+  transform: translateX(8px);
 }
 
 .nav-mobile-link:hover .nav-mobile-num {
-  color: #ffffff;
-  /* Number shifts to white for sharp contrast */
+  color: var(--gold);
   transform: scale(1.1);
 }
 
-/* Call to Action Button in Overlay */
+/* Call to Action Button inside Drawer */
 .nav-mobile-cta {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(15px);
   box-shadow: 0 4px 18px rgba(27, 77, 142, 0.15);
-  align-self: flex-end;
+  align-self: flex-start;
+  /* Left-aligned button */
+  margin-top: 0.25rem;
 }
 
 .nav-mobile-overlay.open .nav-mobile-cta {
-  animation: slideInFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--index) * 0.08s);
+  animation: slideInFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.06s);
 }
 
-/* Dropdown Footer Widget */
+/* Push footer elements to bottom of the sidebar drawer */
 .nav-mobile-footer {
-  margin-top: 1.5rem;
+  margin-top: auto;
+  /* Push down to drawer bottom */
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 0.4rem;
+  align-items: flex-start;
+  /* Left-align metadata */
+  gap: 0.3rem;
   z-index: 10;
   opacity: 0;
   transform: translateY(15px);
-  text-align: right;
+  text-align: left;
+  border-top: 1px solid rgba(13, 24, 36, 0.06);
+  padding-top: 1rem;
+  width: 100%;
 }
 
 .nav-mobile-overlay.open .nav-mobile-footer {
-  animation: slideInFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--index) * 0.08s);
+  animation: slideInFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.06s);
 }
 
 .nav-footer-line {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-  /* Readable soft white in dark mode */
+  font-size: 0.8rem;
+  color: var(--text-muted);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -458,110 +505,198 @@ button {
   }
 }
 
-/* Mobile Bottom Navigation Bar Styles */
-.mobile-bottom-nav {
+/* ══ MOBILE BOTTOM NAV — Warm Ivory Card ══════════════════════ */
+
+.bottom-nav {
   display: none;
-  /* Hidden by default on desktop */
   position: fixed;
-  bottom: 1.25rem;
-  /* Float styled above the screen edge for modern feel */
+  bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 2.5rem);
-  max-width: 480px;
+  width: calc(100% - 2rem);
+  max-width: 460px;
   height: 64px;
-  background-color: rgba(255, 255, 255, 0.88);
-  /* Frosted pure white glass */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(13, 31, 60, 0.08);
-  border-radius: 20px;
-  /* Floating rounded capsule design */
+  background: rgba(255, 253, 249, 0.97);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(200, 134, 10, 0.1);
+  border-radius: 22px;
   box-shadow:
-    0 12px 32px rgba(13, 31, 60, 0.12),
-    0 4px 12px rgba(13, 31, 60, 0.04);
-  z-index: 99;
+    0 8px 32px rgba(13, 24, 36, 0.13),
+    0 2px 8px rgba(13, 24, 36, 0.06),
+    0 0 0 0.5px rgba(200, 134, 10, 0.08);
+  z-index: 999;
   justify-content: space-around;
   align-items: center;
   padding: 0 0.5rem;
+  animation: bottomNavSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.mobile-bottom-nav-item {
+@keyframes bottomNavSlideUp {
+  from {
+    transform: translateX(-50%) translateY(80px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ── Nav item ─────────────────────────────────────────────── */
+.bottom-nav-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.7rem;
-  font-weight: 700;
-  width: 20%;
-  /* 5 columns now */
-  height: 100%;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   gap: 0.2rem;
+  color: rgba(27, 77, 142, 0.4);
+  text-decoration: none;
+  width: 20%;
+  height: 100%;
+  padding-bottom: 4px;
+  transition: color 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.mobile-bottom-nav-icon {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mobile-bottom-nav-label {
-  font-family: var(--font-sans);
-  letter-spacing: 0.01em;
-}
-
-/* Hover/Active states for standard navigation items */
-.mobile-bottom-nav-item:not(.call-center):hover,
-.mobile-bottom-nav-item:not(.call-center):active {
+.bottom-nav-item:hover,
+.bottom-nav-item:active {
   color: var(--primary);
+  transform: translateY(-1px);
 }
 
-.mobile-bottom-nav-item:not(.call-center):hover .mobile-bottom-nav-icon {
-  transform: translateY(-2px) scale(1.05);
+/* Active — gold icon + underline bar */
+.bottom-nav-item--active {
+  color: var(--gold) !important;
 }
 
-/* Central Floating gold Call Action FAB */
-.mobile-bottom-nav-item.call-center {
-  position: relative;
-  width: 54px;
-  height: 54px;
-  background: linear-gradient(135deg, #C8860A 0%, #EAB308 100%);
-  /* Warm golden premium gradient */
-  color: #ffffff !important;
-  border-radius: 50%;
-  transform: translateY(-12px);
-  /* Pop out vertically above the capsule bar! */
-  box-shadow:
-    0 8px 20px rgba(200, 134, 10, 0.35),
-    0 2px 6px rgba(200, 134, 10, 0.15);
-  z-index: 100;
+.bottom-nav-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.mobile-bottom-nav-item.call-center:hover,
-.mobile-bottom-nav-item.call-center:active {
-  background: linear-gradient(135deg, #1B4D8E 0%, #2E7DD1 100%);
-  /* Shifts to premium royal navy on click/hover! */
-  transform: translateY(-15px) scale(1.08);
-  /* Modern dynamic hover state */
+.bottom-nav-item--active .bottom-nav-icon {
+  transform: scale(1.05);
+}
+
+.bottom-nav-label {
+  font-family: var(--font-sans);
+  font-size: 0.59rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  transition: color 0.22s ease;
+}
+
+/* Gold underline bar on active */
+.bottom-nav-dot {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2.5px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: barSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+  box-shadow: 0 0 6px rgba(200, 134, 10, 0.4);
+}
+
+@keyframes barSlideIn {
+  from {
+    transform: translateX(-50%) scaleX(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* No divider needed in this style */
+.bottom-nav-divider {
+  display: none;
+}
+
+/* ── Centre FAB — gold call button lifts above bar ────────── */
+.bottom-nav-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(145deg, #e09a12 0%, #c8860a 55%, #a86e08 100%);
+  color: #ffffff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transform: translateY(-13px);
   box-shadow:
-    0 10px 24px rgba(27, 77, 142, 0.4),
-    0 4px 10px rgba(27, 77, 142, 0.2);
+    0 8px 22px rgba(200, 134, 10, 0.42),
+    0 2px 6px rgba(200, 134, 10, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  border: 3px solid rgba(255, 253, 249, 0.97);
+  /* matches card bg — "punched out" look */
 }
 
+/* Pulse ring */
+.bottom-nav-cta-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(200, 134, 10, 0.35);
+  animation: ctaPulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ctaPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  65% {
+    transform: scale(1.42);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.42);
+    opacity: 0;
+  }
+}
+
+.bottom-nav-cta:hover,
+.bottom-nav-cta:active {
+  transform: translateY(-17px) scale(1.07);
+  background: linear-gradient(145deg, #2e7dd1 0%, #1b4d8e 55%, #133b70 100%);
+  box-shadow:
+    0 10px 26px rgba(27, 77, 142, 0.42),
+    0 4px 8px rgba(27, 77, 142, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.bottom-nav-cta:hover .bottom-nav-cta-ring,
+.bottom-nav-cta:active .bottom-nav-cta-ring {
+  border-color: rgba(27, 77, 142, 0.4);
+}
+
+/* Show only on mobile */
 @media (max-width: 768px) {
-  .mobile-bottom-nav {
+  .bottom-nav {
     display: flex;
-    /* Active only on mobile/tablet screens */
   }
 
   body {
-    padding-bottom: 90px;
-    /* Leaves perfect breathing room at the bottom for the floating nav bar */
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -604,5 +739,72 @@ button {
 
   100% {
     background-position: -200% center, 0 center;
+  }
+}
+
+/* ══ SCROLL TO TOP BUTTON ════════════════════════════════════ */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background: rgba(13, 24, 36, 0.95);
+  /* Deep Navy dark theme background */
+  color: var(--gold);
+  /* Gold icon highlight */
+  border: 1px solid rgba(200, 134, 10, 0.25);
+  border-radius: 50%;
+  box-shadow:
+    0 10px 30px rgba(13, 24, 36, 0.25),
+    0 2px 10px rgba(13, 24, 36, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 998;
+  /* Sits cleanly just beneath the bottom nav bar (999) */
+  opacity: 0;
+  transform: translateY(15px) scale(0.9);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.scroll-to-top-btn--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scroll-to-top-btn:hover {
+  background: var(--primary);
+  /* Hover transition to royal navy */
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow:
+    0 15px 35px rgba(27, 77, 142, 0.4),
+    0 4px 12px rgba(27, 77, 142, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.scroll-to-top-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.scroll-to-top-btn:hover svg {
+  transform: translateY(-2px);
+}
+
+/* Position above the bottom nav card on mobile devices */
+@media (max-width: 768px) {
+  .scroll-to-top-btn {
+    bottom: calc(88px + 1.25rem + env(safe-area-inset-bottom, 0px));
+    right: 1.25rem;
+    width: 44px;
+    height: 44px;
   }
 }

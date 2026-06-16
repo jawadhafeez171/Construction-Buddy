@@ -7,6 +7,7 @@ import Services from '@/components/Services';
 import Packages from '@/components/Packages';
 import Gallery from '@/components/Gallery';
 import ReferPromo from '@/components/ReferPromo';
+import BottomNav from '@/components/BottomNav';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -276,31 +277,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
-      {/* Premium Warm Frosted Mobile Bottom Navigation Bar */}
-      <div className="mobile-bottom-nav">
-        <a href="#" className="mobile-bottom-nav-item">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="mobile-bottom-nav-icon"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          <span className="mobile-bottom-nav-label">Home</span>
-        </a>
-        <a href="#services" className="mobile-bottom-nav-item">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="mobile-bottom-nav-icon"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-          <span className="mobile-bottom-nav-label">Services</span>
-        </a>
-
-        {/* Symmetric Central Floating gold FAB Call Action */}
-        <a href="tel:+919902800693" className="mobile-bottom-nav-item call-center" title="Call Us Now">
-          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        </a>
-
-        <a href="#packages" className="mobile-bottom-nav-item">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="mobile-bottom-nav-icon"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-          <span className="mobile-bottom-nav-label">Packages</span>
-        </a>
-        <a href="#projects" className="mobile-bottom-nav-item">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="mobile-bottom-nav-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-          <span className="mobile-bottom-nav-label">Projects</span>
-        </a>
-      </div>
+      <BottomNav />
     </main>
   );
 }
