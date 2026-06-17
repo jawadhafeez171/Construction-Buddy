@@ -194,12 +194,13 @@ button {
 }
 
 .text-gradient {
-  /* Navy-to-blue gradient for hero headline accents */
-  background: linear-gradient(135deg, #1B4D8E 0%, #2E7DD1 100%);
+  /* Vibrant gold-to-amber gradient for premium contrast and readability on dark overlays */
+  background: linear-gradient(135deg, #FFE082 0%, #F5C75D 50%, #C8860A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 /* Logo Styling & Hover Interactions */
 .logo-link {

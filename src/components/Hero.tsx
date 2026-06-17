@@ -7,53 +7,27 @@ import ContactModal from './ContactModal';
 const SLIDES = [
   {
     image: '/hero_stage_foundation.webp',
-    title: (
-      <>
-        Lay a Strong <span className="text-gradient">Foundation.</span>
-      </>
-    ),
-    subtitle: 'We plan, execute, and inspect every detail from day one. Soil testing, robust concrete footings, and seismic-ready foundations tailored for Bengaluru soil conditions.',
     badge: 'Stage 1: Excavation & Foundation'
   },
   {
     image: '/hero_stage_brickwork.webp',
-    title: (
-      <>
-        Watch Your Dream <span className="text-gradient">Take Shape.</span>
-      </>
-    ),
-    subtitle: 'Structural engineering meets premium materials. High-grade steel reinforcement, concrete slab casting, and premium clay brick masonry built for lifelong durability.',
     badge: 'Stage 2: Structural Brickwork'
   },
   {
     image: '/hero_stage_plastering.webp',
-    title: (
-      <>
-        Precision Plastering & <span className="text-gradient">Waterproofing.</span>
-      </>
-    ),
-    subtitle: 'Meticulous plastering, advanced multi-layer waterproofing, and external cladding preparation ensure your home is completely protected from the elements.',
     badge: 'Stage 3: Plastering & Framing'
   },
   {
     image: '/hero_stage_finished.webp',
-    title: (
-      <>
-        Build the Home Your Family<br />
-        Will <span className="text-gradient">Love Forever.</span>
-      </>
-    ),
-    subtitle: 'From your first blueprint to the day you turn the key — we deliver high-quality, fully finished residential homes built exactly to your lifestyle and budget.',
     badge: 'Stage 4: Welcome Home'
   }
 ];
+
 
 export default function Hero() {
   const [modalOpen, setModalOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [displaySlide, setDisplaySlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
@@ -72,18 +46,6 @@ export default function Hero() {
     }, 6000);
     return () => clearInterval(interval);
   }, [isPaused]);
-
-  // Handle crossfade transition of the text copy
-  useEffect(() => {
-    setIsTransitioning(true);
-    const timer = setTimeout(() => {
-      setDisplaySlide(activeSlide);
-      setIsTransitioning(false);
-    }, 350);
-    return () => clearTimeout(timer);
-  }, [activeSlide]);
-
-  const currentSlideCopy = SLIDES[displaySlide];
 
   return (
     <>
@@ -113,13 +75,14 @@ export default function Hero() {
 
         <div className={`container ${styles.gridContainer}`}>
           {/* ── Left-Aligned Content ── */}
-          <div className={`${styles.content} ${isTransitioning ? styles.fadeOut : styles.fadeIn}`}>
+          <div className={styles.content}>
             <h1 className={styles.title}>
-              {currentSlideCopy.title}
+              Build the Home Your Family<br />
+              Will <span className="text-gradient">Love Forever.</span>
             </h1>
 
             <p className={styles.subtitle}>
-              {currentSlideCopy.subtitle}
+              Bengaluru&apos;s premier construction and architecture partner. From 3D BIM modeling to final handover, we construct custom luxury homes with 100% transparency and structural excellence.
             </p>
 
             <div className={styles.actions}>
@@ -138,7 +101,7 @@ export default function Hero() {
             {/* Stage Badge */}
             <div className={styles.badge}>
               <span className={styles.badgeDot}></span>
-              <span>{currentSlideCopy.badge}</span>
+              <span>{SLIDES[activeSlide].badge}</span>
             </div>
           </div>
           
