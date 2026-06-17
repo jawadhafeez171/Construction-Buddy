@@ -2,14 +2,16 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 2000; /* High z-index to overlay bottom nav and sidebar */
   background: rgba(13, 31, 60, 0.72);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Combined with margin:auto on modal, allows natural scrolling when height > viewport */
   justify-content: center;
-  padding: 1.25rem;
+  padding: 2rem 1.25rem;
+  overflow-y: auto; /* Allow backdrop scrolling if modal height exceeds screen */
+  -webkit-overflow-scrolling: touch;
 
   /* entrance */
   animation: backdropIn 0.25s ease forwards;
@@ -33,6 +35,7 @@
     0 40px 100px rgba(13, 31, 60, 0.35),
     0 0 0 1px rgba(27, 77, 142, 0.12);
   animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  margin: auto; /* Aligns modal vertically in backdrop container */
 }
 
 @keyframes modalIn {
@@ -387,11 +390,55 @@
     max-width: 420px;
   }
 
+  /* Hide the image panel on mobile to optimize screen height and prioritize form entry */
   .imagePanel {
-    min-height: 200px;
+    display: none;
   }
 
   .formPanel {
-    padding: 2rem 1.5rem;
+    padding: 2.25rem 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formPanel {
+    padding: 1.75rem 1.25rem;
+    gap: 1.15rem;
+  }
+
+  .formHeader {
+    gap: 0.25rem;
+  }
+
+  .formTitle {
+    font-size: 1.35rem;
+  }
+
+  .formSubtitle {
+    font-size: 0.85rem;
+  }
+
+  .fields {
+    gap: 0.8rem;
+  }
+
+  .label {
+    font-size: 0.78rem;
+  }
+
+  .input {
+    padding: 0.75rem 0.85rem 0.75rem 2.4rem;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+  }
+
+  .submitBtn {
+    padding: 0.8rem 1.25rem;
+    font-size: 0.95rem;
+    border-radius: 0.65rem;
+  }
+
+  .trustNote {
+    font-size: 0.72rem;
   }
 }
