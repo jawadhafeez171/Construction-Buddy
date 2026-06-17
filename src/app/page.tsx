@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Packages from '@/components/Packages';
+import HowItWorks from '@/components/HowItWorks';
 import Gallery from '@/components/Gallery';
 import ReferPromo from '@/components/ReferPromo';
 import BottomNav from '@/components/BottomNav';
@@ -190,6 +191,7 @@ export default function Home() {
       <Hero />
       <Services />
       <Packages />
+      <HowItWorks />
       <Gallery />
       <ReferPromo />
 
@@ -203,12 +205,7 @@ export default function Home() {
       }}>
         <div className="blur-blob" style={{ bottom: '-5%', right: '10%', opacity: 0.4, background: 'radial-gradient(circle, rgba(27, 77, 142, 0.20) 0%, transparent 70%)' }}></div>
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1.5fr 1fr 1fr',
-            gap: '4rem',
-            marginBottom: '4rem'
-          }}>
+          <div className="site-footer-grid">
             {/* Column 1 - Brand Profile */}
             <div>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
@@ -258,15 +255,7 @@ export default function Home() {
           </div>
 
           {/* Sub-footer */}
-          <div style={{
-            borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-            paddingTop: '2rem',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '1rem'
-          }}>
+          <div className="sub-footer">
             <div style={{ color: '#c4b5ac', fontSize: '0.875rem' }}>
               &copy; {new Date().getFullYear()} Construction Buddy. All rights reserved.
             </div>

@@ -81,17 +81,21 @@ export default function Packages() {
               className={`${styles.card} ${pkg.popular ? styles.popular : ''} ${isLuxury ? styles.luxuryCard : ''} ${getTierClass(pkg.name)}`}
               style={{ animationDelay: `${index * 80}ms` }}
             >
+              {/* Card Header Image Banner */}
+              <div className={styles.cardHeaderImageContainer}>
+                <img src={pkg.image} alt={pkg.name} className={styles.cardHeaderImage} />
+                {pkg.popular && (
+                  <div className={styles.popularBadge}>
+                    ★ &nbsp;MOST POPULAR
+                  </div>
+                )}
+              </div>
+
               {/* Subtle background watermark icon */}
               <div 
                 className={styles.cardWatermark} 
                 style={{ backgroundImage: 'url(/bg_pkg_watermark.png)' }} 
               />
-
-              {pkg.popular && (
-                <div className={styles.popularBadge}>
-                  ★ &nbsp;MOST POPULAR
-                </div>
-              )}
 
               {/* Card Header */}
               <div className={styles.cardHeader}>

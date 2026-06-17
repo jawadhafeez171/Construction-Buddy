@@ -98,7 +98,7 @@ button {
 }
 
 .section {
-  padding: 8rem 0;
+  padding: 5rem 0;
   position: relative;
 }
 
@@ -806,5 +806,43 @@ button {
     right: 1.25rem;
     width: 44px;
     height: 44px;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+}
+
+/* ── Footer Responsiveness ── */
+.site-footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .site-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.sub-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .sub-footer {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
 }

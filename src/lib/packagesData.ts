@@ -4,6 +4,7 @@ export interface Package {
   description: string;
   popular: boolean;
   highlights: string[];
+  image: string;
 }
 
 export const standardPackages: Package[] = [
@@ -12,6 +13,7 @@ export const standardPackages: Package[] = [
     price: '₹1,940',
     description: 'A budget package with no compromise on quality that includes all construction essentials.',
     popular: false,
+    image: '/bg_pkg_standard.png',
     highlights: [
       'Trusted brand steel & cement (FE 550 Steel, 53 Grade Cement)',
       'Standard floor tiles up to ₹50/sqft',
@@ -25,6 +27,7 @@ export const standardPackages: Package[] = [
     price: '₹2,070',
     description: 'Our best seller package with upgraded brands like Jindal Steels, Hindware etc. at a considerable price.',
     popular: true,
+    image: '/bg_pkg_premium.png',
     highlights: [
       'Superior brand steel & cement (Jindal/TATA, Ultratech/ACC)',
       'Refined vitrified tiles up to ₹100/sqft',
@@ -38,6 +41,7 @@ export const standardPackages: Package[] = [
     price: '₹2,400',
     description: 'An elegant package crafted for modern living with extra provisions like solar heater setup, puja door etc.',
     popular: false,
+    image: '/bg_pkg_luxury.png',
     highlights: [
       'Top-tier brand steel & cement (TATA Tiscon, Ultratech Super)',
       'Premium vitrified/double charge floor tiles up to ₹140/sqft',
@@ -51,6 +55,7 @@ export const standardPackages: Package[] = [
     price: '₹2,640',
     description: 'An ultimate plan with high-end finishes and modern amenities like EV charging, copper gas lines etc.',
     popular: false,
+    image: '/bg_pkg_elite.png',
     highlights: [
       'Top-tier brand steel & cement (TATA Tiscon, Ultratech Super)',
       'Lavish vitrified/wooden flooring tiles up to ₹160/sqft',
@@ -67,6 +72,7 @@ export const luxuryPackages: Package[] = [
     price: '₹3,990',
     description: 'Ultra-premium package featuring Italian marble flooring, VRV air conditioning, and top-tier imported finishes.',
     popular: false,
+    image: '/bg_pkg_imperial.png',
     highlights: [
       'Corrosion-resistant TATA Tiscon steel & special high-strength concrete',
       'Premium Italian marble flooring for living & dining areas (up to ₹350/sqft)',
@@ -80,6 +86,7 @@ export const luxuryPackages: Package[] = [
     price: '₹4,690',
     description: 'A royal package with smart home automation, glass elevators, double-height ceilings, and customized architectural elements.',
     popular: true,
+    image: '/bg_pkg_royal.png',
     highlights: [
       'Heavy-duty RCC framing with double-height structural steel portals',
       'Super-premium Italian marble/engineered hardwood flooring (up to ₹500/sqft)',
@@ -93,6 +100,7 @@ export const luxuryPackages: Package[] = [
     price: '₹5,490',
     description: 'The ultimate bespoke estate package. Includes thermal-acoustic insulation, swimming pools, and customized landscape gardens.',
     popular: false,
+    image: '/bg_pkg_palatial.png',
     highlights: [
       'Thermally & acoustically insulated double-brick external walls',
       'Custom luxury marble selection & exotic imported timber decks',
