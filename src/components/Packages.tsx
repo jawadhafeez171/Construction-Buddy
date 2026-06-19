@@ -94,7 +94,7 @@ export default function Packages() {
               {/* Subtle background watermark icon */}
               <div 
                 className={styles.cardWatermark} 
-                style={{ backgroundImage: 'url(/bg_pkg_watermark.png)' }} 
+                style={{ backgroundImage: 'url(/bg_pkg_watermark.webp)' }} 
               />
 
               {/* Card Header */}

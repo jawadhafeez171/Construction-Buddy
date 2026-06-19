@@ -6,37 +6,37 @@ import styles from './HowItWorks.module.css';
 const steps = [
   {
     num: '01',
-    image: '/how_it_works_1.png',
+    image: '/how_it_works_1.webp',
     text: 'Fill out a short form and our team will call you within 20 minutes to begin.',
   },
   {
     num: '02',
-    image: '/how_it_works_2.png',
+    image: '/how_it_works_2.webp',
     text: 'Meet our technical expert and architect to discuss your needs and receive an initial quotation.',
   },
   {
     num: '03',
-    image: '/how_it_works_3.png',
+    image: '/how_it_works_3.webp',
     text: 'Pay a small token to confirm your booking and start pre-construction work.',
   },
   {
     num: '04',
-    image: '/how_it_works_4.png',
+    image: '/how_it_works_4.webp',
     text: 'We survey your site, run tests, and create drawings and 3D models for your review.',
   },
   {
     num: '05',
-    image: '/how_it_works_5.png',
+    image: '/how_it_works_5.webp',
     text: 'Sign a transparent contract with clear timelines and milestone-based payments.',
   },
   {
     num: '06',
-    image: '/how_it_works_6.png',
+    image: '/how_it_works_6.webp',
     text: 'Construction begins with daily quality checks and full progress tracking on our app.',
   },
   {
     num: '07',
-    image: '/how_it_works_7.png',
+    image: '/how_it_works_7.webp',
     text: 'After final checks, your home is handed over with a 10-year warranty.',
   },
 ];

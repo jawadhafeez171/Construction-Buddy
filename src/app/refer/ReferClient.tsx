@@ -101,7 +101,7 @@ export default function ReferClient() {
               {/* Generated Image Showcase */}
               <div className={styles.imageCardWrapper}>
                 <img 
-                  src="/refer_hero.png" 
+                  src="/refer_hero.webp" 
                   alt="Modern villa design Bangalore - Construction Buddy Network" 
                   className={styles.showcaseImage}
                 />

@@ -13,7 +13,7 @@ export default function ReferPromo() {
           <div className={styles.leftCol}>
             <div className={styles.imageWrapper}>
               <img 
-                src="/friend_referral.png" 
+                src="/friend_referral.webp" 
                 alt="Friends referring Construction Buddy" 
                 className={styles.referImg}
               />

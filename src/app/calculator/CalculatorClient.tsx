@@ -152,7 +152,7 @@ export default function CalculatorClient() {
 
             <div className={styles.heroImageWrapper}>
               <img
-                src="/calculator_hero.png"
+                src="/calculator_hero.webp"
                 alt="Modern luxury house facade Bangalore"
                 className={styles.heroImage}
               />
