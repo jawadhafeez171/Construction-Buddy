@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Construction Buddy",
     images: [
       {
-        url: "/logo.png",
+        url: "https://www.constructionbuddy.in/logo.png",
         width: 1200,
         height: 630,
         alt: "Construction Buddy Logo",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
     description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
-    images: ["/logo.png"],
+    images: ["https://www.constructionbuddy.in/logo.png"],
   },
   verification: {
     google: '-n5GdoCgJBBozpVE4FJ-GaeIBPetlO43wGz60fpffyw',
