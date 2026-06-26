@@ -19,6 +19,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${post.title} | Construction Buddy Blog`,
     description: post.excerpt,
+    openGraph: {
+      title: `${post.title} | Construction Buddy Blog`,
+      description: post.excerpt,
+      url: `/blog/${slug}`,
+      images: [
+        {
+          url: post.image || '/logo.png',
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
   };
 }
 

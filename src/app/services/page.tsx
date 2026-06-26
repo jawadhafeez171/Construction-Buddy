@@ -1,10 +1,24 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { services } from '@/lib/servicesData';
 import styles from './services.module.css';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Our Services | Construction Buddy Bengaluru',
   description: 'Explore Construction Buddy\'s premium construction, architectural drafting, interior design, waterproofing, and BIM services in Bengaluru.',
+  openGraph: {
+    title: 'Our Services | Construction Buddy Bengaluru',
+    description: 'Explore Construction Buddy\'s premium construction, architectural drafting, interior design, waterproofing, and BIM services in Bengaluru.',
+    url: '/services',
+    images: [
+      {
+        url: '/service_residential.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Our Services - Construction Buddy',
+      },
+    ],
+  },
 };
 
 export default function ServicesPage() {

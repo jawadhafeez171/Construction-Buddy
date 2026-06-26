@@ -19,6 +19,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${service.title} | Construction Buddy Bengaluru`,
     description: service.description,
+    openGraph: {
+      title: `${service.title} | Construction Buddy Bengaluru`,
+      description: service.description,
+      url: `/services/${slug}`,
+      images: [
+        {
+          url: service.image || '/logo.png',
+          width: 1200,
+          height: 630,
+          alt: service.title,
+        },
+      ],
+    },
   };
 }
 

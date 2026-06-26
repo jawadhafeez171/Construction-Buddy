@@ -20,7 +20,7 @@ const dmSerifDisplay = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.constructionbuddy.in'),
+  metadataBase: new URL('https://constructionbuddy.in'),
   title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
   description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
   icons: {
@@ -33,11 +33,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
     description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
-    url: "https://www.constructionbuddy.in",
+    url: "https://constructionbuddy.in",
     siteName: "Construction Buddy",
     images: [
       {
-        url: "https://www.constructionbuddy.in/logo.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "Construction Buddy Logo",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
     description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
-    images: ["https://www.constructionbuddy.in/logo.png"],
+    images: ["/logo.png"],
   },
   verification: {
     google: '-n5GdoCgJBBozpVE4FJ-GaeIBPetlO43wGz60fpffyw',
