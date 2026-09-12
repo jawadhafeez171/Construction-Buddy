@@ -9,6 +9,7 @@ import HowItWorks from '@/components/HowItWorks';
 import Gallery from '@/components/Gallery';
 import ReferPromo from '@/components/ReferPromo';
 import ContactModal from '@/components/ContactModal';
+import NavMoreDropdown from '@/components/NavMoreDropdown';
 import { scrollToSection } from '@/lib/navigation';
 
 export default function Home() {
@@ -107,7 +108,6 @@ export default function Home() {
           {/* Desktop Navigation Links */}
           <nav className="nav-desktop">
             <Link href="/services" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Services</Link>
-            <Link href="/calculator" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Cost Calculator</Link>
             <button
               type="button"
               onClick={(e) => scrollToSection('packages', e)}
@@ -122,8 +122,8 @@ export default function Home() {
             >
               Projects
             </button>
+            <NavMoreDropdown scrolled={scrolled} />
             <Link href="/refer" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Refer &amp; Earn</Link>
-            <Link href="/blog" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Blog</Link>
             <button
               type="button"
               onClick={() => setIsContactOpen(true)}
@@ -170,15 +170,6 @@ export default function Home() {
                 <span className="nav-mobile-num">01</span>
                 <span className="nav-mobile-text">Services</span>
               </Link>
-              <Link
-                href="/calculator"
-                onClick={() => setIsMenuOpen(false)}
-                className="nav-mobile-link"
-                style={{ '--index': 2 } as React.CSSProperties}
-              >
-                <span className="nav-mobile-num">02</span>
-                <span className="nav-mobile-text">Cost Calculator</span>
-              </Link>
               <button
                 type="button"
                 onClick={(e) => {
@@ -186,9 +177,9 @@ export default function Home() {
                   scrollToSection('packages', e);
                 }}
                 className="nav-mobile-link"
-                style={{ '--index': 3, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
+                style={{ '--index': 2, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
               >
-                <span className="nav-mobile-num">03</span>
+                <span className="nav-mobile-num">02</span>
                 <span className="nav-mobile-text">Packages</span>
               </button>
               <button
@@ -198,28 +189,55 @@ export default function Home() {
                   scrollToSection('projects', e);
                 }}
                 className="nav-mobile-link"
-                style={{ '--index': 4, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
+                style={{ '--index': 3, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
               >
-                <span className="nav-mobile-num">04</span>
+                <span className="nav-mobile-num">03</span>
                 <span className="nav-mobile-text">Projects</span>
               </button>
               <Link
-                href="/refer"
+                href="/calculator"
+                onClick={() => setIsMenuOpen(false)}
+                className="nav-mobile-link"
+                style={{ '--index': 4 } as React.CSSProperties}
+              >
+                <span className="nav-mobile-num">04</span>
+                <span className="nav-mobile-text">Cost Calculator</span>
+              </Link>
+              <Link
+                href="/compare-packages"
                 onClick={() => setIsMenuOpen(false)}
                 className="nav-mobile-link"
                 style={{ '--index': 5 } as React.CSSProperties}
               >
                 <span className="nav-mobile-num">05</span>
-                <span className="nav-mobile-text">Refer &amp; Earn</span>
+                <span className="nav-mobile-text">Compare Packages</span>
               </Link>
               <Link
-                href="/blog"
+                href="/vastu-compass"
                 onClick={() => setIsMenuOpen(false)}
                 className="nav-mobile-link"
                 style={{ '--index': 6 } as React.CSSProperties}
               >
                 <span className="nav-mobile-num">06</span>
-                <span className="nav-mobile-text">Blog</span>
+                <span className="nav-mobile-text">Vastu Plot Compass ✨</span>
+              </Link>
+              <Link
+                href="/blog"
+                onClick={() => setIsMenuOpen(false)}
+                className="nav-mobile-link"
+                style={{ '--index': 7 } as React.CSSProperties}
+              >
+                <span className="nav-mobile-num">07</span>
+                <span className="nav-mobile-text">Articles &amp; Blog</span>
+              </Link>
+              <Link
+                href="/refer"
+                onClick={() => setIsMenuOpen(false)}
+                className="nav-mobile-link"
+                style={{ '--index': 8 } as React.CSSProperties}
+              >
+                <span className="nav-mobile-num">08</span>
+                <span className="nav-mobile-text">Refer &amp; Earn</span>
               </Link>
 
               <div style={{ height: '1px', width: '80px', backgroundColor: 'rgba(27, 77, 142, 0.15)', margin: '0.5rem 0 0.5rem auto', zIndex: 10 }}></div>

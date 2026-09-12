@@ -7,10 +7,10 @@
 .packagesSection {
   position: relative;
   padding: 4.5rem 0 5rem;
-  background: linear-gradient(180deg, #F3EBDD 0%, #FAF5EB 50%, #F5EDE0 100%);
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 50%, #F8FAFC 100%);
   overflow: hidden;
-  border-top: 1px solid rgba(160, 125, 75, 0.12);
-  border-bottom: 1px solid rgba(160, 125, 75, 0.12);
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 /* Ambient background blobs */
@@ -187,8 +187,8 @@
 
 /* ── Base Card ── */
 .card {
-  background-color: #FFFDF8;
-  border: 1px solid rgba(175, 135, 80, 0.16);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 20px;
   position: relative;
   display: flex;
@@ -201,7 +201,7 @@
   overflow: hidden;
   opacity: 0;
   animation: cardFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  box-shadow: 0 4px 18px rgba(160, 125, 60, 0.05);
+  box-shadow: 0 4px 20px rgba(13, 31, 60, 0.05);
 }
 
 .cardWatermark {
@@ -439,6 +439,103 @@
   margin: 0 1.5rem;
   position: relative;
   z-index: 2;
+}
+
+/* ── Collapsible Card Specs Toggle Button ── */
+.specsToggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: rgba(13, 24, 36, 0.02);
+  border: none;
+  border-top: 1px solid rgba(13, 24, 36, 0.06);
+  border-bottom: 1px solid rgba(13, 24, 36, 0.06);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1B4D8E;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 2;
+  text-align: left;
+}
+
+.luxuryCard .specsToggleBtn {
+  color: #C8860A;
+  background: rgba(200, 134, 10, 0.03);
+  border-color: rgba(200, 134, 10, 0.1);
+}
+
+.specsToggleBtn:hover {
+  background: rgba(27, 77, 142, 0.06);
+}
+
+.luxuryCard .specsToggleBtn:hover {
+  background: rgba(200, 134, 10, 0.08);
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chevronUp {
+  transform: rotate(180deg);
+}
+
+/* ── Collapsible Container (Grid 0fr -> 1fr Animation) ── */
+.collapsibleContent {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.collapsibleContent.open {
+  grid-template-rows: 1fr;
+}
+
+.collapsibleInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Global Expand / Collapse Control ── */
+.globalControls {
+  display: flex;
+  justify-content: center;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.globalToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.25rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(27, 77, 142, 0.2);
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1B4D8E;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(13, 31, 60, 0.04);
+}
+
+.globalToggleBtn:hover {
+  background: rgba(27, 77, 142, 0.05);
+  border-color: #1B4D8E;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(27, 77, 142, 0.1);
 }
 
 /* ── Highlights Box ── */

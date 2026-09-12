@@ -1,0 +1,169 @@
+.dropdownWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.triggerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.triggerBtn:hover {
+  opacity: 0.85;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Floating Dropdown Card */
+.menuCard {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: -20px;
+  width: 345px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px -6px rgba(13, 31, 60, 0.12), 0 0 0 1px rgba(13, 31, 60, 0.03);
+  padding: 0.45rem;
+  z-index: 1100;
+  transform-origin: top right;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Invisible bridge to prevent mouse-leave when moving from trigger to menu */
+.menuCard::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItemLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.18s ease, transform 0.18s ease;
+  background: transparent;
+}
+
+.menuItemLink:hover {
+  background: #F8FAFC;
+  transform: translateX(2px);
+}
+
+.iconWrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(27, 77, 142, 0.07);
+  color: #1B4D8E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.menuItemLink:hover .iconWrap {
+  background: #1B4D8E;
+  color: #ffffff;
+}
+
+.itemContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.itemTitle {
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: #0D1824;
+  line-height: 1.25;
+}
+
+.menuItemLink:hover .itemTitle {
+  color: #1B4D8E;
+}
+
+.itemBadge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 9999px;
+  background: rgba(200, 134, 10, 0.12);
+  color: #C8860A;
+  letter-spacing: 0.02em;
+}
+
+.itemDesc {
+  font-size: 0.76rem;
+  color: #64748B;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+.arrowIcon {
+  color: #CBD5E1;
+  font-size: 0.85rem;
+  transition: all 0.18s ease;
+  opacity: 0;
+  transform: translateX(-4px);
+}
+
+.menuItemLink:hover .arrowIcon {
+  opacity: 1;
+  transform: translateX(0);
+  color: #1B4D8E;
+}

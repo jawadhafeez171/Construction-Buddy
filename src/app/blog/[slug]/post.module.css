@@ -185,6 +185,25 @@
   margin-top: 0;
 }
 
+.heading3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.015em;
+  margin: 1.75rem 0 0.75rem;
+}
+
+.blockquote {
+  margin: 1.75rem 0;
+  padding: 1.1rem 1.4rem;
+  border-left: 4px solid var(--primary);
+  background: rgba(27, 77, 142, 0.05);
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+  color: #1a2a3a;
+  line-height: 1.7;
+}
+
 .list {
   list-style: none;
   padding: 0;

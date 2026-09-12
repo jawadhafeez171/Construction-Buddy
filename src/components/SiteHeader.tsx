@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import ContactModal from './ContactModal';
+import NavMoreDropdown from './NavMoreDropdown';
 import { scrollToSection } from '@/lib/navigation';
 
 export default function SiteHeader() {
@@ -44,7 +45,6 @@ export default function SiteHeader() {
         {/* Desktop Nav */}
         <nav className="nav-desktop">
           <Link href="/services" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Services</Link>
-          <Link href="/calculator" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Cost Calculator</Link>
           <button
             type="button"
             onClick={(e) => scrollToSection('packages', e)}
@@ -59,6 +59,7 @@ export default function SiteHeader() {
           >
             Projects
           </button>
+          <NavMoreDropdown scrolled={true} />
           <Link href="/refer" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Refer &amp; Earn</Link>
           <button
             type="button"
@@ -92,10 +93,6 @@ export default function SiteHeader() {
               <span className="nav-mobile-num">01</span>
               <span className="nav-mobile-text">Services</span>
             </Link>
-            <Link href="/calculator" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 2 } as React.CSSProperties}>
-              <span className="nav-mobile-num">02</span>
-              <span className="nav-mobile-text">Cost Calculator</span>
-            </Link>
             <button
               type="button"
               onClick={(e) => {
@@ -103,9 +100,9 @@ export default function SiteHeader() {
                 scrollToSection('packages', e);
               }}
               className="nav-mobile-link"
-              style={{ '--index': 3, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
+              style={{ '--index': 2, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
             >
-              <span className="nav-mobile-num">03</span>
+              <span className="nav-mobile-num">02</span>
               <span className="nav-mobile-text">Packages</span>
             </button>
             <button
@@ -115,18 +112,30 @@ export default function SiteHeader() {
                 scrollToSection('projects', e);
               }}
               className="nav-mobile-link"
-              style={{ '--index': 4, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
+              style={{ '--index': 3, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
             >
-              <span className="nav-mobile-num">04</span>
+              <span className="nav-mobile-num">03</span>
               <span className="nav-mobile-text">Projects</span>
             </button>
-            <Link href="/refer" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 5 } as React.CSSProperties}>
-              <span className="nav-mobile-num">05</span>
-              <span className="nav-mobile-text">Refer &amp; Earn</span>
+            <Link href="/calculator" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 4 } as React.CSSProperties}>
+              <span className="nav-mobile-num">04</span>
+              <span className="nav-mobile-text">Cost Calculator</span>
             </Link>
-            <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 6 } as React.CSSProperties}>
+            <Link href="/compare-packages" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 5 } as React.CSSProperties}>
+              <span className="nav-mobile-num">05</span>
+              <span className="nav-mobile-text">Compare Packages</span>
+            </Link>
+            <Link href="/vastu-compass" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 6 } as React.CSSProperties}>
               <span className="nav-mobile-num">06</span>
-              <span className="nav-mobile-text">Blog</span>
+              <span className="nav-mobile-text">Vastu Plot Compass ✨</span>
+            </Link>
+            <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 7 } as React.CSSProperties}>
+              <span className="nav-mobile-num">07</span>
+              <span className="nav-mobile-text">Articles &amp; Blog</span>
+            </Link>
+            <Link href="/refer" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 8 } as React.CSSProperties}>
+              <span className="nav-mobile-num">08</span>
+              <span className="nav-mobile-text">Refer &amp; Earn</span>
             </Link>
 
             <div style={{ height: '1px', width: '80px', backgroundColor: 'rgba(27, 77, 142, 0.15)', margin: '0.5rem 0 0.5rem auto', zIndex: 10 }}></div>

@@ -1,10 +1,10 @@
 .referPromoSection {
   position: relative;
   padding: 4.5rem 0 5rem;
-  background: linear-gradient(180deg, #FAF5EB 0%, #F3EBDD 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
   overflow: hidden;
-  border-top: 1px solid rgba(160, 125, 75, 0.12);
-  border-bottom: 1px solid rgba(160, 125, 75, 0.12);
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 /* Ambient backlight glow */

@@ -18,6 +18,15 @@ interface Props {
   related: BlogPost[];
 }
 
+function formatInline(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((p, pi) =>
+    p.startsWith('**') && p.endsWith('**')
+      ? <strong key={pi}>{p.slice(2, -2)}</strong>
+      : p
+  );
+}
+
 function renderContent(content: string) {
   const lines = content.trim().split('\n');
   const elements: React.ReactNode[] = [];
@@ -27,14 +36,18 @@ function renderContent(content: string) {
     const line = lines[i].trim();
     if (!line) continue;
 
-    if (line.startsWith('## ')) {
-      elements.push(<h2 key={key++} className={styles.heading2}>{line.slice(3)}</h2>);
+    if (line.startsWith('### ')) {
+      elements.push(<h3 key={key++} className={styles.heading3}>{formatInline(line.slice(4))}</h3>);
+    } else if (line.startsWith('## ')) {
+      elements.push(<h2 key={key++} className={styles.heading2}>{formatInline(line.slice(3))}</h2>);
+    } else if (line.startsWith('> ')) {
+      elements.push(<blockquote key={key++} className={styles.blockquote}>{formatInline(line.slice(2))}</blockquote>);
     } else if (line.startsWith('**') && line.endsWith('**')) {
       elements.push(<p key={key++} className={styles.boldPara}>{line.slice(2, -2)}</p>);
     } else if (line.startsWith('- [ ]')) {
-      elements.push(<li key={key++} className={`${styles.listItem} ${styles.checkItem}`}>☐ {line.slice(5).trim()}</li>);
+      elements.push(<li key={key++} className={`${styles.listItem} ${styles.checkItem}`}>☐ {formatInline(line.slice(5).trim())}</li>);
     } else if (line.startsWith('- ')) {
-      elements.push(<li key={key++} className={styles.listItem}>{line.slice(2)}</li>);
+      elements.push(<li key={key++} className={styles.listItem}>{formatInline(line.slice(2))}</li>);
     } else if (line.startsWith('| ') && line.endsWith(' |')) {
       // Table row — skip separator rows
       if (line.includes('---')) continue;
@@ -43,26 +56,20 @@ function renderContent(content: string) {
       if (isHeader) {
         elements.push(
           <tr key={key++} className={styles.tableHeaderRow}>
-            {cells.map((c, ci) => <th key={ci} className={styles.tableHeader}>{c}</th>)}
+            {cells.map((c, ci) => <th key={ci} className={styles.tableHeader}>{formatInline(c)}</th>)}
           </tr>
         );
       } else {
         elements.push(
           <tr key={key++} className={styles.tableRow}>
-            {cells.map((c, ci) => <td key={ci} className={styles.tableCell}>{c}</td>)}
+            {cells.map((c, ci) => <td key={ci} className={styles.tableCell}>{formatInline(c)}</td>)}
           </tr>
         );
       }
     } else {
-      // Replace **bold** inline
-      const parts = line.split(/(\*\*[^*]+\*\*)/g);
       elements.push(
         <p key={key++} className={styles.paragraph}>
-          {parts.map((p, pi) =>
-            p.startsWith('**') && p.endsWith('**')
-              ? <strong key={pi}>{p.slice(2, -2)}</strong>
-              : p
-          )}
+          {formatInline(line)}
         </p>
       );
     }
@@ -194,7 +201,9 @@ export default function BlogPostClient({ post, related }: Props) {
               <h3 className={styles.sideAuthorName}>{post.author}</h3>
               <p className={styles.sideAuthorRole}>{post.authorRole}</p>
               <p className={styles.sideAuthorBio}>
-                Expert at Construction Buddy with deep knowledge of construction processes in Bengaluru.
+                {post.author === 'Jawad Hafeez'
+                  ? 'Founder & Principal Design Director at Hafeez Studio and Construction Buddy. Guiding homeowners through transparent, high-precision architectural design, structural engineering, and turnkey luxury execution across Bengaluru.'
+                  : 'Expert at Construction Buddy with deep knowledge of construction processes in Bengaluru.'}
               </p>
             </div>
 

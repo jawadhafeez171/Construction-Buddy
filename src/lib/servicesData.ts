@@ -211,6 +211,41 @@ export const services: Service[] = [
       { question: 'Is BIM useful for small residential homes?', answer: 'Absolutely. BIM is highly effective at avoiding plumbing and electrical routing conflicts in tight residential spaces, saving costly field adjustments.' },
       { question: 'What software do you use for BIM?', answer: 'We primarily use Autodesk Revit, Navisworks, and BIM 360 to build and coordinate our models.' }
     ]
+  },
+  {
+    slug: 'renovation-repair',
+    title: 'Renovation & Structural Repair',
+    description: 'Turnkey home remodeling, floor additions, structural strengthening, and modern aesthetic upgrades in Bengaluru.',
+    icon: '🔨',
+    image: '/service_renovation.jpg',
+    fullDescription: 'Breathe new life and structural resilience into your existing property. Whether you are adding a new floor (G+1, G+2 vertical expansions), reconfiguring walls for an open-concept layout, retrofitting aged RCC columns with micro-concrete jacketing, or completely overhauling kitchens and bathrooms, our civil engineers and interior architects manage the entire lifecycle with dust-containment protocols, structural safety audits, and zero-compromise craftsmanship.',
+    benefits: [
+      'Certified Structural Load Audit & NDT Testing',
+      'Vertical Floor Additions with BBMP Permitting Advisory',
+      'Dust-Containment & Debris Management Protocols',
+      'Turnkey Delivery (From Civil Demolition to Luxury Finishing)'
+    ],
+    features: [
+      'RCC column jacketing, beam strengthening & micro-concrete grouting',
+      'Floor additions with lightweight AAC blockwork to minimize dead loads',
+      'Complete modular kitchen & luxury bathroom remodeling',
+      'Structural wall modifications with load-redistribution steel girders',
+      'Modern facade makeovers, louvers, and toughened glass balcony railings',
+      'Full electrical rewiring (FRLS copper) and CPVC plumbing replacement'
+    ],
+    process: [
+      { title: '1. Structural Health Audit', desc: 'On-site non-destructive testing (NDT), rebound hammer checks, and foundation capacity assessment.' },
+      { title: '2. Architectural 3D Redesign', desc: 'Space planning, 3D photorealistic walkthroughs of the new layout, and material mood boards.' },
+      { title: '3. Safety & Dust Enclosure', desc: 'Erecting dust screens, floor protection sheeting, and structural propping/shoring before demolition.' },
+      { title: '4. Civil & Structural Retrofitting', desc: 'Controlled wall removal, steel lintel insertion, column strengthening, and new masonry.' },
+      { title: '5. MEP Overhaul & Luxury Finishes', desc: 'Concealed plumbing, electrical conduits, designer tiling, modular joinery, and premium painting.' }
+    ],
+    faqs: [
+      { question: 'Can an additional floor be added to my 15-year-old Bengaluru home?', answer: 'Yes, provided the existing foundation and column capacity allow it. We conduct a non-destructive structural audit (NDT) to evaluate concrete strength and rebar condition before proposing vertical floor additions, often recommending lightweight AAC blocks to reduce dead weight.' },
+      { question: 'How do you prevent dust and damage to occupied areas during renovation?', answer: 'We deploy commercial-grade dust containment zippers, floor surface protection boards (corrugated polypropylene sheets), and negative-pressure extraction fans to ensure dust does not infiltrate undisturbed living spaces.' },
+      { question: 'Do you handle partial renovations, such as only bathrooms or a modular kitchen?', answer: 'Yes. We take on full-villa remodels, vertical additions, as well as high-end targeted renovations like luxury master bathroom overhauls and kitchen transformations.' },
+      { question: 'Is BBMP approval required for home renovations in Bengaluru?', answer: 'Interior remodeling and non-structural changes do not require municipal approval. However, adding additional built-up area or vertical floors requires an amended sanction plan from BBMP, which our liaison team facilitates.' }
+    ]
   }
 ];
 

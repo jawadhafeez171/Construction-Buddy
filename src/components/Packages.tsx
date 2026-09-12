@@ -9,8 +9,27 @@ export default function Packages() {
   const [isLuxury, setIsLuxury] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
 
   const activePackages = isLuxury ? luxuryPackages : standardPackages;
+
+  const toggleCard = (pkgName: string) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [pkgName]: !prev[pkgName]
+    }));
+  };
+
+  const areAllExpanded = activePackages.length > 0 && activePackages.every(pkg => !!expandedCards[pkg.name]);
+
+  const toggleAll = () => {
+    const nextState = !areAllExpanded;
+    const updated: Record<string, boolean> = { ...expandedCards };
+    activePackages.forEach(pkg => {
+      updated[pkg.name] = nextState;
+    });
+    setExpandedCards(updated);
+  };
 
   const handleInquire = (pkgName: string) => {
     setSelectedPackage(pkgName);
@@ -73,80 +92,113 @@ export default function Packages() {
           </div>
         </div>
 
+        {/* ── Global Expand / Collapse Control ── */}
+        <div className={styles.globalControls}>
+          <button
+            type="button"
+            onClick={toggleAll}
+            className={styles.globalToggleBtn}
+          >
+            <span>{areAllExpanded ? 'Collapse All Specifications ▴' : 'Expand All Specifications ▾'}</span>
+          </button>
+        </div>
+
         {/* ── Package Cards Grid ── */}
         <div className={`${styles.grid} ${isLuxury ? styles.gridThree : styles.gridFour}`}>
-          {activePackages.map((pkg, index) => (
-            <div
-              key={pkg.name}
-              className={`${styles.card} ${pkg.popular ? styles.popular : ''} ${isLuxury ? styles.luxuryCard : ''} ${getTierClass(pkg.name)}`}
-              style={{ animationDelay: `${index * 80}ms` }}
-            >
-              {/* Card Header Image Banner */}
-              <div className={styles.cardHeaderImageContainer}>
-                <img src={pkg.image} alt={pkg.name} className={styles.cardHeaderImage} />
-                {pkg.popular && (
-                  <div className={styles.popularBadge}>
-                    ★ &nbsp;MOST POPULAR
-                  </div>
-                )}
-              </div>
-
-              {/* Subtle background watermark icon */}
-              <div 
-                className={styles.cardWatermark} 
-                style={{ backgroundImage: 'url(/bg_pkg_watermark.webp)' }} 
-              />
-
-              {/* Card Header */}
-              <div className={styles.cardHeader}>
-                <h3 className={styles.pkgName}>{pkg.name}</h3>
-                <div className={styles.pkgPrice}>
-                  <span className={styles.amount}>{pkg.price}</span>
-                  <span className={styles.perSqft}>/ sqft</span>
+          {activePackages.map((pkg, index) => {
+            const isExpanded = !!expandedCards[pkg.name];
+            return (
+              <div
+                key={pkg.name}
+                className={`${styles.card} ${pkg.popular ? styles.popular : ''} ${isLuxury ? styles.luxuryCard : ''} ${getTierClass(pkg.name)}`}
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                {/* Card Header Image Banner */}
+                <div className={styles.cardHeaderImageContainer}>
+                  <img src={pkg.image} alt={pkg.name} className={styles.cardHeaderImage} />
+                  {pkg.popular && (
+                    <div className={styles.popularBadge}>
+                      ★ &nbsp;MOST POPULAR
+                    </div>
+                  )}
                 </div>
-                <p className={styles.pkgDesc}>{pkg.description}</p>
-              </div>
 
-              <div className={styles.cardDivider} />
+                {/* Subtle background watermark icon */}
+                <div 
+                  className={styles.cardWatermark} 
+                  style={{ backgroundImage: 'url(/bg_pkg_watermark.webp)' }} 
+                />
 
-              {/* Highlights */}
-              <div className={styles.highlightsBox}>
-                <div className={styles.highlightsTitle}>Key Specifications</div>
-                <ul className={styles.list}>
-                  {pkg.highlights.map((item, i) => (
-                    <li key={i} className={styles.listItem}>
-                      <span className={styles.checkIconWrap}>
-                        <svg
-                          className={styles.checkIcon}
-                          width="10"
-                          height="10"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="3.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      </span>
-                      <span className={styles.itemText}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                {/* Card Header */}
+                <div className={styles.cardHeader}>
+                  <h3 className={styles.pkgName}>{pkg.name}</h3>
+                  <div className={styles.pkgPrice}>
+                    <span className={styles.amount}>{pkg.price}</span>
+                    <span className={styles.perSqft}>/ sqft</span>
+                  </div>
+                  <p className={styles.pkgDesc}>{pkg.description}</p>
+                </div>
 
-              {/* Footer CTA */}
-              <div className={styles.cardFooter}>
+                <div className={styles.cardDivider} />
+
+                {/* Collapsible Specs Toggle Button */}
                 <button
-                  onClick={() => handleInquire(pkg.name)}
-                  className={`btn ${styles.btnFull} ${getBtnClass(pkg)}`}
+                  type="button"
+                  onClick={() => toggleCard(pkg.name)}
+                  className={styles.specsToggleBtn}
+                  aria-expanded={isExpanded}
                 >
-                  Inquire About {pkg.name}
+                  <span>{isExpanded ? 'Hide Specifications' : 'View Specifications'} ({pkg.highlights.length})</span>
+                  <span className={`${styles.chevron} ${isExpanded ? styles.chevronUp : ''}`}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
                 </button>
+
+                {/* Collapsible Highlights Box */}
+                <div className={`${styles.collapsibleContent} ${isExpanded ? styles.open : ''}`}>
+                  <div className={styles.collapsibleInner}>
+                    <div className={styles.highlightsBox}>
+                      <div className={styles.highlightsTitle}>Key Specifications</div>
+                      <ul className={styles.list}>
+                        {pkg.highlights.map((item, i) => (
+                          <li key={i} className={styles.listItem}>
+                            <span className={styles.checkIconWrap}>
+                              <svg
+                                className={styles.checkIcon}
+                                width="10"
+                                height="10"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            </span>
+                            <span className={styles.itemText}>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer CTA */}
+                <div className={styles.cardFooter}>
+                  <button
+                    onClick={() => handleInquire(pkg.name)}
+                    className={`btn ${styles.btnFull} ${getBtnClass(pkg)}`}
+                  >
+                    Inquire About {pkg.name}
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Compare Packages CTA Banner */}

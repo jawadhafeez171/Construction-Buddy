@@ -311,6 +311,11 @@ export default function SiteFooter() {
                     <span>3D BIM Clash Detection</span>
                   </Link>
                 </li>
+                <li>
+                  <Link href="/services/renovation-repair" className={styles.footerLink}>
+                    <span>Renovation &amp; Structural Repair</span>
+                  </Link>
+                </li>
                 <li style={{ marginTop: '0.25rem' }}>
                   <Link href="/services" className={`${styles.footerLink} ${styles.footerLinkHighlight}`}>
                     <span>Explore All Services →</span>
