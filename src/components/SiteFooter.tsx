@@ -334,6 +334,11 @@ export default function SiteFooter() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/vastu-compass" className={`${styles.footerLink} ${styles.footerLinkHighlight}`}>
+                    <span>Vastu Plot Compass ✨</span>
+                  </Link>
+                </li>
+                <li>
                   <button
                     type="button"
                     onClick={(e) => scrollToSection('packages', e)}

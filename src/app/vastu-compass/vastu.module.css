@@ -1,0 +1,705 @@
+.pageContainer {
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--foreground);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  padding: 8rem 1.5rem 4rem;
+  background: radial-gradient(circle at 50% 20%, rgba(200, 134, 10, 0.08) 0%, transparent 65%),
+              linear-gradient(180deg, #F5F0E6 0%, #FAF6F0 100%);
+  border-bottom: 1px solid rgba(200, 134, 10, 0.15);
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(200, 134, 10, 0.12);
+  border: 1px solid rgba(200, 134, 10, 0.3);
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #8C5D05;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.heroTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.heroTitleAccent {
+  color: #C8860A;
+  background: linear-gradient(135deg, #C8860A 0%, #E69B17 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: #2D3F53;
+  font-weight: 500;
+}
+
+/* Quick Plot Facing Selector Bar */
+.plotSelectorBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.plotBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(27, 77, 142, 0.18);
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #2D3F53;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(13, 31, 60, 0.04);
+}
+
+.plotBtn:hover {
+  border-color: #1B4D8E;
+  color: #1B4D8E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 77, 142, 0.08);
+}
+
+.plotBtnActive {
+  background: linear-gradient(135deg, #1B4D8E 0%, #2A68B8 100%);
+  border-color: #1B4D8E;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(27, 77, 142, 0.25);
+}
+
+.plotBtnActive:hover {
+  color: #ffffff;
+}
+
+/* Main Dashboard Section */
+.toolSection {
+  padding: 4rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Mode Switcher Tabs */
+.modeTabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(200, 134, 10, 0.08);
+  padding: 0.4rem;
+  border-radius: 16px;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  border: 1px solid rgba(200, 134, 10, 0.2);
+}
+
+.modeTabBtn {
+  flex: 1;
+  padding: 0.75rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #556B82;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.modeTabBtnActive {
+  background: #ffffff;
+  color: #1B4D8E;
+  box-shadow: 0 4px 14px rgba(13, 31, 60, 0.08);
+}
+
+/* Split Layout: Compass Visualizer & Interactive Panel */
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Compass Visualizer Card */
+.compassCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(200, 134, 10, 0.22);
+  box-shadow: 0 16px 40px rgba(13, 31, 60, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.compassDialWrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto;
+}
+
+.compassSvg {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.compassOrientationTag {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #8C5D05;
+  background: #FEF9EE;
+  padding: 0.4rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(200, 134, 10, 0.25);
+}
+
+/* 9-Zone Purusha Mandala Visual Grid */
+.mandalaGridContainer {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.mandalaTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1B4D8E;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.mandalaSubtitle {
+  font-size: 0.85rem;
+  color: #556B82;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.mandalaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.zoneCell {
+  background: #FAF8F5;
+  border: 1.5px solid rgba(27, 77, 142, 0.12);
+  border-radius: 12px;
+  padding: 1rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  min-height: 96px;
+  justify-content: center;
+}
+
+.zoneCell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 31, 60, 0.08);
+  border-color: #1B4D8E;
+}
+
+.zoneCellSelected {
+  border-color: #C8860A !important;
+  background: #FFFDF8 !important;
+  box-shadow: 0 0 0 3px rgba(200, 134, 10, 0.25);
+}
+
+.zoneBest {
+  background: #ECFDF5 !important;
+  border-color: #10B981 !important;
+}
+
+.zoneBest::after {
+  content: '★ BEST';
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: #059669;
+  letter-spacing: 0.04em;
+}
+
+.zoneAcceptable {
+  background: #FEF9EE !important;
+  border-color: #F59E0B !important;
+}
+
+.zoneAcceptable::after {
+  content: '✓ OK';
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: #D97706;
+}
+
+.zoneAvoid {
+  background: #FEF2F2 !important;
+  border-color: #EF4444 !important;
+  opacity: 0.85;
+}
+
+.zoneAvoid::after {
+  content: '✕ AVOID';
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: #DC2626;
+}
+
+.zoneName {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--foreground);
+  line-height: 1.2;
+}
+
+.zoneSanskrit {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #C8860A;
+  margin-top: 0.2rem;
+}
+
+.zoneElementBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #556B82;
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Right Detail Column */
+.detailCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2.25rem 2rem;
+  border: 1px solid rgba(27, 77, 142, 0.12);
+  box-shadow: 0 16px 40px rgba(13, 31, 60, 0.05);
+}
+
+.detailHeader {
+  border-bottom: 1px solid rgba(20, 34, 32, 0.08);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.detailTitle {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #1B4D8E;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.detailSanskrit {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #C8860A;
+  margin-top: 0.25rem;
+}
+
+/* Room Selector List */
+.roomSelectorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.roomBtn {
+  background: #FAF8F5;
+  border: 1px solid rgba(27, 77, 142, 0.12);
+  border-radius: 12px;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2D3F53;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.roomBtn:hover {
+  background: #ffffff;
+  border-color: #1B4D8E;
+  color: #1B4D8E;
+  transform: translateY(-2px);
+}
+
+.roomBtnActive {
+  background: #1B4D8E !important;
+  color: #ffffff !important;
+  border-color: #1B4D8E !important;
+  box-shadow: 0 6px 16px rgba(27, 77, 142, 0.22);
+}
+
+.roomBtnIcon {
+  font-size: 1.25rem;
+}
+
+/* Info Blocks */
+.infoBlock {
+  background: #FBF9F6;
+  border-left: 4px solid #1B4D8E;
+  padding: 1.15rem 1.25rem;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 1.25rem;
+}
+
+.infoBlockTitle {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #1B4D8E;
+  margin-bottom: 0.4rem;
+}
+
+.infoBlockText {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #2D3F53;
+  font-weight: 500;
+}
+
+.rulesList {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ruleItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #2D3F53;
+}
+
+.ruleIconBest {
+  color: #10B981;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.ruleIconAvoid {
+  color: #EF4444;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* Vastu Scorecard Wizard */
+.wizardCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2.5rem;
+  border: 1px solid rgba(200, 134, 10, 0.22);
+  box-shadow: 0 16px 40px rgba(13, 31, 60, 0.05);
+}
+
+.wizardHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.scoreMeter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem 0 2rem;
+}
+
+.scoreCircle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 60%, #FAF8F5 100%);
+  border: 8px solid #10B981;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
+}
+
+.scoreNumber {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #10B981;
+  line-height: 1;
+}
+
+.scoreLabel {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #059669;
+  letter-spacing: 0.06em;
+  margin-top: 0.25rem;
+}
+
+.scoreVerdict {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1B4D8E;
+  margin-top: 1rem;
+}
+
+.wizardStepRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.wizardStep {
+  background: #FAF8F5;
+  border: 1px solid rgba(27, 77, 142, 0.12);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.wizardStepTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1B4D8E;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stepOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.stepOptionBtn {
+  padding: 0.5rem 0.95rem;
+  border-radius: 8px;
+  border: 1px solid rgba(27, 77, 142, 0.15);
+  background: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2D3F53;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stepOptionBtn:hover {
+  border-color: #1B4D8E;
+  color: #1B4D8E;
+}
+
+.stepOptionSelected {
+  background: #1B4D8E;
+  border-color: #1B4D8E;
+  color: #ffffff;
+}
+
+/* Call to Action Banner */
+.ctaBanner {
+  margin-top: 4rem;
+  background: linear-gradient(135deg, #0D1E2C 0%, #163654 100%);
+  border-radius: 24px;
+  padding: 3.5rem 2.5rem;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(13, 30, 44, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+@media (max-width: 860px) {
+  .ctaBanner {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem 1.75rem;
+  }
+}
+
+.ctaContent {
+  max-width: 620px;
+}
+
+.ctaBadge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #F8D37D;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.ctaTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.ctaDesc {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #CAD7E6;
+  font-weight: 400;
+}
+
+.ctaActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 240px;
+}
+
+.whatsappCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #25D366;
+  color: #ffffff;
+  padding: 0.9rem 1.6rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+.whatsappCtaBtn:hover {
+  background: #20BA5A;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.4);
+}
+
+/* FAQ Section */
+.faqSection {
+  margin-top: 4.5rem;
+  border-top: 1px solid rgba(200, 134, 10, 0.15);
+  padding-top: 3.5rem;
+}
+
+.faqTitle {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #1B4D8E;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.faqSubtitle {
+  font-size: 0.95rem;
+  color: #556B82;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  background: #ffffff;
+  border: 1px solid rgba(27, 77, 142, 0.12);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.25s ease;
+}
+
+.faqItem:hover {
+  border-color: #1B4D8E;
+  box-shadow: 0 6px 18px rgba(13, 31, 60, 0.04);
+}
+
+.faqQuestion {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1B4D8E;
+  margin-bottom: 0.5rem;
+}
+
+.faqAnswer {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #2D3F53;
+}

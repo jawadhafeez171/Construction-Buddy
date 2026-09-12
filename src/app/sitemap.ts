@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/refer',
     '/compare-packages',
     '/locations',
+    '/vastu-compass',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -25,7 +26,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         : route === '/services' ||
           route === '/calculator' ||
           route === '/locations' ||
-          route === '/compare-packages'
+          route === '/compare-packages' ||
+          route === '/vastu-compass'
         ? 0.9
         : 0.8,
   }));
