@@ -208,7 +208,7 @@ export default function BlogPostClient({ post, related }: Props) {
               <a href="tel:+919902800693" className={styles.sideCtaBtn}>
                 📞 Call Us Now
               </a>
-              <a href="/#contact" className={styles.sideCtaLink}>Or get a quote →</a>
+              <Link href="/calculator" className={styles.sideCtaLink}>Or calculate cost →</Link>
             </div>
 
             {/* Tags */}

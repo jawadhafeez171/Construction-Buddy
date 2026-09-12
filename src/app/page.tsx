@@ -8,17 +8,43 @@ import Packages from '@/components/Packages';
 import HowItWorks from '@/components/HowItWorks';
 import Gallery from '@/components/Gallery';
 import ReferPromo from '@/components/ReferPromo';
-import BottomNav from '@/components/BottomNav';
+import ContactModal from '@/components/ContactModal';
+import { scrollToSection } from '@/lib/navigation';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Handle initial scroll target from inner pages or direct navigation
+    const sessionTarget = sessionStorage.getItem('cb_scroll_target');
+    const hashTarget = window.location.hash ? window.location.hash.replace('#', '') : null;
+    const targetId = sessionTarget || hashTarget;
+
+    if (targetId) {
+      if (sessionTarget) {
+        sessionStorage.removeItem('cb_scroll_target');
+      }
+      if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          const headerOffset = 75;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = Math.max(0, elementPosition + window.pageYOffset - headerOffset);
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }, 150);
+    }
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,7 +70,12 @@ export default function Home() {
           height: '61px'
         }}>
           {/* Logo Only Integration */}
-          <a href="#" className="logo-link" style={{ display: 'block', textDecoration: 'none' }}>
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="logo-link"
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', display: 'block', textDecoration: 'none' }}
+          >
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-logo)', lineHeight: 1.15 }}>
               <div style={{ display: 'flex', gap: '0.2rem', alignItems: 'baseline' }}>
                 <span className="logo-unified-shine" style={{
@@ -71,23 +102,43 @@ export default function Home() {
                 Home & Commercial Contractors
               </div>
             </div>
-          </a>
+          </button>
 
           {/* Desktop Navigation Links */}
           <nav className="nav-desktop">
             <Link href="/services" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Services</Link>
             <Link href="/calculator" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Cost Calculator</Link>
-            <a href="#packages" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Packages</a>
-            <a href="#projects" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Projects</a>
+            <button
+              type="button"
+              onClick={(e) => scrollToSection('packages', e)}
+              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}
+            >
+              Packages
+            </button>
+            <button
+              type="button"
+              onClick={(e) => scrollToSection('projects', e)}
+              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}
+            >
+              Projects
+            </button>
             <Link href="/refer" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Refer &amp; Earn</Link>
             <Link href="/blog" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Blog</Link>
-            <a href="#contact" className="btn btn-outline" style={{
-              padding: '0.5rem 1.25rem',
-              fontSize: '0.85rem',
-              color: scrolled ? 'var(--primary)' : '#ffffff',
-              borderColor: scrolled ? 'rgba(27, 77, 142, 0.25)' : 'rgba(255, 255, 255, 0.5)',
-              transition: 'all 0.3s ease'
-            }}>Get in Touch</a>
+            <button
+              type="button"
+              onClick={() => setIsContactOpen(true)}
+              className="btn btn-outline"
+              style={{
+                padding: '0.5rem 1.25rem',
+                fontSize: '0.85rem',
+                color: scrolled ? 'var(--primary)' : '#ffffff',
+                borderColor: scrolled ? 'rgba(27, 77, 142, 0.25)' : 'rgba(255, 255, 255, 0.5)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+            >
+              Get in Touch
+            </button>
           </nav>
 
           {/* Hamburger Menu Toggle Button for Mobile/Tablet */}
@@ -128,24 +179,30 @@ export default function Home() {
                 <span className="nav-mobile-num">02</span>
                 <span className="nav-mobile-text">Cost Calculator</span>
               </Link>
-              <a
-                href="#packages"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                type="button"
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  scrollToSection('packages', e);
+                }}
                 className="nav-mobile-link"
-                style={{ '--index': 3 } as React.CSSProperties}
+                style={{ '--index': 3, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
               >
                 <span className="nav-mobile-num">03</span>
                 <span className="nav-mobile-text">Packages</span>
-              </a>
-              <a
-                href="#projects"
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  scrollToSection('projects', e);
+                }}
                 className="nav-mobile-link"
-                style={{ '--index': 4 } as React.CSSProperties}
+                style={{ '--index': 4, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
               >
                 <span className="nav-mobile-num">04</span>
                 <span className="nav-mobile-text">Projects</span>
-              </a>
+              </button>
               <Link
                 href="/refer"
                 onClick={() => setIsMenuOpen(false)}
@@ -167,14 +224,17 @@ export default function Home() {
 
               <div style={{ height: '1px', width: '80px', backgroundColor: 'rgba(27, 77, 142, 0.15)', margin: '0.5rem 0 0.5rem auto', zIndex: 10 }}></div>
 
-              <a
-                href="#contact"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsContactOpen(true);
+                }}
                 className="btn btn-primary nav-mobile-cta"
-                style={{ '--index': 7, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem' } as React.CSSProperties}
+                style={{ '--index': 7, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem', cursor: 'pointer' } as React.CSSProperties}
               >
                 Get in Touch
-              </a>
+              </button>
             </div>
 
             {/* Premium quick contact widget at the bottom right */}
@@ -195,78 +255,10 @@ export default function Home() {
       <Gallery />
       <ReferPromo />
 
-      {/* Premium Warm Forest Footer */}
-      <footer id="contact" style={{
-        backgroundColor: '#0D1824', /* Logo-ink dark navy — matches Construction wordmark */
-        borderTop: '1px solid rgba(27, 77, 142, 0.20)',
-        padding: '5rem 0 3rem 0',
-        position: 'relative',
-        color: '#f0f4fa'
-      }}>
-        <div className="blur-blob" style={{ bottom: '-5%', right: '10%', opacity: 0.4, background: 'radial-gradient(circle, rgba(27, 77, 142, 0.20) 0%, transparent 70%)' }}></div>
-        <div className="container">
-          <div className="site-footer-grid">
-            {/* Column 1 - Brand Profile */}
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
-                <a href="#" className="logo-link" style={{ display: 'block', textDecoration: 'none' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-logo)', lineHeight: 1.15 }}>
-                    <div style={{ display: 'flex', gap: '0.2rem', alignItems: 'baseline' }}>
-                      <span style={{ fontSize: '1.65rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em' }}>
-                        Construction
-                      </span>
-                      <span style={{ fontSize: '1.65rem', fontWeight: 800, color: '#C8860A', letterSpacing: '-0.02em' }}>Buddy</span>
-                    </div>
-                    <div style={{ fontSize: '0.58rem', fontWeight: 700, color: '#2E7DD1', letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: '0.05rem', textAlign: 'center', width: '100%' }}>
-                      Home & Commercial Contractors
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <p style={{ color: '#c4b5ac', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '360px' }}>
-                Bengaluru&apos;s elite construction and architectural partner. Bringing complex designs to life with state-of-the-art BIM models and structural excellence.
-              </p>
-            </div>
-
-            {/* Column 2 - Quick Links */}
-            <div>
-              <h4 style={{ color: '#faf8f5', fontSize: '1rem', fontWeight: 700, marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Explore</h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <li><a href="#services" style={{ color: '#c4b5ac', fontSize: '0.95rem' }}>Core Services</a></li>
-                <li><a href="#packages" style={{ color: '#c4b5ac', fontSize: '0.95rem' }}>Construction Packages</a></li>
-                <li><a href="#projects" style={{ color: '#c4b5ac', fontSize: '0.95rem' }}>Our Projects Portfolio</a></li>
-                <li><Link href="/blog" style={{ color: '#c4b5ac', fontSize: '0.95rem' }}>Insights & Blog</Link></li>
-              </ul>
-            </div>
-
-            {/* Column 3 - Contact & Information */}
-            <div>
-              <h4 style={{ color: '#faf8f5', fontSize: '1rem', fontWeight: 700, marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Get in Touch</h4>
-              <p style={{ color: '#c4b5ac', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1rem' }}>
-                📍 Bengaluru, Karnataka, India
-              </p>
-              <p style={{ color: '#c4b5ac', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1rem' }}>
-                ✉️ info@constructionbuddy.in
-              </p>
-              <p style={{ color: '#c4b5ac', fontSize: '0.95rem', lineHeight: 1.7 }}>
-                📞 +91 99028 00693
-              </p>
-            </div>
-          </div>
-
-          {/* Sub-footer */}
-          <div className="sub-footer">
-            <div style={{ color: '#c4b5ac', fontSize: '0.875rem' }}>
-              &copy; {new Date().getFullYear()} Construction Buddy. All rights reserved.
-            </div>
-            <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.875rem', color: '#c4b5ac' }}>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <BottomNav />
+      {/* Direct Contact Modal */}
+      {isContactOpen && (
+        <ContactModal onClose={() => setIsContactOpen(false)} />
+      )}
     </main>
   );
 }

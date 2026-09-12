@@ -12,10 +12,10 @@
 
 .eyebrow {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--primary);
-  letter-spacing: 0.15em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #C8860A;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 }
@@ -140,10 +140,11 @@
 /* Paragraph styling */
 .stepText {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.6;
+  font-size: 0.96rem;
+  color: #F1F5F9;
+  line-height: 1.65;
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 /* Dots Navigation at Bottom */

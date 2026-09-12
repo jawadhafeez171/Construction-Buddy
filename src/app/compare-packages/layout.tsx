@@ -1,5 +1,4 @@
 import SiteHeader from '@/components/SiteHeader';
-import BottomNav from '@/components/BottomNav';
 import type { ReactNode } from 'react';
 
 export default function CompareLayout({ children }: { children: ReactNode }) {
@@ -7,7 +6,6 @@ export default function CompareLayout({ children }: { children: ReactNode }) {
     <>
       <SiteHeader />
       {children}
-      <BottomNav />
     </>
   );
 }

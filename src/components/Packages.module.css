@@ -7,10 +7,10 @@
 .packagesSection {
   position: relative;
   padding: 4.5rem 0 5rem;
-  background: linear-gradient(180deg, #faf7f0 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #F3EBDD 0%, #FAF5EB 50%, #F5EDE0 100%);
   overflow: hidden;
-  border-top: 1px solid rgba(13, 24, 36, 0.06);
-  border-bottom: 1px solid rgba(13, 24, 36, 0.06);
+  border-top: 1px solid rgba(160, 125, 75, 0.12);
+  border-bottom: 1px solid rgba(160, 125, 75, 0.12);
 }
 
 /* Ambient background blobs */
@@ -187,8 +187,8 @@
 
 /* ── Base Card ── */
 .card {
-  background-color: #ffffff;
-  border: 1px solid rgba(13, 24, 36, 0.08);
+  background-color: #FFFDF8;
+  border: 1px solid rgba(175, 135, 80, 0.16);
   border-radius: 20px;
   position: relative;
   display: flex;
@@ -201,7 +201,7 @@
   overflow: hidden;
   opacity: 0;
   animation: cardFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  box-shadow: 0 4px 18px rgba(13, 24, 36, 0.03);
+  box-shadow: 0 4px 18px rgba(160, 125, 60, 0.05);
 }
 
 .cardWatermark {
@@ -378,11 +378,11 @@
 
 .pkgName {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--foreground);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #0D1824;
   margin-bottom: 0.6rem;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .pkgPrice {
@@ -394,7 +394,7 @@
 
 .amount {
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: 800;
   background: linear-gradient(135deg, #0d1824 0%, #223c5b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -405,9 +405,9 @@
 }
 
 .perSqft {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-weight: 500;
+  font-size: 0.88rem;
+  color: #3D526A;
+  font-weight: 600;
 }
 
 .popular .amount {
@@ -425,24 +425,25 @@
 }
 
 .pkgDesc {
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  line-height: 1.6;
+  color: #2D3F53;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.65;
   min-height: 60px;
 }
 
 /* ── Divider ── */
 .cardDivider {
   height: 1px;
-  background: rgba(13, 24, 36, 0.08);
-  margin: 0 1.75rem;
+  background: rgba(13, 24, 36, 0.1);
+  margin: 0 1.5rem;
   position: relative;
   z-index: 2;
 }
 
 /* ── Highlights Box ── */
 .highlightsBox {
-  padding: 1.15rem 1.5rem 1.5rem;
+  padding: 1.25rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -451,11 +452,11 @@
 }
 
 .highlightsTitle {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.1em;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #1B4D8E;
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-family: var(--font-sans);
 }
@@ -466,7 +467,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.75rem;
 }
 
 .listItem {
@@ -479,28 +480,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background: rgba(27, 77, 142, 0.08) !important;
-  color: var(--primary) !important;
+  background: rgba(27, 77, 142, 0.12) !important;
+  color: #1B4D8E !important;
   flex-shrink: 0;
   margin-top: 0.15rem;
   transition: transform 0.25s ease, background 0.25s ease;
 }
 
 .luxuryCard .checkIconWrap {
-  background: rgba(200, 134, 10, 0.08) !important;
-  color: var(--gold) !important;
+  background: rgba(200, 134, 10, 0.14) !important;
+  color: #C8860A !important;
 }
 
 .card:hover .checkIconWrap {
-  transform: scale(1.15);
-  background: rgba(27, 77, 142, 0.18) !important;
+  transform: scale(1.1);
+  background: rgba(27, 77, 142, 0.2) !important;
 }
 
 .luxuryCard:hover .checkIconWrap {
-  background: rgba(200, 134, 10, 0.18) !important;
+  background: rgba(200, 134, 10, 0.22) !important;
 }
 
 .checkIcon {
@@ -508,10 +509,10 @@
 }
 
 .itemText {
-  font-size: 0.835rem;
-  color: var(--foreground) !important;
-  line-height: 1.5;
-  font-weight: 400;
+  font-size: 0.92rem;
+  color: #121F30 !important;
+  line-height: 1.55;
+  font-weight: 500;
 }
 
 /* ── Card Footer ── */

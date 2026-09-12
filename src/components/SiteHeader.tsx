@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import ContactModal from './ContactModal';
+import { scrollToSection } from '@/lib/navigation';
 
 export default function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <header style={{
@@ -42,11 +45,29 @@ export default function SiteHeader() {
         <nav className="nav-desktop">
           <Link href="/services" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Services</Link>
           <Link href="/calculator" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Cost Calculator</Link>
-          <Link href="/#packages" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Packages</Link>
-          <Link href="/#projects" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Projects</Link>
+          <button
+            type="button"
+            onClick={(e) => scrollToSection('packages', e)}
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}
+          >
+            Packages
+          </button>
+          <button
+            type="button"
+            onClick={(e) => scrollToSection('projects', e)}
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}
+          >
+            Projects
+          </button>
           <Link href="/refer" style={{ color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.95rem' }}>Refer &amp; Earn</Link>
-          <Link href="/blog" style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.95rem' }}>Blog</Link>
-          <Link href="/#contact" className="btn btn-outline" style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}>Get in Touch</Link>
+          <button
+            type="button"
+            onClick={() => setIsContactOpen(true)}
+            className="btn btn-outline"
+            style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem', cursor: 'pointer' }}
+          >
+            Get in Touch
+          </button>
         </nav>
 
         {/* Hamburger */}
@@ -75,14 +96,30 @@ export default function SiteHeader() {
               <span className="nav-mobile-num">02</span>
               <span className="nav-mobile-text">Cost Calculator</span>
             </Link>
-            <Link href="/#packages" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 3 } as React.CSSProperties}>
+            <button
+              type="button"
+              onClick={(e) => {
+                setIsMenuOpen(false);
+                scrollToSection('packages', e);
+              }}
+              className="nav-mobile-link"
+              style={{ '--index': 3, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
+            >
               <span className="nav-mobile-num">03</span>
               <span className="nav-mobile-text">Packages</span>
-            </Link>
-            <Link href="/#projects" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 4 } as React.CSSProperties}>
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                setIsMenuOpen(false);
+                scrollToSection('projects', e);
+              }}
+              className="nav-mobile-link"
+              style={{ '--index': 4, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
+            >
               <span className="nav-mobile-num">04</span>
               <span className="nav-mobile-text">Projects</span>
-            </Link>
+            </button>
             <Link href="/refer" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 5 } as React.CSSProperties}>
               <span className="nav-mobile-num">05</span>
               <span className="nav-mobile-text">Refer &amp; Earn</span>
@@ -94,14 +131,17 @@ export default function SiteHeader() {
 
             <div style={{ height: '1px', width: '80px', backgroundColor: 'rgba(27, 77, 142, 0.15)', margin: '0.5rem 0 0.5rem auto', zIndex: 10 }}></div>
 
-            <Link
-              href="/#contact"
-              onClick={() => setIsMenuOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setIsMenuOpen(false);
+                setIsContactOpen(true);
+              }}
               className="btn btn-primary nav-mobile-cta"
-              style={{ '--index': 7, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem' } as React.CSSProperties}
+              style={{ '--index': 7, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem', cursor: 'pointer' } as React.CSSProperties}
             >
               Get in Touch
-            </Link>
+            </button>
           </div>
 
           <div className="nav-mobile-footer" style={{ '--index': 8 } as React.CSSProperties}>
@@ -111,6 +151,10 @@ export default function SiteHeader() {
           </div>
         </div>
       </div>
+
+      {isContactOpen && (
+        <ContactModal onClose={() => setIsContactOpen(false)} />
+      )}
     </header>
   );
 }

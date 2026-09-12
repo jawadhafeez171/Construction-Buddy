@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Hero.module.css';
 import ContactModal from './ContactModal';
+import { scrollToSection } from '@/lib/navigation';
 
 const SLIDES = [
   {
@@ -93,9 +94,14 @@ export default function Hero() {
               >
                 Start My Dream Home
               </button>
-              <a href="#projects" className="btn btn-outline" style={{ color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.4)' }}>
+              <button
+                type="button"
+                onClick={(e) => scrollToSection('projects', e)}
+                className="btn btn-outline"
+                style={{ color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.4)', cursor: 'pointer' }}
+              >
                 See Our Work
-              </a>
+              </button>
             </div>
 
             {/* Stage Badge */}

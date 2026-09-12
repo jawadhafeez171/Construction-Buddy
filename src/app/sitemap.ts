@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { blogPosts } from '@/lib/blogData';
 import { services } from '@/lib/servicesData';
+import { getAllLocations } from '@/lib/locationsData';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://constructionbuddy.in';
@@ -13,11 +14,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/calculator',
     '/refer',
     '/compare-packages',
+    '/locations',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : (route === '/services' || route === '/calculator' || route === '/refer' || route === '/compare-packages') ? 0.9 : 0.8,
+    priority:
+      route === ''
+        ? 1.0
+        : route === '/services' ||
+          route === '/calculator' ||
+          route === '/locations' ||
+          route === '/compare-packages'
+        ? 0.9
+        : 0.8,
   }));
 
   // Dynamic blog routes
@@ -45,8 +55,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}/services/${service.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
-    priority: 0.8,
+    priority: 0.85,
   }));
 
-  return [...staticRoutes, ...blogRoutes, ...serviceRoutes];
+  // Dynamic 76 Bengaluru location routes
+  const locationRoutes = getAllLocations().map((location) => ({
+    url: `${baseUrl}/locations/${location.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+  }));
+
+  return [...staticRoutes, ...blogRoutes, ...serviceRoutes, ...locationRoutes];
 }

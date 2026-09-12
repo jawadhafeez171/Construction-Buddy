@@ -1,28 +1,40 @@
 import type { Metadata } from "next";
-import { Outfit, DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Outfit, Urbanist, Fraunces } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import SiteFooter from "@/components/SiteFooter";
+import BottomNav from "@/components/BottomNav";
 
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-logo-loaded",
+  display: "swap",
 });
 
-const dmSans = DM_Sans({
+const urbanist = Urbanist({
   subsets: ["latin"],
   variable: "--font-sans-loaded",
+  display: "swap",
 });
 
-const dmSerifDisplay = DM_Serif_Display({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: "400",
   variable: "--font-display-loaded",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://constructionbuddy.in'),
-  title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
+  applicationName: "Construction Buddy",
+  title: {
+    default: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
+    template: "%s | Construction Buddy",
+  },
   description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
+  alternates: {
+    canonical: 'https://constructionbuddy.in',
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -57,6 +69,43 @@ export const metadata: Metadata = {
   },
 };
 
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Construction Buddy',
+  alternateName: ['ConstructionBuddy', 'Construction Buddy Bengaluru'],
+  url: 'https://constructionbuddy.in',
+};
+
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  name: 'Construction Buddy',
+  image: 'https://constructionbuddy.in/logo.png',
+  url: 'https://constructionbuddy.in',
+  telephone: '+919902800693',
+  email: 'info@constructionbuddy.in',
+  priceRange: '₹₹ - ₹₹₹₹',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bengaluru',
+    addressRegion: 'Karnataka',
+    addressCountry: 'IN',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '12.9716',
+    longitude: '77.5946',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '19:30',
+    },
+  ],
+};
 
 export default function RootLayout({
   children,
@@ -64,12 +113,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${dmSans.variable} ${dmSerifDisplay.variable} antialiased`} suppressHydrationWarning>
-      <body className="min-h-screen" suppressHydrationWarning>
-        {children}
+    <html lang="en" className={`${outfit.variable} ${urbanist.variable} ${fraunces.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col" suppressHydrationWarning>
+        <div className="flex-1 flex flex-col">
+          {children}
+        </div>
+        <SiteFooter />
+        <BottomNav />
         <ScrollToTop />
+        <FloatingWhatsApp />
       </body>
     </html>
   );
 }
-

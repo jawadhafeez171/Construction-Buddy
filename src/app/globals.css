@@ -6,34 +6,29 @@
                     Gold appears only as accent echoing the logo
   ─────────────────────────────────────────────────────────────────────── */
 
-  --background: #FAF7F0;
-  /* Warm ivory — as before */
-  --ink: #0D1824;
-  /* Logo dark — the deep near-black navy of the Construction wordmark */
-  --foreground: #0D1824;
-  /* Uses ink so all headings and body text match the logo depth */
+  --background: #F8F3EA;
+  /* Rich warm travertine alabaster canvas */
+  --ink: #0D1722;
+  /* Deep espresso navy */
+  --foreground: #0D1722;
 
   --primary: #1B4D8E;
-  /* Royal navy blue — premium, distinctive */
+  /* Royal navy blue */
   --primary-hover: #153D72;
-  /* Deeper navy for hover */
-  --primary-glow: rgba(27, 77, 142, 0.10);
+  --primary-glow: rgba(27, 77, 142, 0.12);
 
   --gold: #C8860A;
-  /* Logo gold — used as sparring accent only */
-  --gold-light: #EAB308;
+  /* Warm amber gold */
+  --gold-light: #E5A93C;
 
-  --surface: rgba(255, 255, 255, 0.92);
-  --surface-solid: #ffffff;
+  --surface: rgba(255, 253, 248, 0.94);
+  --surface-solid: #FFFDF8;
   --surface-hover: rgba(255, 255, 255, 0.99);
 
-  --border: rgba(13, 24, 36, 0.10);
-  /* Ink-tinted border — matches logo dark */
-  --border-hover: rgba(27, 77, 142, 0.30);
-  /* Navy border on hover */
+  --border: rgba(155, 120, 75, 0.14);
+  --border-hover: rgba(200, 134, 10, 0.4);
 
-  --text-muted: #5A6E8A;
-  /* Cool slate — readable on off-white */
+  --text-muted: #536479;
   --font-logo: var(--font-logo-loaded), sans-serif;
   --font-sans: var(--font-sans-loaded), sans-serif;
   --font-display: var(--font-display-loaded), serif;
@@ -62,14 +57,28 @@ body {
   overflow-x: hidden;
   max-width: 100%;
   line-height: 1.7;
+  position: relative;
+}
 
-  /* Warm drafting grid — ivory canvas with subtle amber tint */
+/* Fixed ambient warm architectural aura that bathes all viewport heights */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
   background-image:
-    radial-gradient(circle at 15% 25%, rgba(200, 134, 10, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(200, 134, 10, 0.03) 0%, transparent 45%),
-    linear-gradient(to right, rgba(13, 31, 60, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(13, 31, 60, 0.025) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    radial-gradient(circle at 12% 15%, rgba(225, 155, 45, 0.09) 0%, transparent 52%),
+    radial-gradient(circle at 88% 55%, rgba(235, 175, 60, 0.08) 0%, transparent 48%),
+    radial-gradient(circle at 40% 90%, rgba(200, 134, 10, 0.07) 0%, transparent 52%),
+    linear-gradient(to right, rgba(160, 125, 75, 0.038) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(160, 125, 75, 0.038) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
 }
 
 a {
@@ -103,11 +112,12 @@ button {
 }
 
 .section-title {
+  font-family: var(--font-display);
   font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 800;
+  font-weight: 700;
   text-align: center;
   margin-bottom: 1rem;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.015em;
   color: var(--foreground);
 }
 
@@ -121,10 +131,12 @@ button {
 
 .section-subtitle {
   text-align: center;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto 4rem auto;
+  color: #2D3F53;
+  font-weight: 500;
+  max-width: 620px;
+  margin: 0 auto 3.5rem auto;
   font-size: 1.125rem;
+  line-height: 1.65;
 }
 
 /* Buttons */
@@ -695,10 +707,6 @@ button {
   .bottom-nav {
     display: flex;
   }
-
-  body {
-    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
-  }
 }
 
 /* Premium Logo Text Unified Shine & Glow Effects */
@@ -847,3 +855,10 @@ button {
     align-items: center;
   }
 }
+
+/* Scroll clearance for sticky navigation */
+#packages,
+#projects,
+#how-it-works {
+  scroll-margin-top: 75px;
+}

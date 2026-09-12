@@ -1,10 +1,10 @@
 .referPromoSection {
   position: relative;
   padding: 4.5rem 0 5rem;
-  background: linear-gradient(180deg, #ffffff 0%, #faf7f0 100%);
+  background: linear-gradient(180deg, #FAF5EB 0%, #F3EBDD 100%);
   overflow: hidden;
-  border-top: 1px solid rgba(13, 24, 36, 0.06);
-  border-bottom: 1px solid rgba(13, 24, 36, 0.06);
+  border-top: 1px solid rgba(160, 125, 75, 0.12);
+  border-bottom: 1px solid rgba(160, 125, 75, 0.12);
 }
 
 /* Ambient backlight glow */
@@ -16,7 +16,7 @@
   width: 450px;
   height: 450px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 134, 10, 0.03) 0%, transparent 75%);
+  background: radial-gradient(circle, rgba(200, 134, 10, 0.08) 0%, transparent 75%);
   filter: blur(80px);
   pointer-events: none;
 }
@@ -115,9 +115,10 @@
 }
 
 .subtitle {
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.6;
+  color: #2D3F53;
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.65;
   margin-bottom: 2rem;
   max-width: 720px;
 }
@@ -170,8 +171,8 @@
 }
 
 .termsNote {
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.8rem;
+  color: #4A5D73;
   margin-top: 0.75rem;
   font-weight: 500;
 }

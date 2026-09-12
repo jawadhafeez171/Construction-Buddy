@@ -1,7 +1,7 @@
 import SiteHeader from '@/components/SiteHeader';
 import type { ReactNode } from 'react';
 
-export default function CalculatorLayout({ children }: { children: ReactNode }) {
+export default function LocationsLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <SiteHeader />
