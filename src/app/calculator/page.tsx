@@ -17,6 +17,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: {
+    canonical: 'https://constructionbuddy.in/calculator',
+  },
 };
 
 export default function CalculatorPage() {

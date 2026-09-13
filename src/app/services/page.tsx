@@ -19,6 +19,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: {
+    canonical: 'https://constructionbuddy.in/services',
+  },
 };
 
 export default function ServicesPage() {

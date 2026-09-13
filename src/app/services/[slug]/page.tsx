@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         },
       ],
     },
+    alternates: {
+      canonical: `https://constructionbuddy.in/services/${slug}`,
+    },
   };
 }
 

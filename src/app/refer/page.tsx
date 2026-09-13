@@ -17,6 +17,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: {
+    canonical: 'https://constructionbuddy.in/refer',
+  },
 };
 
 export default function ReferPage() {

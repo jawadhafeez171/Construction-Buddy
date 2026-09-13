@@ -43,6 +43,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://constructionbuddy.in',
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -83,6 +94,65 @@ const websiteJsonLd = {
   name: 'Construction Buddy',
   alternateName: ['ConstructionBuddy', 'Construction Buddy Bengaluru'],
   url: 'https://constructionbuddy.in',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Construction Buddy',
+    url: 'https://constructionbuddy.in',
+    logo: 'https://constructionbuddy.in/logo.png',
+    sameAs: [
+      'https://www.instagram.com/construction_buddy1/',
+      'https://www.youtube.com/@constructionbuddy-b3z',
+    ],
+  },
+};
+
+const siteNavigationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: [
+    {
+      '@type': 'SiteNavigationElement',
+      position: 1,
+      name: 'Turnkey Home Construction',
+      description: 'End-to-end residential home construction with 10-year structural warranty in Bengaluru.',
+      url: 'https://constructionbuddy.in/services/home-construction',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 2,
+      name: 'Construction Cost Calculator',
+      description: 'Dynamic home construction cost estimation based on plot dimensions and floor plans.',
+      url: 'https://constructionbuddy.in/calculator',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 3,
+      name: 'Compare Construction Packages',
+      description: 'Side-by-side technical comparison of Standard, Premium, Luxury, Elite, and Imperial packages.',
+      url: 'https://constructionbuddy.in/compare-packages',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 4,
+      name: 'Bengaluru Service Localities',
+      description: 'Turnkey construction and BBMP/BDA architectural sanction drawings across 76 Bengaluru localities.',
+      url: 'https://constructionbuddy.in/locations',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 5,
+      name: 'Architectural & Structural Plans',
+      description: 'BDA and BBMP sanction-compliant architectural drawings, structural engineering, and 3D elevations.',
+      url: 'https://constructionbuddy.in/services/architectural-structural-drawings',
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 6,
+      name: 'Vastu Plot Compass',
+      description: 'Interactive digital compass tool for plotting rooms and entrances according to traditional Vastu Shastra.',
+      url: 'https://constructionbuddy.in/vastu-compass',
+    },
+  ],
 };
 
 const localBusinessJsonLd = {
@@ -96,14 +166,16 @@ const localBusinessJsonLd = {
   priceRange: '₹₹ - ₹₹₹₹',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Thanisandra Main Rd, Sri Balaji Krupa Layout, RK Hegde Nagar',
     addressLocality: 'Bengaluru',
     addressRegion: 'Karnataka',
+    postalCode: '560064',
     addressCountry: 'IN',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: '12.9716',
-    longitude: '77.5946',
+    latitude: '13.0624',
+    longitude: '77.6256',
   },
   openingHoursSpecification: [
     {
@@ -112,6 +184,10 @@ const localBusinessJsonLd = {
       opens: '09:00',
       closes: '19:30',
     },
+  ],
+  sameAs: [
+    'https://www.instagram.com/construction_buddy1/',
+    'https://www.youtube.com/@constructionbuddy-b3z',
   ],
 };
 
@@ -130,6 +206,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }}
         />
       </head>
       <body className="min-h-screen flex flex-col" suppressHydrationWarning>

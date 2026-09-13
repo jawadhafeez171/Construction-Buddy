@@ -277,9 +277,13 @@ export default function Home() {
 
             {/* Premium quick contact widget at the bottom right */}
             <div className="nav-mobile-footer" style={{ '--index': 8 } as React.CSSProperties}>
-              <div className="nav-footer-line">📍 Bengaluru, Karnataka</div>
+              <div className="nav-footer-line">📍 RK Hegde Nagar, Thanisandra Main Rd, Bengaluru - 560064</div>
               <div className="nav-footer-line">✉️ info@constructionbuddy.in</div>
               <div className="nav-footer-line" style={{ color: 'var(--gold)', fontWeight: 700 }}>📞 +91 99028 00693</div>
+              <div style={{ display: 'flex', gap: '0.8rem', marginTop: '0.2rem', flexWrap: 'wrap' }}>
+                <a href="https://www.instagram.com/construction_buddy1/" target="_blank" rel="noopener noreferrer" className="nav-footer-line" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600 }}>📸 Instagram</a>
+                <a href="https://youtube.com/@constructionbuddy-b3z?si=2NnKpjzK8PXsVmzP" target="_blank" rel="noopener noreferrer" className="nav-footer-line" style={{ color: '#c4302b', textDecoration: 'none', fontWeight: 600 }}>▶️ YouTube</a>
+              </div>
             </div>
           </div>
         </div>

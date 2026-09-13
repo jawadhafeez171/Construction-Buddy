@@ -17,6 +17,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: {
+    canonical: 'https://constructionbuddy.in/compare-packages',
+  },
 };
 
 export default function ComparePackagesPage() {
