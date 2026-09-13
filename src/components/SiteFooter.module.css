@@ -8,6 +8,12 @@
   padding: 4rem 0 2rem 0;
 }
 
+@media (max-width: 768px) {
+  .footer {
+    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
 /* Background aesthetic glows */
 .glowTopRight {
   position: absolute;

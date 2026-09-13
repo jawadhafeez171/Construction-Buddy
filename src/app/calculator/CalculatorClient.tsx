@@ -361,18 +361,67 @@ export default function CalculatorClient() {
                     </div>
                   </div>
 
-                  <input
-                    type="range"
-                    min={800}
-                    max={12000}
-                    step={50}
-                    value={builtUpArea}
-                    onChange={handleAreaSlider}
-                    className={styles.sliderInput}
-                  />
-                  <div className={styles.sliderLimits}>
-                    <span>800 sqft</span>
-                    <span>12,000 sqft</span>
+                  <div className={styles.sliderContainer}>
+                    <input
+                      type="range"
+                      min={800}
+                      max={12000}
+                      step={50}
+                      value={builtUpArea}
+                      onChange={handleAreaSlider}
+                      className={styles.rangeSlider}
+                      aria-label="Built up area slider"
+                    />
+                    <div className={styles.rangeLabels}>
+                      <span>800 sqft</span>
+                      <span>6,000 sqft</span>
+                      <span>12,000 sqft</span>
+                    </div>
+                  </div>
+
+                  {/* Mobile-Friendly Steppers & Quick Chips */}
+                  <div className={styles.stepperWrapper}>
+                    <div className={styles.stepperRow}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPreset('custom');
+                          setBuiltUpArea((prev) => Math.max(800, prev - 100));
+                        }}
+                        className={styles.stepperBtn}
+                        aria-label="Decrease area by 100 sqft"
+                      >
+                        − 100 sqft
+                      </button>
+                      <span className={styles.stepperCurrent}>{builtUpArea.toLocaleString()} sqft</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPreset('custom');
+                          setBuiltUpArea((prev) => Math.min(12000, prev + 100));
+                        }}
+                        className={styles.stepperBtn}
+                        aria-label="Increase area by 100 sqft"
+                      >
+                        + 100 sqft
+                      </button>
+                    </div>
+
+                    <div className={styles.areaChips}>
+                      {[1200, 1500, 2000, 2400, 3200, 4000].map((sqft) => (
+                        <button
+                          key={sqft}
+                          type="button"
+                          onClick={() => {
+                            setPreset('custom');
+                            setBuiltUpArea(sqft);
+                          }}
+                          className={`${styles.areaChip} ${builtUpArea === sqft ? styles.areaChipActive : ''}`}
+                        >
+                          {sqft.toLocaleString()}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

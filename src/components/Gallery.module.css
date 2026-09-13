@@ -229,6 +229,12 @@
   transform: translateY(0);
 }
 
+@media (max-width: 768px) {
+  .sliderArrow {
+    display: none !important;
+  }
+}
+
 @media (max-width: 576px) {
   .tabContainer {
     flex-wrap: nowrap;

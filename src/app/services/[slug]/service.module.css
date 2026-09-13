@@ -682,6 +682,9 @@
 }
 
 @media (max-width: 768px) {
+  .pageWrapper {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
   .serviceTitle {
     font-size: 2.25rem;
   }

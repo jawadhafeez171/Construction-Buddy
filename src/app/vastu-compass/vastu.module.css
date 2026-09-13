@@ -174,8 +174,10 @@
 
 .compassDialWrap {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: min(320px, calc(100vw - 4.5rem));
+  height: min(320px, calc(100vw - 4.5rem));
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -702,4 +704,33 @@
   font-size: 0.92rem;
   line-height: 1.65;
   color: #2D3F53;
+}
+
+/* ── Small Mobile Screen Ergonomics ── */
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 6.5rem 1rem 2.5rem;
+  }
+  .heroTitle {
+    font-size: 2.1rem;
+  }
+  .compassCard,
+  .wizardCard {
+    padding: 1.5rem 1rem;
+    border-radius: 18px;
+  }
+  .mandalaGrid {
+    gap: 0.35rem;
+  }
+  .zoneCell {
+    padding: 0.65rem 0.25rem;
+    min-height: 82px;
+  }
+  .plotBtn {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.82rem;
+  }
+  .pageContainer {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
 }

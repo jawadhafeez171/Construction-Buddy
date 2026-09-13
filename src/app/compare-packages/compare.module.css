@@ -368,11 +368,45 @@
   min-width: 190px;
 }
 
-/* First th = parameters col */
+/* Mobile Swipe Cue */
+.mobileSwipeCue {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileSwipeCue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--primary);
+    background: rgba(27, 77, 142, 0.08);
+    border: 1px solid rgba(27, 77, 142, 0.18);
+    border-radius: 9999px;
+    padding: 0.35rem 0.95rem;
+    margin: 0.85rem auto 0.5rem;
+    width: fit-content;
+    box-shadow: 0 2px 8px rgba(27, 77, 142, 0.08);
+    animation: swipePulse 2.4s ease-in-out infinite alternate;
+  }
+
+  @keyframes swipePulse {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(5px); }
+  }
+}
+
+/* First th = parameters col (sticky on left) */
 .comparisonTable th:first-child {
   min-width: 240px;
   background: #faf7f0;
   border-right: 1.5px solid rgba(13, 24, 36, 0.06);
+  position: sticky;
+  left: 0;
+  z-index: 6;
+  box-shadow: 2px 0 8px rgba(13, 24, 36, 0.04);
 }
 
 /* Tier top-color accent bar */
@@ -480,6 +514,9 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  position: sticky;
+  left: 1.5rem;
+  width: max-content;
 }
 
 .categoryIcon {
@@ -512,9 +549,13 @@
   color: var(--foreground);
   padding: 1rem 1.5rem;
   border-right: 1.5px solid rgba(13, 24, 36, 0.05);
-  background: rgba(250, 247, 240, 0.7);
+  background: #faf7f0 !important;
   vertical-align: middle;
   line-height: 1.35;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  box-shadow: 2px 0 8px rgba(13, 24, 36, 0.04);
 }
 
 .specValueCell {

@@ -1,10 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Urbanist, Fraunces } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SiteFooter from "@/components/SiteFooter";
 import BottomNav from "@/components/BottomNav";
+
+export const viewport: Viewport = {
+  themeColor: '#0D1824',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+};
 
 const outfit = Outfit({
   subsets: ["latin"],

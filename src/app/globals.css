@@ -313,56 +313,106 @@ button {
   top: 0;
   right: 0;
   left: auto;
-  width: 85%;
-  max-width: 330px;
-  /* Slimmed down width for a more concise look */
+  width: 82%;
+  max-width: 295px;
+  /* Slim and clean sidebar drawer */
   height: 100vh;
+  height: 100dvh;
   background-color: #FAF7F0;
   /* Warm Ivory canvas background */
-  z-index: 1005;
-  /* Lifted above the mobile bottom nav bar (999) */
+  z-index: 2010;
+  /* Lifted completely above everything including bottom nav */
   flex-direction: column;
   align-items: flex-start;
-  /* Left-align links inside drawer */
   justify-content: flex-start;
-  gap: 1.15rem;
-  /* Compact layout spacing */
-  padding: 5rem 2.25rem 1.75rem 2.25rem;
-  /* Room for header and safe spacing */
-  box-shadow: -10px 0 40px rgba(13, 24, 36, 0.12);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  gap: 0.65rem;
+  /* Tight, clean layout spacing */
+  padding: 3.25rem 1.35rem calc(1.5rem + env(safe-area-inset-bottom, 0px)) 1.35rem;
+  box-shadow: -8px 0 32px rgba(13, 24, 36, 0.16);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s ease;
   opacity: 0;
+  visibility: hidden;
   transform: translateX(100%);
   pointer-events: none;
+  overflow-x: hidden !important; /* Strictly lock horizontal scroll */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Constrain background blobs inside drawer to prevent horizontal scroll */
+.nav-mobile-overlay .blur-blob {
+  width: 160px !important;
+  height: 160px !important;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+/* Minimal Corner Close Button (No horizontal bar) */
+.nav-mobile-close-btn {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: rgba(13, 24, 36, 0.05);
+  border: 1px solid rgba(13, 24, 36, 0.1);
+  color: var(--ink);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 15;
+  transition: all 0.25s ease;
+}
+
+.nav-mobile-close-btn:hover,
+.nav-mobile-close-btn:active {
+  background: rgba(200, 134, 10, 0.14);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: rotate(90deg);
+}
+
+.nav-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: rgba(13, 24, 36, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2005;
+  cursor: pointer;
+  animation: fadeIn 0.25s ease forwards;
 }
 
 .nav-mobile-overlay.open {
   opacity: 1;
+  visibility: visible;
   transform: translateX(0);
   pointer-events: auto;
 }
 
-/* Dimming backdrop overlay to cover the remaining viewport area */
-.nav-mobile-overlay::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 100%;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(13, 24, 36, 0.40);
-  /* Soft dimming screen wash */
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: -1;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+/* Prevent body horizontal scroll and sway when drawer is open */
+body:has(.nav-mobile-overlay.open) {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
 }
 
-.nav-mobile-overlay.open::before {
-  opacity: 1;
-  pointer-events: auto;
+/* Hide bottom nav bar and scroll button while drawer is open */
+body:has(.nav-mobile-overlay.open) .bottom-nav {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(-50%) translateY(30px) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+body:has(.nav-mobile-overlay.open) .scroll-to-top-btn {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Premium Warm Glassmorphic Drafting Grid Background (contained inside drawer) */
@@ -385,105 +435,121 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* Left-aligned navigation flow */
-  gap: 0.9rem;
-  /* Tighter list item spacing */
+  gap: 0.3rem;
+  /* Clean, compact list item spacing */
   z-index: 10;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .nav-mobile-link {
   display: flex;
   align-items: center;
-  /* Center vertically for neat checklist feel */
-  gap: 0.85rem;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(10px);
+  overflow-x: hidden;
+}
+
+.nav-mobile-link:hover,
+.nav-mobile-link:active {
+  background: rgba(27, 77, 142, 0.06);
 }
 
 /* Staggered Entrance Animations using CSS Variables */
 .nav-mobile-overlay.open .nav-mobile-link {
-  animation: slideInFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--index) * 0.06s);
+  animation: slideInFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.045s);
 }
 
 .nav-mobile-num {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--gold);
-  letter-spacing: 0.08em;
-  opacity: 0.75;
-  transition: all 0.3s ease;
-  min-width: 22px;
+  letter-spacing: 0.04em;
+  opacity: 0.65;
+  transition: all 0.2s ease;
+  min-width: 18px;
 }
 
 .nav-mobile-text {
   font-family: var(--font-sans);
-  font-size: 1.45rem;
-  /* Compact size for concise sidebar proportions */
-  font-weight: 800;
+  font-size: 1.05rem;
+  /* Clean, compact, legible typography */
+  font-weight: 700;
   color: var(--ink);
-  letter-spacing: -0.02em;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  transition: all 0.2s ease;
 }
 
-/* Hover effects (slides text right instead of left in a drawer layout) */
+/* Hover effects */
 .nav-mobile-link:hover .nav-mobile-text {
   color: var(--primary);
-  transform: translateX(8px);
+  transform: translateX(4px);
 }
 
 .nav-mobile-link:hover .nav-mobile-num {
   color: var(--gold);
-  transform: scale(1.1);
+  opacity: 1;
 }
 
 /* Call to Action Button inside Drawer */
 .nav-mobile-cta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.25rem !important;
+  font-size: 0.88rem !important;
+  font-weight: 700;
+  border-radius: 10px;
+  margin-top: 0.35rem;
+  box-shadow: 0 4px 14px rgba(27, 77, 142, 0.18);
   opacity: 0;
-  transform: translateY(15px);
-  box-shadow: 0 4px 18px rgba(27, 77, 142, 0.15);
-  align-self: flex-start;
-  /* Left-aligned button */
-  margin-top: 0.25rem;
+  transform: translateY(10px);
 }
 
 .nav-mobile-overlay.open .nav-mobile-cta {
-  animation: slideInFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--index) * 0.06s);
+  animation: slideInFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.045s);
 }
 
 /* Push footer elements to bottom of the sidebar drawer */
 .nav-mobile-footer {
   margin-top: auto;
-  /* Push down to drawer bottom */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* Left-align metadata */
-  gap: 0.3rem;
+  gap: 0.18rem;
   z-index: 10;
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(10px);
   text-align: left;
   border-top: 1px solid rgba(13, 24, 36, 0.06);
-  padding-top: 1rem;
+  padding-top: 0.65rem;
   width: 100%;
 }
 
 .nav-mobile-overlay.open .nav-mobile-footer {
-  animation: slideInFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--index) * 0.06s);
+  animation: slideInFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--index) * 0.045s);
 }
 
 .nav-footer-line {
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   color: var(--text-muted);
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 @keyframes slideInFade {
@@ -582,6 +648,21 @@ button {
 /* Active — gold icon + underline bar */
 .bottom-nav-item--active {
   color: var(--gold) !important;
+}
+
+/* WhatsApp mobile action in bottom nav */
+.bottom-nav-item--whatsapp {
+  color: #1ca64e;
+}
+
+.bottom-nav-item--whatsapp:hover,
+.bottom-nav-item--whatsapp:active {
+  color: #128C7E;
+  transform: translateY(-2px) scale(1.06);
+}
+
+.bottom-nav-item--whatsapp .bottom-nav-icon {
+  filter: drop-shadow(0 2px 6px rgba(37, 211, 102, 0.28));
 }
 
 .bottom-nav-icon {

@@ -15,7 +15,7 @@ export default function SiteHeader() {
       position: 'fixed',
       top: 0,
       width: '100%',
-      zIndex: 100,
+      zIndex: isMenuOpen ? 2005 : 100,
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       backgroundColor: 'rgba(255, 255, 255, 0.92)',
@@ -82,11 +82,33 @@ export default function SiteHeader() {
           <span className="hamburger-line"></span>
         </button>
 
+        {/* Clickable Backdrop wash */}
+        {isMenuOpen && (
+          <div
+            className="nav-mobile-backdrop"
+            onClick={() => setIsMenuOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
         {/* Mobile Overlay */}
         <div className={`nav-mobile-overlay ${isMenuOpen ? 'open' : ''}`}>
           <div className="nav-overlay-grid-bg" />
           <div className="blur-blob" style={{ top: '10%', right: '10%', opacity: 0.3, background: 'radial-gradient(circle, rgba(27, 77, 142, 0.15) 0%, transparent 70%)' }}></div>
           <div className="blur-blob" style={{ bottom: '15%', left: '10%', opacity: 0.25, background: 'radial-gradient(circle, rgba(200, 134, 10, 0.12) 0%, transparent 70%)' }}></div>
+
+          {/* Minimal Corner Close Button */}
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(false)}
+            className="nav-mobile-close-btn"
+            aria-label="Close menu"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
 
           <div className="nav-mobile-links-container">
             <Link href="/services" onClick={() => setIsMenuOpen(false)} className="nav-mobile-link" style={{ '--index': 1 } as React.CSSProperties}>
@@ -138,8 +160,6 @@ export default function SiteHeader() {
               <span className="nav-mobile-text">Refer &amp; Earn</span>
             </Link>
 
-            <div style={{ height: '1px', width: '80px', backgroundColor: 'rgba(27, 77, 142, 0.15)', margin: '0.5rem 0 0.5rem auto', zIndex: 10 }}></div>
-
             <button
               type="button"
               onClick={() => {
@@ -147,7 +167,7 @@ export default function SiteHeader() {
                 setIsContactOpen(true);
               }}
               className="btn btn-primary nav-mobile-cta"
-              style={{ '--index': 7, padding: '0.875rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem', cursor: 'pointer' } as React.CSSProperties}
+              style={{ '--index': 9, cursor: 'pointer' } as React.CSSProperties}
             >
               Get in Touch
             </button>

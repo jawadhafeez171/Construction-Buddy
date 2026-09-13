@@ -331,6 +331,11 @@ export default function CompareClient() {
             </div>
           </div>
 
+          {/* Mobile Swipe Cue */}
+          <div className={styles.mobileSwipeCue} aria-hidden="true">
+            <span>👉 Swipe horizontally to compare packages</span>
+          </div>
+
           {/* ── Main Table ── */}
           <div className={styles.tableResponsiveWrapper}>
             <table className={styles.comparisonTable} ref={tableRef}>

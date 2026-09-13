@@ -940,7 +940,81 @@
   }
 }
 
-/* Mobile Floating estimate bar at bottom of viewport */
+/* Mobile-Friendly Steppers & Quick Chips */
+.stepperWrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stepperRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FAF7F0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.5rem;
+}
+
+.stepperBtn {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(13, 31, 60, 0.05);
+}
+
+.stepperBtn:hover,
+.stepperBtn:active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.stepperCurrent {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--foreground);
+}
+
+.areaChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.areaChip {
+  background: #ffffff;
+  border: 1px solid rgba(27, 77, 142, 0.15);
+  border-radius: 20px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.areaChip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.areaChipActive {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 2px 8px rgba(27, 77, 142, 0.25);
+}
+
+/* Mobile Floating estimate bar docked cleanly above BottomNav */
 .mobileFloatingBar {
   display: none;
 }
@@ -949,29 +1023,46 @@
   .mobileFloatingBar {
     display: flex;
     position: fixed;
-    bottom: 58px;
-    /* sits right above bottom mobile nav which is 58px tall */
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--border);
-    padding: 0.85rem 1.25rem;
+    bottom: calc(72px + 1rem + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    max-width: 460px;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(200, 134, 10, 0.25);
+    border-radius: 18px;
+    padding: 0.75rem 1.15rem;
     justify-content: space-between;
     align-items: center;
-    z-index: 90;
-    box-shadow: 0 -8px 24px rgba(13, 31, 60, 0.06);
+    z-index: 995;
+    box-shadow:
+      0 10px 30px rgba(13, 24, 36, 0.16),
+      0 2px 8px rgba(13, 24, 36, 0.08);
+    animation: floatingBarSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes floatingBarSlideUp {
+    from {
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
   }
 
   .mobileBarInfo {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
+    max-width: 58%;
   }
 
   .mobileBarLabel {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -979,19 +1070,22 @@
   }
 
   .mobileBarValue {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 800;
     color: var(--primary);
+    line-height: 1.2;
   }
 
   .mobileBarCta {
-    padding: 0.6rem 1.25rem;
-    font-size: 0.85rem;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    border-radius: 12px;
   }
 
   /* Adjust calculator section padding to not get covered by sticky bar */
   .calculatorPage {
-    padding-bottom: 150px !important;
+    padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 

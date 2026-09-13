@@ -626,6 +626,17 @@
 @media (max-width: 480px) {
   .formRow {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+  .modalCard {
+    padding: 2.25rem 1.25rem;
+    border-radius: 20px;
+  }
+  .inputField,
+  .selectField {
+    font-size: 16px !important;
+  }
+  .referPage {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
   }
 }
