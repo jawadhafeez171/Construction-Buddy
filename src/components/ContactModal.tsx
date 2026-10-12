@@ -33,16 +33,34 @@ export default function ContactModal({ onClose, initialPackage, initialArea, ini
     return () => window.removeEventListener('keydown', handler);
   }, [onClose]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim()) return;
     setLoading(true);
-    // Simulate a brief network call, then show success
-    setTimeout(() => {
+
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          package: initialPackage,
+          area: initialArea,
+          cost: initialCost,
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to post inquiry', err);
+    } finally {
       setLoading(false);
       setSubmitted(true);
-    }, 900);
+    }
   };
+
+  const whatsappMessage = encodeURIComponent(
+    `Hi Construction Buddy! I am ${name} (${phone}). I would like to inquire about the ${initialPackage || 'Turnkey Construction'} package${initialArea ? ` for a ${initialArea} sqft home` : ''}${initialCost ? ` (Estimated cost: ${initialCost})` : ''}.`
+  );
 
   const modalHeading = initialPackage ? (
     <>Inquire: <span>{initialPackage} Tier</span></>
@@ -106,9 +124,30 @@ export default function ContactModal({ onClose, initialPackage, initialArea, ini
                 {initialArea && ` at ${initialArea.toLocaleString()} sqft built-up`}
                 {initialCost && ` (Estimated Total: ${initialCost})`}.
               </p>
-              <button className={styles.successClose} onClick={onClose}>
-                Close
-              </button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', width: '100%', maxWidth: '280px', marginTop: '0.5rem' }}>
+                <a
+                  href={`https://wa.me/919902800693?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    padding: '0.7rem 1.25rem',
+                    fontSize: '0.88rem',
+                    textDecoration: 'none',
+                    borderRadius: '0.75rem',
+                  }}
+                >
+                  <span>Chat on WhatsApp Now</span>
+                  <span>💬</span>
+                </a>
+                <button className={styles.successClose} onClick={onClose} style={{ width: '100%' }}>
+                  Done
+                </button>
+              </div>
             </div>
           ) : (
             <>

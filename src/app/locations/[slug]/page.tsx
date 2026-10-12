@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'article',
       images: [
         {
-          url: '/service_home.webp',
+          url: '/service_home_construction.webp',
           width: 1200,
           height: 630,
           alt: `House Construction in ${location.name}, Bengaluru`,
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title,
       description,
-      images: ['/service_home.webp'],
+      images: ['/service_home_construction.webp'],
     },
   };
 }
@@ -101,7 +101,7 @@ export default async function LocationDetailPage({ params }: PageProps) {
     image: 'https://constructionbuddy.in/logo.png',
     url: `https://constructionbuddy.in/locations/${location.slug}`,
     telephone: '+919902800693',
-    email: 'info@constructionbuddy.in',
+    email: 'constructionbuddyhq@gmail.com',
     priceRange: '₹₹ - ₹₹₹₹',
     areaServed: {
       '@type': 'AdministrativeArea',

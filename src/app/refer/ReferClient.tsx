@@ -16,9 +16,10 @@ export default function ReferClient() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Simple validation
@@ -28,7 +29,20 @@ export default function ReferClient() {
     }
 
     setErrorMessage(null);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      await fetch('/api/refer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+    } catch (err) {
+      console.error('Failed to register referral', err);
+    } finally {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }
   };
 
   const resetForm = () => {
@@ -223,8 +237,8 @@ export default function ReferClient() {
                     />
                   </div>
 
-                  <button type="submit" className={`btn ${styles.submitBtn}`}>
-                    Register Referral
+                  <button type="submit" className={`btn ${styles.submitBtn}`} disabled={isSubmitting}>
+                    {isSubmitting ? 'Registering Referral...' : 'Register Referral'}
                   </button>
                 </form>
               </div>
@@ -271,11 +285,34 @@ export default function ReferClient() {
             </p>
             <div className={styles.modalSummaryBox}>
               <div>Your Referral Code: <strong>CB-REF-{Math.floor(1000 + Math.random() * 9000)}</strong></div>
-              <div>Estimated Reward Tier: <strong>Standard / Luxury Payout</strong></div>
+              <div>Estimated Reward Tier: <strong>Standard / Luxury Payout (up to ₹1,00,000)</strong></div>
             </div>
-            <button onClick={resetForm} className={`btn ${styles.modalCloseBtn}`}>
-              Register Another Referral
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', marginTop: '1.25rem' }}>
+              <a
+                href={`https://wa.me/919902800693?text=${encodeURIComponent(
+                  `Hi Construction Buddy! I (${formData.yourName}, ${formData.yourContact}) have registered a referral for my friend ${formData.friendName} (${formData.friendContact}) planning a ${formData.buildType} project (${formData.plotSize}).`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  padding: '0.85rem 1.5rem',
+                  fontSize: '0.92rem',
+                  textDecoration: 'none',
+                  borderRadius: '0.75rem',
+                }}
+              >
+                <span>Notify Team on WhatsApp</span>
+                <span>💬</span>
+              </a>
+              <button onClick={resetForm} className={`btn ${styles.modalCloseBtn}`}>
+                Register Another Referral
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -427,8 +427,8 @@ export default function SiteFooter() {
                     </svg>
                   </span>
                   <div>
-                    <a href="mailto:info@constructionbuddy.in" className={styles.contactLink}>
-                      info@constructionbuddy.in
+                    <a href="mailto:constructionbuddyhq@gmail.com" className={styles.contactLink}>
+                      constructionbuddyhq@gmail.com
                     </a>
                   </div>
                 </div>

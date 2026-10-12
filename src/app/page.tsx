@@ -124,21 +124,36 @@ export default function Home() {
             </button>
             <NavMoreDropdown scrolled={scrolled} />
             <Link href="/refer" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Refer &amp; Earn</Link>
-            <button
-              type="button"
-              onClick={() => setIsContactOpen(true)}
-              className="btn btn-outline"
-              style={{
-                padding: '0.5rem 1.25rem',
-                fontSize: '0.85rem',
-                color: scrolled ? 'var(--primary)' : '#ffffff',
-                borderColor: scrolled ? 'rgba(27, 77, 142, 0.25)' : 'rgba(255, 255, 255, 0.5)',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer'
-              }}
-            >
-              Get in Touch
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+              <a
+                href="tel:+919902800693"
+                className={`nav-phone-link ${!scrolled ? 'nav-phone-link-dark' : ''}`}
+                title="Call Construction Buddy: +91 99028 00693"
+                style={{
+                  color: scrolled ? 'var(--primary)' : '#ffffff',
+                }}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, color: 'var(--gold)' }}>
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>+91 99028 00693</span>
+              </a>
+              <button
+                type="button"
+                onClick={() => setIsContactOpen(true)}
+                className="btn btn-outline"
+                style={{
+                  padding: '0.5rem 1.25rem',
+                  fontSize: '0.85rem',
+                  color: scrolled ? 'var(--primary)' : '#ffffff',
+                  borderColor: scrolled ? 'rgba(27, 77, 142, 0.25)' : 'rgba(255, 255, 255, 0.5)',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer'
+                }}
+              >
+                Get in Touch
+              </button>
+            </div>
           </nav>
 
           {/* Hamburger Menu Toggle Button for Mobile/Tablet */}
@@ -278,7 +293,7 @@ export default function Home() {
             {/* Premium quick contact widget at the bottom right */}
             <div className="nav-mobile-footer" style={{ '--index': 8 } as React.CSSProperties}>
               <div className="nav-footer-line">📍 RK Hegde Nagar, Thanisandra Main Rd, Bengaluru - 560064</div>
-              <div className="nav-footer-line">✉️ info@constructionbuddy.in</div>
+              <div className="nav-footer-line">✉️ constructionbuddyhq@gmail.com</div>
               <div className="nav-footer-line" style={{ color: 'var(--gold)', fontWeight: 700 }}>📞 +91 99028 00693</div>
               <div style={{ display: 'flex', gap: '0.8rem', marginTop: '0.2rem', flexWrap: 'wrap' }}>
                 <a href="https://www.instagram.com/construction_buddy1/" target="_blank" rel="noopener noreferrer" className="nav-footer-line" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600 }}>📸 Instagram</a>

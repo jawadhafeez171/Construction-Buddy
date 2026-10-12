@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './Gallery.module.css';
 
-const categories = ['All', 'Residential', 'School'];
+const categories = ['All', 'Residential', 'School', 'Institutional'];
 
 const projects = [
   { name: 'Ultra Modern House', category: 'Residential', src: '/Project images/House 2.webp' },
@@ -16,6 +16,9 @@ const projects = [
   { name: 'School Administrative Wing', category: 'School', src: '/Project images/School 3.webp' },
   { name: 'School Sports Facility', category: 'School', src: '/Project images/School 4.webp' },
   { name: 'School Assembly Grounds', category: 'School', src: '/Project images/School 5.webp' },
+  { name: 'Community Campus & Institution', category: 'Institutional', src: '/Project images/Madrasa 1.webp' },
+  { name: 'Institutional Wing & Arcade', category: 'Institutional', src: '/Project images/Madrasa 2.webp' },
+  { name: 'Traditional Arch & Dome Mosque Structure', category: 'Institutional', src: '/Project images/Mosque 1.webp' },
 ];
 
 export default function Gallery() {

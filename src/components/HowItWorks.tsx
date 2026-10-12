@@ -45,6 +45,7 @@ export default function HowItWorks() {
   const [visibleItems, setVisibleItems] = useState(3);
   const [currentIndex, setCurrentIndex] = useState(3); // Start at first real item
   const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
   const touchStart = useRef<number | null>(null);
   const touchEnd = useRef<number | null>(null);
 
@@ -78,8 +79,10 @@ export default function HowItWorks() {
     }
   }, [transitionEnabled]);
 
-  // Continuous self-running auto-slide interval (1200ms)
+  // Comfortable auto-slide interval (4500ms) with pause on hover
   useEffect(() => {
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       setCurrentIndex((prev) => {
         // Prevent running off if tab is out of focus/transitions are disabled
@@ -88,10 +91,10 @@ export default function HowItWorks() {
         }
         return prev + 1;
       });
-    }, 1200);
+    }, 4500);
 
     return () => clearInterval(timer);
-  }, [visibleItems]);
+  }, [visibleItems, isPaused]);
 
   const handlePrev = () => {
     if (!transitionEnabled) return;
@@ -195,6 +198,8 @@ export default function HowItWorks() {
         {/* Carousel Viewport */}
         <div 
           className={styles.carouselContainer}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}

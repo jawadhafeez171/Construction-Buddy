@@ -162,7 +162,7 @@ const localBusinessJsonLd = {
   image: 'https://constructionbuddy.in/logo.png',
   url: 'https://constructionbuddy.in',
   telephone: '+919902800693',
-  email: 'info@constructionbuddy.in',
+  email: 'constructionbuddyhq@gmail.com',
   priceRange: '₹₹ - ₹₹₹₹',
   address: {
     '@type': 'PostalAddress',
