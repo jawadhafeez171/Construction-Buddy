@@ -3,16 +3,16 @@ import { BENGALURU_ZONES_DATA, getAllLocations } from '@/lib/locationsData';
 import LocationsHubClient from './LocationsHubClient';
 
 export const metadata: Metadata = {
-  title: 'Construction Services Across 76 Bengaluru Localities',
+  title: 'Construction Services Across 76 Bangalore & Bengaluru Localities',
   description:
-    'Explore turnkey home construction, architectural sanction drawings, 3D BIM, and luxury interior design across Central, North, South, East, and West Bengaluru. Fixed cost & 10-year warranty.',
+    'Explore turnkey home construction, architectural sanction drawings, 3D BIM, and luxury interior design across Central, North, South, East, and West Bangalore (Bengaluru). Fixed cost & 10-year warranty.',
   alternates: {
     canonical: 'https://www.constructionbuddy.in/locations',
   },
   openGraph: {
-    title: 'Construction Services Across 76 Bengaluru Localities | Construction Buddy',
+    title: 'Construction Services Across 76 Bangalore & Bengaluru Localities | Construction Buddy',
     description:
-      'Citywide construction footprint across 76 prime Bengaluru residential corridors. BBMP sanction drawings, geotechnical engineering, and turnkey luxury builds.',
+      'Citywide construction footprint across 76 prime Bangalore & Bengaluru residential corridors. BBMP sanction drawings, geotechnical engineering, and turnkey luxury builds.',
     url: 'https://www.constructionbuddy.in/locations',
     siteName: 'Construction Buddy',
     locale: 'en_IN',

@@ -36,10 +36,10 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.constructionbuddy.in'),
   applicationName: "Construction Buddy",
   title: {
-    default: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
+    default: "Construction Company in Bangalore | Turnkey Home Builders | Construction Buddy",
     template: "%s | Construction Buddy",
   },
-  description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
+  description: "Top-rated turnkey house construction company in Bangalore & Bengaluru. Architectural blueprints, BBMP/BDA plan sanctions, 3D BIM modeling, and luxury residential building with a 10-year warranty.",
   alternates: {
     canonical: 'https://www.constructionbuddy.in',
   },
@@ -62,8 +62,8 @@ export const metadata: Metadata = {
     apple: { url: '/icon.webp', sizes: '512x512', type: 'image/webp' },
   },
   openGraph: {
-    title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
-    description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
+    title: "Construction Company in Bangalore | Turnkey Home Builders | Construction Buddy",
+    description: "Top-rated turnkey house construction company in Bangalore & Bengaluru. Architectural blueprints, BBMP/BDA plan sanctions, 3D BIM modeling, and luxury residential building with a 10-year warranty.",
     url: "https://www.constructionbuddy.in",
     siteName: "Construction Buddy",
     images: [
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Construction Buddy - Luxury Home Construction and Architecture in Bengaluru",
+        alt: "Construction Buddy - Luxury Home Construction and Architecture in Bangalore & Bengaluru",
       },
     ],
     locale: "en_IN",
@@ -79,8 +79,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
-    description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
+    title: "Construction Company in Bangalore | Turnkey Home Builders | Construction Buddy",
+    description: "Top-rated turnkey house construction company in Bangalore & Bengaluru. Architectural blueprints, BBMP/BDA plan sanctions, 3D BIM modeling, and luxury residential building with a 10-year warranty.",
     images: ["/og-image.jpg"],
   },
   verification: {
@@ -92,7 +92,13 @@ const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Construction Buddy',
-  alternateName: ['ConstructionBuddy', 'Construction Buddy Bengaluru', 'constructionbuddy.in'],
+  alternateName: [
+    'ConstructionBuddy',
+    'Construction Company in Bangalore',
+    'Construction Buddy Bangalore',
+    'Construction Buddy Bengaluru',
+    'constructionbuddy.in',
+  ],
   url: 'https://www.constructionbuddy.in',
   publisher: {
     '@type': 'Organization',
@@ -195,10 +201,16 @@ const localBusinessJsonLd = {
     'https://www.instagram.com/construction_buddy1/',
     'https://www.youtube.com/@constructionbuddy-b3z',
   ],
-  areaServed: {
-    '@type': 'AdministrativeArea',
-    name: 'Bengaluru',
-  },
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Bangalore',
+    },
+    {
+      '@type': 'City',
+      name: 'Bengaluru',
+    },
+  ],
 };
 
 export default function RootLayout({

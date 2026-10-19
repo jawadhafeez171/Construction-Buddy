@@ -90,7 +90,7 @@ export default function Hero() {
             </h1>
 
             <p className={styles.subtitle}>
-              Bengaluru&apos;s premier construction and architecture partner. From 3D BIM modeling to final handover, we construct custom luxury homes with 100% transparency and structural excellence.
+              Bangalore &amp; Bengaluru&apos;s premier turnkey construction and architecture partner. From 3D BIM modeling to final handover, we construct custom luxury homes with 100% transparency and structural excellence.
             </p>
 
             <div className={styles.actions}>
