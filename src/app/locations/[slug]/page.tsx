@@ -24,19 +24,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: 'Location Not Found' };
   }
 
-  const title = `Turnkey House Construction in ${location.name}, Bengaluru | Construction Buddy`;
+  const title = `Turnkey House Construction in ${location.name}, Bengaluru`;
   const description = `Architectural plans, BBMP/BDA sanction drawings, 3D BIM, and turnkey residential construction in ${location.name}, Bengaluru (${location.pincode}). Fixed-cost guarantee & 10-year warranty.`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `https://constructionbuddy.in/locations/${location.slug}`,
+      canonical: `https://www.constructionbuddy.in/locations/${location.slug}`,
     },
     openGraph: {
-      title,
+      title: `${title} | Construction Buddy`,
       description,
-      url: `https://constructionbuddy.in/locations/${location.slug}`,
+      url: `https://www.constructionbuddy.in/locations/${location.slug}`,
       siteName: 'Construction Buddy',
       locale: 'en_IN',
       type: 'article',
@@ -77,19 +77,19 @@ export default async function LocationDetailPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://constructionbuddy.in',
+        item: 'https://www.constructionbuddy.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Bengaluru Locations',
-        item: 'https://constructionbuddy.in/locations',
+        item: 'https://www.constructionbuddy.in/locations',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: location.name,
-        item: `https://constructionbuddy.in/locations/${location.slug}`,
+        item: `https://www.constructionbuddy.in/locations/${location.slug}`,
       },
     ],
   };
@@ -98,8 +98,8 @@ export default async function LocationDetailPage({ params }: PageProps) {
     '@context': 'https://schema.org',
     '@type': 'GeneralContractor',
     name: `Construction Buddy - ${location.name}`,
-    image: 'https://constructionbuddy.in/logo.png',
-    url: `https://constructionbuddy.in/locations/${location.slug}`,
+    image: 'https://www.constructionbuddy.in/logo.png',
+    url: `https://www.constructionbuddy.in/locations/${location.slug}`,
     telephone: '+919902800693',
     email: 'constructionbuddyhq@gmail.com',
     priceRange: '₹₹ - ₹₹₹₹',

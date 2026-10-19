@@ -370,7 +370,7 @@ export default function SiteFooter() {
                     className={styles.footerLink}
                     style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', textAlign: 'left' }}
                   >
-                    <span>5-Step Build Process</span>
+                    <span>7-Step Build Process</span>
                   </button>
                 </li>
                 <li>
@@ -515,20 +515,18 @@ export default function SiteFooter() {
             </div>
 
             <div className={styles.legalLinks}>
-              <button
-                type="button"
+              <Link
+                href="/privacy"
                 className={styles.legalBtn}
-                onClick={() => setActiveLegalModal('privacy')}
               >
                 Privacy Policy
-              </button>
-              <button
-                type="button"
+              </Link>
+              <Link
+                href="/terms"
                 className={styles.legalBtn}
-                onClick={() => setActiveLegalModal('terms')}
               >
                 Terms of Service
-              </button>
+              </Link>
             </div>
           </div>
         </div>

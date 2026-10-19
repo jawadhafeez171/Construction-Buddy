@@ -1,3 +1,15 @@
+export interface EngineeringAdvisory {
+  zoneClassification: string;
+  subsurfaceCaution: string;
+  foundationStrategy: string;
+  bylawAndSetbackWatch: string;
+  waterAndBasementAdvice: string;
+  siteLogistics: string;
+  typicalPlotDimensions: string;
+  recommendedConcreteGrade: string;
+  safeBearingCapacityBenchmark: string;
+}
+
 export interface LocalityData {
   slug: string;
   name: string;
@@ -17,6 +29,7 @@ export interface LocalityData {
     luxury: number;
   };
   keyLandmarks: string[];
+  engineeringAdvisory: EngineeringAdvisory;
   faqs: {
     question: string;
     answer: string;
@@ -1265,29 +1278,158 @@ const rawLocalities: Array<{
   },
 ];
 
+function hashString(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+function generateEngineeringAdvisory(loc: (typeof rawLocalities)[0]): EngineeringAdvisory {
+  const zone = loc.zoneSlug;
+
+  if (zone === 'central') {
+    return {
+      zoneClassification: `Central Core Heritage & High-Density Residential Precinct (${loc.bylawAuthority})`,
+      subsurfaceCaution: `The historic central plateau typically features weathered red sandy loam overlying metamorphic granite gneiss at 2.5m to 4.5m depth. Crucial field caution: adjacent properties frequently share boundary lines or feature older lime-mortar masonry. Pre-excavation dilapidation surveys and sheet or soldier pile shoring are mandatory to protect neighboring foundations.`,
+      foundationStrategy: `Engineered isolated or continuous strap footings tied with high-tensile plinth tie beams. Where basements or semi-basements are specified, contiguous soldier piling or RCC retaining walls with chemical anchor dowels are deployed before core earthwork.`,
+      bylawAndSetbackWatch: `BBMP Central Division & Heritage Precinct norms apply. Front building line alignment is strictly checked against existing street setback lines. Mature canopy trees (rain trees, copper pods) along plot boundaries require BBMP Forest Cell preservation clearance.`,
+      waterAndBasementAdvice: `Cauvery piped water network is established; static groundwater averages 450–600 ft. Basements are structurally feasible with dual-coat crystalline capillary waterproofing, provided foundation drainage sumps clear municipal stormwater invert levels.`,
+      siteLogistics: `Road widths often range from 25ft to 40ft with dense daytime traffic. Heavy transit mixers (10-wheeler RMC) and boom pumps are scheduled for night pours (9:00 PM – 5:00 AM) with BBMP traffic police movement permissions.`,
+      typicalPlotDimensions: `30×50 ft (1,500 sq.ft), 40×60 ft (2,400 sq.ft), and heritage 50×80 ft / 60×100 ft re-development parcels.`,
+      recommendedConcreteGrade: `M25 to M30 Design Mix with Fe550D TMT (TATA Tiscon / Jindal Panther).`,
+      safeBearingCapacityBenchmark: `180 – 220 kN/m² (Subject to IS 1892 bore-hole core test on plot).`,
+    };
+  }
+
+  if (zone === 'north') {
+    return {
+      zoneClassification: `North Bengaluru Airport Corridor & Granitic Ridge Strata (${loc.bylawAuthority})`,
+      subsurfaceCaution: `High-elevation granitic ridge geology with hard metamorphic rock frequently encountered at shallow depths (1.2m to 2.8m). Hard rock excavation requires soundless non-explosive expansive chemical fracturing (expansive demolition mortar) rather than blasting due to adjacent residential structures.`,
+      foundationStrategy: `Trapezoidal isolated pad footings anchored directly into sound bedrock using dowel rebars and non-shrink structural grout. Exceptional structural load capacity with near-zero long-term differential settlement.`,
+      bylawAndSetbackWatch: `Airports Authority of India (AAI) and Yelahanka Air Force Station flight funnel height clearances apply to multi-story structures. Setbacks require minimum 2.0m side clearways for fire safety on plots over 40ft frontage.`,
+      waterAndBasementAdvice: `Groundwater aquifers are deep (700–1,100 ft) in fractured granite fissures. Basements are structurally dry and cost-effective once rock excavation is finished, but mandatory dual-chamber percolation rainwater sumps (min 4,000L) are enforced by BWSSB.`,
+      siteLogistics: `Wider arterial access corridors allow daytime transit mixer movement, though local interior layout access requires pre-pour route scouting for 24-ton concrete pumps.`,
+      typicalPlotDimensions: `30×40 ft (1,200 sq.ft), 30×50 ft (1,500 sq.ft), 40×60 ft (2,400 sq.ft), and gated villa plots of 50×80 ft.`,
+      recommendedConcreteGrade: `M25 Foundation / M30 Columns with Fe550D TMT Reinforcement.`,
+      safeBearingCapacityBenchmark: `200 – 240 kN/m² (Subject to IS 1892 bore-hole core test on plot).`,
+    };
+  }
+
+  if (zone === 'south') {
+    return {
+      zoneClassification: `South Bengaluru Lake Catchment & BDA Residential Layouts (${loc.bylawAuthority})`,
+      subsurfaceCaution: `Complex valley-and-ridge geology with red gravelly clay interspersed with alluvial sandy silts. Proximity to major lakes and SWD channels creates localized soft pockets. Strict watch: National Green Tribunal (NGT) and BBMP buffer zones strictly mandate 50m clear setback from primary stormwater canals (Rajakaluves) and 25m from secondary drains.`,
+      foundationStrategy: `Wide-base trapezoidal isolated footings with rigid grade beams (M25 mix). In low-lying plots near valley slopes, interconnected strap foundations or reinforced grade slabs prevent angular distortion.`,
+      bylawAndSetbackWatch: `BBMP South Zone strictly verifies setback ratios against road widths. Front setbacks must leave clear service corridors for BWSSB underground drainage (UGD) inspection chambers.`,
+      waterAndBasementAdvice: `High seasonal water table fluctuations during monsoon months (perched water at 25–40 ft in low-lying pockets). Any basement or semi-basement construction mandates dual-layer integral crystalline waterproofing and perimeter perforated sub-soil drain pipes.`,
+      siteLogistics: `Established residential neighborhoods with active Resident Welfare Associations (RWAs) require adherence to BBMP noise limits (no acoustic drilling after 7:00 PM). Material offloading requires protected barricading to prevent street obstruction.`,
+      typicalPlotDimensions: `30×40 ft (1,200 sq.ft), 40×60 ft (2,400 sq.ft), and 50×80 ft (4,000 sq.ft) standard BDA allotments.`,
+      recommendedConcreteGrade: `M25 Design Mix (Water-cement ratio <= 0.45) with Fe550D TMT.`,
+      safeBearingCapacityBenchmark: `160 – 200 kN/m² (Subject to IS 1892 bore-hole core test on plot).`,
+    };
+  }
+
+  if (zone === 'east') {
+    return {
+      zoneClassification: `East Bengaluru Tech Corridor & Valley Catchment (${loc.bylawAuthority})`,
+      subsurfaceCaution: `Alluvial silts, expansive blackish clay, and reclaimed tank bed strata occur near the Varthur and Bellandur drainage systems. Soil can exhibit volumetric swelling and shrinkage across wet and dry cycles. Excavation must clear all organic silts down to virgin red gravelly strata.`,
+      foundationStrategy: `Rigid raft foundations or deeply anchored strap footings with continuous grade beams. Column cages feature closely spaced seismic stirrups (IS 13920 ductile detailing) to counteract potential differential ground settlement.`,
+      bylawAndSetbackWatch: `BBMP Mahadevapura Division jurisdiction. Strict scrutiny on buffer distances from secondary stormwater drains. Mandatory rainwater harvesting retention tanks with a minimum capacity of 20 liters per square meter of roof footprint.`,
+      waterAndBasementAdvice: `Groundwater is severely stressed (1,000–1,400 ft borewell depths). Curing water must be laboratory-tested for Total Dissolved Solids (TDS < 1,000 ppm) to prevent salt efflorescence in structural masonry and plaster. Basements require heavy-duty bitumen/HDPE tanking.`,
+      siteLogistics: `Severe traffic congestion along the Outer Ring Road and Sarjapur-Varthur arteries mandates night or dawn transit for RMC concrete trucks and steel deliveries. Sites must maintain on-site sand and aggregate holding bays.`,
+      typicalPlotDimensions: `30×40 ft (1,200 sq.ft), 30×50 ft (1,500 sq.ft), 40×60 ft (2,400 sq.ft), and luxury gated villa plots of 60×40 ft.`,
+      recommendedConcreteGrade: `M25 / M30 High-Durability Concrete with Sulphate-Resistant or Micro-Silica Blends.`,
+      safeBearingCapacityBenchmark: `140 – 180 kN/m² (Subject to IS 1892 bore-hole core test on plot).`,
+    };
+  }
+
+  // West Zone
+  return {
+    zoneClassification: `West Bengaluru Granitic Ridge & Cultural Hub (${loc.bylawAuthority})`,
+    subsurfaceCaution: `Naturally undulating topography with sloping granite hills and rocky outcrops. Plots frequently exhibit 2m to 5m natural elevation slopes across plot lengths. Unplanned cut-and-fill can trigger slope instability during heavy monsoon downpours.`,
+    foundationStrategy: `Stepped plinth foundations and reinforced masonry gravity retaining walls. Footings are stepped to follow natural rock contours, minimizing excessive earth backfilling while maximizing structural anchoring into hard gravelly strata.`,
+    bylawAndSetbackWatch: `BDA West and BBMP Rajarajeshwari Nagar guidelines enforce strict FAR adherence (1.75 to 2.0). Side and rear setbacks are rigorously checked for natural light and ventilation, adhering to traditional Vaastu alignment preferences common in the locality.`,
+    waterAndBasementAdvice: `Groundwater table averages 550–750 ft. Natural site slope simplifies gravity stormwater discharge, but downhill retention sumps require backflow prevention valves to avoid municipal drain surcharging.`,
+    siteLogistics: `Hilly residential lanes with gradients require wheel-chocked transit mixers and specialized boom pump line routing. Earth disposal from slope excavation requires BBMP-designated quarry backfill transit passes.`,
+    typicalPlotDimensions: `30×40 ft (1,200 sq.ft), 30×50 ft (1,500 sq.ft), 40×60 ft (2,400 sq.ft), and 50×80 ft (4,000 sq.ft).`,
+    recommendedConcreteGrade: `M25 Grade with Fe550D TMT Reinforcement.`,
+    safeBearingCapacityBenchmark: `190 – 230 kN/m² (Subject to IS 1892 bore-hole core test on plot).`,
+  };
+}
+
+function generateLocalityFaqs(loc: (typeof rawLocalities)[0]) {
+  const hash = hashString(loc.name);
+  const primaryLandmark = loc.keyLandmarks[0] || 'the main junction';
+
+  // Question 1: Turnkey Construction Cost for 30x40 and 40x60 plots
+  const q1Variants = [
+    `What is the turnkey house construction cost for a 30x40 or 40x60 plot in ${loc.name}?`,
+    `How much does it cost to build an independent duplex or villa in ${loc.name}, Bengaluru?`,
+    `What are the residential turnkey construction rates per sq.ft in ${loc.name}?`,
+    `What is the total estimated construction budget for building a home in ${loc.name}?`,
+  ];
+  const q1 = q1Variants[hash % q1Variants.length];
+  const a1 = `In ${loc.name}, turnkey residential construction through Construction Buddy is structured across transparent, fixed-price packages: Standard at ₹1,940/sq.ft, Premium at ₹2,070/sq.ft (featuring Jindal/TATA steel, UPVC windows & Jaquar fittings), and bespoke Luxury at ₹2,400/sq.ft. For a standard 30×40 plot (1,200 sq.ft land, ~2,200–2,400 sq.ft built-up G+1 or G+2 home), total construction cost typically ranges between ₹42.7 Lakhs and ₹57.6 Lakhs depending on chosen finishes. For a 40×60 plot (~4,000–4,200 sq.ft built-up), turnkey budgets range from ₹77.6 Lakhs to ₹1.01 Crore. Every quote is delivered as a 1,200-point itemized Bill of Quantities (BOQ) with a zero-escalation guarantee.`;
+
+  // Question 2: Geotechnical Foundation & SBC
+  const q2Variants = [
+    `What foundation type and soil engineering are required for plots in ${loc.name}?`,
+    `How does Construction Buddy verify soil bearing capacity and foundation safety in ${loc.name}?`,
+    `What structural foundation design is recommended for the soil strata in ${loc.name}?`,
+    `How deep must foundations be excavated for residential plots in ${loc.name}?`,
+  ];
+  const q2 = q2Variants[(hash + 1) % q2Variants.length];
+  const a2 = `Plots in ${loc.name} feature ${loc.soilAndFoundation}. However, because sub-surface lithology varies between survey numbers—particularly near water bodies or rocky ridges—Construction Buddy conducts an on-site IS 1892-compliant borehole core test before finalizing structural blueprints. Our licensed structural engineers calculate the site-specific Safe Bearing Capacity (SBC) to specify isolated trapezoidal footings, interconnected strap beams, or raft foundations reinforced with corrosion-resistant Fe550D TMT rebars.`;
+
+  // Question 3: Municipal Bylaws, Sanctions & Setbacks
+  const q3Variants = [
+    `What are the ${loc.bylawAuthority} building approval and setback rules in ${loc.name}?`,
+    `How does Construction Buddy manage municipal plan sanctions and CC/OC in ${loc.name}?`,
+    `What FAR (Floor Area Ratio) and height restrictions apply to residential builds in ${loc.name}?`,
+    `What approvals and documentation are needed before commencing construction in ${loc.name}?`,
+  ];
+  const q3 = q3Variants[(hash + 2) % q3Variants.length];
+  const a3 = `Residential builds in ${loc.name} fall under ${loc.bylawAuthority} guidelines (${loc.farAndSetbacks}). Construction Buddy manages the entire municipal liaison workflow—including architectural sanction drawings, structural stability certificates, tree preservation clearances, and submission for the Commencement Certificate (CC) and eventual Occupancy Certificate (OC). We ensure strict compliance with road-width FAR limitations and mandatory front, rear, and side setbacks.`;
+
+  // Question 4: Groundwater, Borewells & Basements
+  const q4Variants = [
+    `Can I construct a basement or semi-basement in ${loc.name} given groundwater conditions?`,
+    `What are the borewell depth and water management requirements for a home in ${loc.name}?`,
+    `How does Construction Buddy handle damp-proofing, sumps, and rainwater harvesting in ${loc.name}?`,
+    `Is basement parking viable in ${loc.name}, and what waterproofing systems are deployed?`,
+  ];
+  const q4 = q4Variants[(hash + 3) % q4Variants.length];
+  const a4 = `Water table and hydrogeology in ${loc.name}: ${loc.waterAndBorewell}. Basements are structurally feasible with proper engineering: we install dual-layer crystalline capillary waterproofing, hydrostatic pressure relief membranes, and perimeter French drain sumps. Additionally, we integrate BWSSB-compliant rooftop rainwater harvesting percolation tanks (minimum 3,000L to 6,000L) with dual-line greywater plumbing systems.`;
+
+  // Question 5: Timeline, Guarantees & Local Site Logistics
+  const q5Variants = [
+    `How does Construction Buddy guarantee on-time handover and cost protection in ${loc.name}?`,
+    `What construction logistics and safety practices are followed near ${primaryLandmark} in ${loc.name}?`,
+    `What warranty and contractual guarantees protect homeowners building in ${loc.name}?`,
+    `How are ready-mix concrete pours and material deliveries managed in ${loc.name}?`,
+  ];
+  const q5 = q5Variants[(hash + 4) % q5Variants.length];
+  const a5 = `Every turnkey home project in ${loc.name} is governed by a legally binding contract featuring a guaranteed completion date backed by daily penalty clauses for unexcused delays. We provide a 10-year structural warranty covering the RCC frame, plinth stability, and foundation integrity, alongside a 1-year complimentary maintenance warranty. All deliveries and concrete pours near ${primaryLandmark} and surrounding lanes are managed using dedicated traffic marshals and schedule optimization to respect local RWA and municipal guidelines.`;
+
+  return [
+    { question: q1, answer: a1 },
+    { question: q2, answer: a2 },
+    { question: q3, answer: a3 },
+    { question: q4, answer: a4 },
+    { question: q5, answer: a5 },
+  ];
+}
+
 export const allLocations: LocalityData[] = rawLocalities.map((loc) => {
   const slug = nameToSlug(loc.name);
   return {
     ...loc,
     slug,
-    faqs: [
-      {
-        question: `What is the average cost to construct an independent house in ${loc.name}, Bengaluru?`,
-        answer: `In ${loc.name}, turnkey residential construction typically ranges from ₹${loc.avgCostPerSqFt.essential.toLocaleString('en-IN')}/sq.ft for our Essential package up to ₹${loc.avgCostPerSqFt.luxury.toLocaleString('en-IN')}+/sq.ft for bespoke Luxury architectural builds. Final rates depend on soil foundation depth, structural design, and interior finishing choices.`,
-      },
-      {
-        question: `How does Construction Buddy handle BBMP / BDA sanction drawings for ${loc.name}?`,
-        answer: `All our blueprints are engineered strictly in accordance with ${loc.bylawAuthority} bylaws. We handle architectural floor plans, structural vetting, MEP layouts, and liaison documentation to ensure your plan approval and commencement certificate (CC) proceed without municipal delays.`,
-      },
-      {
-        question: `What foundation type is required for plots in ${loc.name}?`,
-        answer: `Plots in ${loc.name} typically feature ${loc.soilAndFoundation}. Our structural engineers conduct on-site soil testing to calculate the exact Safe Bearing Capacity (SBC) before designing isolated, combined, or raft footings with high-durability Fe550D TMT reinforcement.`,
-      },
-      {
-        question: `Do you provide fixed-cost guarantees and penalty-backed handover in ${loc.name}?`,
-        answer: `Yes. Every project in ${loc.name} is executed on a guaranteed fixed-cost roadmap with zero mid-construction price escalations, a 10-year structural warranty, and a penalty-backed handover timeline clearly defined in our client contract.`,
-      },
-    ],
+    engineeringAdvisory: generateEngineeringAdvisory(loc),
+    faqs: generateLocalityFaqs(loc),
   };
 });
 

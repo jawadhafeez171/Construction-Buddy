@@ -24,8 +24,32 @@ export default function BlogPage() {
     (p) => !p.featured && (activeCategory === 'All' || p.category === activeCategory)
   );
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.constructionbuddy.in',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://www.constructionbuddy.in/blog',
+      },
+    ],
+  };
+
   return (
-    <main className={styles.pageWrapper}>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <main className={styles.pageWrapper}>
       {/* ── Page Header ── */}
       <section className={styles.pageHeader}>
         <div className={styles.headerBg} />
@@ -167,5 +191,6 @@ export default function BlogPage() {
         </section>
       </div>
     </main>
+    </>
   );
 }

@@ -17,10 +17,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!service) return { title: 'Service Not Found' };
   
   return {
-    title: `${service.title} | Construction Buddy Bengaluru`,
+    title: `${service.title} - Bengaluru Building Services`,
     description: service.description,
     openGraph: {
-      title: `${service.title} | Construction Buddy Bengaluru`,
+      title: `${service.title} - Bengaluru Building Services | Construction Buddy`,
       description: service.description,
       url: `/services/${slug}`,
       images: [
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ],
     },
     alternates: {
-      canonical: `https://constructionbuddy.in/services/${slug}`,
+      canonical: `https://www.constructionbuddy.in/services/${slug}`,
     },
   };
 }

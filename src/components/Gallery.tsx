@@ -6,19 +6,84 @@ import styles from './Gallery.module.css';
 const categories = ['All', 'Residential', 'School', 'Institutional'];
 
 const projects = [
-  { name: 'Ultra Modern House', category: 'Residential', src: '/Project images/House 2.webp' },
-  { name: 'Classic Villa', category: 'Residential', src: '/Project images/House.webp' },
-  { name: 'Premium Apartments', category: 'Residential', src: '/Project images/Residential 1.webp' },
-  { name: 'Apartment Complex Render', category: 'Residential', src: '/Project images/Residential 1 render.webp' },
-  { name: 'Central School Campus', category: 'School', src: '/Project images/School.webp' },
-  { name: 'School Classroom Block', category: 'School', src: '/Project images/School 1.webp' },
-  { name: 'School Play Area', category: 'School', src: '/Project images/School 2.webp' },
-  { name: 'School Administrative Wing', category: 'School', src: '/Project images/School 3.webp' },
-  { name: 'School Sports Facility', category: 'School', src: '/Project images/School 4.webp' },
-  { name: 'School Assembly Grounds', category: 'School', src: '/Project images/School 5.webp' },
-  { name: 'Community Campus & Institution', category: 'Institutional', src: '/Project images/Madrasa 1.webp' },
-  { name: 'Institutional Wing & Arcade', category: 'Institutional', src: '/Project images/Madrasa 2.webp' },
-  { name: 'Traditional Arch & Dome Mosque Structure', category: 'Institutional', src: '/Project images/Mosque 1.webp' },
+  {
+    name: 'Ultra Modern House',
+    category: 'Residential',
+    src: '/project-images/ultra-modern-luxury-house-bengaluru.webp',
+    alt: 'Ultra-modern multi-storey luxury villa home construction in Bengaluru',
+  },
+  {
+    name: 'Classic Villa',
+    category: 'Residential',
+    src: '/project-images/classic-independent-villa-construction-bengaluru.webp',
+    alt: 'Classic independent residential villa architecture and construction in Bengaluru',
+  },
+  {
+    name: 'Premium Apartments',
+    category: 'Residential',
+    src: '/project-images/premium-residential-apartment-complex-bengaluru.webp',
+    alt: 'Premium multi-family residential apartment building project in Bengaluru',
+  },
+  {
+    name: 'Apartment Complex Render',
+    category: 'Residential',
+    src: '/project-images/multi-storey-apartment-architectural-render-bengaluru.webp',
+    alt: '3D architectural elevation rendering for residential apartment complex in Bengaluru',
+  },
+  {
+    name: 'Central School Campus',
+    category: 'School',
+    src: '/project-images/central-school-campus-construction-bengaluru.webp',
+    alt: 'Central educational school campus building construction in Bengaluru',
+  },
+  {
+    name: 'School Classroom Block',
+    category: 'School',
+    src: '/project-images/school-classroom-block-infrastructure-bengaluru.webp',
+    alt: 'Multi-storey school classroom block building infrastructure in Bengaluru',
+  },
+  {
+    name: 'School Play Area',
+    category: 'School',
+    src: '/project-images/school-campus-courtyard-play-area-bengaluru.webp',
+    alt: 'School campus landscaped playground and recreational courtyard in Bengaluru',
+  },
+  {
+    name: 'School Administrative Wing',
+    category: 'School',
+    src: '/project-images/school-administrative-wing-building-bengaluru.webp',
+    alt: 'Educational institution administrative wing architectural building in Bengaluru',
+  },
+  {
+    name: 'School Sports Facility',
+    category: 'School',
+    src: '/project-images/school-sports-facility-campus-ground-bengaluru.webp',
+    alt: 'Educational school sports facility and campus activity grounds in Bengaluru',
+  },
+  {
+    name: 'School Assembly Grounds',
+    category: 'School',
+    src: '/project-images/school-assembly-grounds-educational-complex-bengaluru.webp',
+    alt: 'School assembly grounds and institutional academic building complex in Bengaluru',
+  },
+  {
+    name: 'Community Campus & Institution',
+    category: 'Institutional',
+    src: '/project-images/community-campus-institutional-building-bengaluru.webp',
+    alt: 'Community campus institutional educational center building in Bengaluru',
+  },
+  {
+    name: 'Institutional Wing & Arcade',
+    category: 'Institutional',
+    src: '/project-images/institutional-arcade-and-academic-wing-bengaluru.webp',
+    alt: 'Institutional arcade colonnade and academic wing construction in Bengaluru',
+  },
+  {
+    name: 'Traditional Arch & Dome Mosque Structure',
+    category: 'Institutional',
+    src: '/project-images/traditional-dome-and-arch-community-structure-bengaluru.webp',
+    alt: 'Traditional arched dome community institutional architecture in Bengaluru',
+  },
 ];
 
 export default function Gallery() {
@@ -199,7 +264,7 @@ export default function Gallery() {
                   }}
                 >
                   <div className={styles.imageCard}>
-                    <img src={project.src} alt={project.name} className={styles.image} loading="lazy" />
+                    <img src={project.src} alt={project.alt || project.name} className={styles.image} loading="lazy" />
                     <div className={styles.overlay}>
                       <div className={styles.meta}>
                         <span className={styles.categoryBadge}>{project.category}</span>

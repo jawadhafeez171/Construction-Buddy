@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { standardPackages, luxuryPackages } from '@/lib/packagesData';
 import ContactModal from './ContactModal';
 import styles from './Packages.module.css';
@@ -62,13 +63,12 @@ export default function Packages() {
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
 
         {/* ── Section Header ── */}
-        <p className={styles.sectionLabel}>Our Offerings</p>
+        <p className={styles.sectionLabel}>All 7 Construction Packages</p>
         <h2 className={styles.sectionHeading}>
           Construction Packages in <span>Bengaluru</span>
         </h2>
         <p className={styles.sectionSub}>
-          Transparent pricing tailored for both high-value budget builds and elite,
-          custom architectural estates.
+          Choose from 7 comprehensive packages across 2 collections: 4 Standard Living tiers (₹1,940 – ₹2,640/sqft) and 3 Luxury Architectural Estates (₹3,990 – ₹5,490/sqft).
         </p>
 
         {/* ── Sliding Toggle ── */}
@@ -78,15 +78,15 @@ export default function Packages() {
               className={`${styles.toggleBtn} ${!isLuxury ? styles.toggleActive : ''}`}
               onClick={() => setIsLuxury(false)}
             >
-              Standard Tiers
-              <span className={styles.startsAt}>starts at ₹1,940/sqft</span>
+              Standard Living (4 Packages)
+              <span className={styles.startsAt}>Standard, Premium, Luxury, Elite · from ₹1,940/sqft</span>
             </button>
             <button
               className={`${styles.toggleBtn} ${isLuxury ? styles.toggleActive : ''}`}
               onClick={() => setIsLuxury(true)}
             >
-              Luxury Estates
-              <span className={styles.startsAt}>starts at ₹3,990/sqft</span>
+              Luxury Estates (3 Packages)
+              <span className={styles.startsAt}>Imperial, Royal Estate, Palatial · from ₹3,990/sqft</span>
             </button>
             <div className={`${styles.toggleSlider} ${isLuxury ? styles.slideRight : ''}`} />
           </div>
@@ -201,13 +201,38 @@ export default function Packages() {
           })}
         </div>
 
+        {/* Collection Notice Banner */}
+        {!isLuxury ? (
+          <div className={styles.collectionBanner}>
+            <span>Showing 4 Standard Living packages (₹1,940 – ₹2,640/sqft). Looking for Italian marble, private elevators &amp; double-height ceilings?</span>
+            <button
+              type="button"
+              onClick={() => setIsLuxury(true)}
+              className={styles.switchTabLink}
+            >
+              View 3 Luxury Estates (Imperial, Royal Estate &amp; Palatial from ₹3,990/sqft) →
+            </button>
+          </div>
+        ) : (
+          <div className={styles.collectionBanner}>
+            <span>Showing 3 Luxury Estate packages: Imperial (₹3,990), Royal Estate (₹4,690) &amp; Palatial (₹5,490/sqft).</span>
+            <button
+              type="button"
+              onClick={() => setIsLuxury(false)}
+              className={styles.switchTabLink}
+            >
+              ← View 4 Standard Living Packages (from ₹1,940/sqft)
+            </button>
+          </div>
+        )}
+
         {/* Compare Packages CTA Banner */}
         <div className={styles.compareBanner}>
           <p className={styles.compareText}>
-            Want a detailed side-by-side specifications breakdown?{' '}
-            <a href="/compare-packages" className={styles.compareLink}>
-              Compare Construction Packages Side-by-Side <span className={styles.compareArrow}>→</span>
-            </a>
+            Want a detailed side-by-side technical breakdown of all 7 packages?{' '}
+            <Link href="/compare-packages" className={styles.compareLink}>
+              Compare All 7 Packages Side-by-Side <span className={styles.compareArrow}>→</span>
+            </Link>
           </p>
         </div>
       </div>

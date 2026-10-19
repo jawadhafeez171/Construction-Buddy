@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import CompareClient from './CompareClient';
 
 export const metadata: Metadata = {
-  title: 'Compare Construction Packages | Construction Buddy Bengaluru',
+  title: 'Compare Construction Packages & Specifications',
   description: 'Compare our home construction packages side-by-side. Inspect technical specifications for Standard, Premium, Luxury, Elite, Imperial, Royal Estate, and Palatial packages in Bengaluru.',
   openGraph: {
-    title: 'Compare Construction Packages | Construction Buddy Bengaluru',
+    title: 'Compare Construction Packages & Specifications | Construction Buddy',
     description: 'Compare our home construction packages side-by-side. Inspect technical specifications for Standard, Premium, Luxury, Elite, Imperial, Royal Estate, and Palatial packages in Bengaluru.',
     url: '/compare-packages',
     images: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://constructionbuddy.in/compare-packages',
+    canonical: 'https://www.constructionbuddy.in/compare-packages',
   },
 };
 

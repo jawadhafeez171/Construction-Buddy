@@ -4,10 +4,10 @@ import { services } from '@/lib/servicesData';
 import styles from './services.module.css';
 
 export const metadata: Metadata = {
-  title: 'Our Services | Construction Buddy Bengaluru',
+  title: 'Turnkey Construction & Architectural Services in Bengaluru',
   description: 'Explore Construction Buddy\'s premium construction, architectural drafting, interior design, waterproofing, and BIM services in Bengaluru.',
   openGraph: {
-    title: 'Our Services | Construction Buddy Bengaluru',
+    title: 'Turnkey Construction & Architectural Services in Bengaluru | Construction Buddy',
     description: 'Explore Construction Buddy\'s premium construction, architectural drafting, interior design, waterproofing, and BIM services in Bengaluru.',
     url: '/services',
     images: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://constructionbuddy.in/services',
+    canonical: 'https://www.constructionbuddy.in/services',
   },
 };
 

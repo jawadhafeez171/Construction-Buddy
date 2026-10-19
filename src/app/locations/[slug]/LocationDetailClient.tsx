@@ -17,9 +17,32 @@ export default function LocationDetailClient({
 }: LocationDetailClientProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const handleInquire = (pkgName: string) => {
+    setSelectedPackage(pkgName);
+    setIsModalOpen(true);
+  };
+
+  const getEngineeringSubtitle = () => {
+    switch (location.zoneSlug) {
+      case 'central':
+        return `Geotechnical foundation design, street-access logistics, and BBMP heritage sanction guidelines for plots and villa re-developments across ${location.name}.`;
+      case 'north':
+        return `Granitic bedrock excavation, AAI aerodrome height clearances, and structural wind-load engineering for residential construction in ${location.name}.`;
+      case 'south':
+        return `Sub-surface water table management, NGT rajakaluve setback buffers, and BDA layout compliance for independent homes in ${location.name}.`;
+      case 'east':
+        return `Lake-basin soil settlement mitigation, high-durability concrete curing, and tech-corridor municipal guidelines in ${location.name}.`;
+      case 'west':
+        return `Contour grading, stepped plinth stability, retaining wall design, and traditional Vaastu orientations for homes in ${location.name}.`;
+      default:
+        return `Site-specific soil bearing calculations, water table management, and municipal guidelines optimized for ${location.name}.`;
+    }
   };
 
   return (
@@ -128,9 +151,99 @@ export default function LocationDetailClient({
               Engineering &amp; Sanction Guidelines for {location.name}
             </h2>
             <p className={styles.sectionSubtitle}>
-              Every neighborhood in Bengaluru has unique soil bearing values, water table depths, and ward bylaws. Here is how our engineering team optimizes construction for plots in {location.name}.
+              {getEngineeringSubtitle()}
             </p>
           </div>
+
+          {/* Chief Structural Engineer's Advisory Box */}
+          {location.engineeringAdvisory && (
+            <div className={styles.advisoryBox}>
+              <div className={styles.advisoryHeader}>
+                <div className={styles.advisoryBadgeRow}>
+                  <span className={styles.advisoryChiefBadge}>
+                    👷‍♂️ Chief Engineer&apos;s Field Advisory
+                  </span>
+                  <span className={styles.advisoryStandardBadge}>
+                    IS 1892 &amp; IS 456 Vetted
+                  </span>
+                </div>
+                <h3 className={styles.advisoryTitle}>
+                  Geotechnical &amp; Municipal Advisory for {location.name}
+                </h3>
+                <p className={styles.advisoryZonalSub}>
+                  <strong>Zonal Classification:</strong> {location.engineeringAdvisory.zoneClassification}
+                </p>
+              </div>
+
+              {/* Factsheet Matrix */}
+              <div className={styles.factsheetGrid}>
+                <div className={styles.factsheetCard}>
+                  <span className={styles.factsheetLabel}>Soil Bearing Capacity (SBC)</span>
+                  <span className={styles.factsheetValue}>{location.engineeringAdvisory.safeBearingCapacityBenchmark}</span>
+                </div>
+                <div className={styles.factsheetCard}>
+                  <span className={styles.factsheetLabel}>Recommended Concrete &amp; Steel</span>
+                  <span className={styles.factsheetValue}>{location.engineeringAdvisory.recommendedConcreteGrade}</span>
+                </div>
+                <div className={styles.factsheetCard}>
+                  <span className={styles.factsheetLabel}>Typical Plot Dimensions</span>
+                  <span className={styles.factsheetValue}>{location.engineeringAdvisory.typicalPlotDimensions}</span>
+                </div>
+              </div>
+
+              {/* Advisory Grid */}
+              <div className={styles.advisoryGrid}>
+                <div className={styles.advisoryCard}>
+                  <div className={styles.advisoryCardHeader}>
+                    <span className={styles.advisoryCardIcon}>⚠️</span>
+                    <h4 className={styles.advisoryCardTitle}>Sub-surface Caution</h4>
+                  </div>
+                  <p className={styles.advisoryCardBody}>{location.engineeringAdvisory.subsurfaceCaution}</p>
+                </div>
+
+                <div className={styles.advisoryCard}>
+                  <div className={styles.advisoryCardHeader}>
+                    <span className={styles.advisoryCardIcon}>🏗️</span>
+                    <h4 className={styles.advisoryCardTitle}>Foundation Strategy</h4>
+                  </div>
+                  <p className={styles.advisoryCardBody}>{location.engineeringAdvisory.foundationStrategy}</p>
+                </div>
+
+                <div className={styles.advisoryCard}>
+                  <div className={styles.advisoryCardHeader}>
+                    <span className={styles.advisoryCardIcon}>📜</span>
+                    <h4 className={styles.advisoryCardTitle}>Bylaw &amp; Setback Watch</h4>
+                  </div>
+                  <p className={styles.advisoryCardBody}>{location.engineeringAdvisory.bylawAndSetbackWatch}</p>
+                </div>
+
+                <div className={styles.advisoryCard}>
+                  <div className={styles.advisoryCardHeader}>
+                    <span className={styles.advisoryCardIcon}>💧</span>
+                    <h4 className={styles.advisoryCardTitle}>Water &amp; Basement Protocol</h4>
+                  </div>
+                  <p className={styles.advisoryCardBody}>{location.engineeringAdvisory.waterAndBasementAdvice}</p>
+                </div>
+              </div>
+
+              {/* Transit & Site Logistics */}
+              <div className={styles.advisoryCard} style={{ marginBottom: '1.25rem' }}>
+                <div className={styles.advisoryCardHeader}>
+                  <span className={styles.advisoryCardIcon}>🚚</span>
+                  <h4 className={styles.advisoryCardTitle}>Site Logistics &amp; Concrete Pouring Plan</h4>
+                </div>
+                <p className={styles.advisoryCardBody}>{location.engineeringAdvisory.siteLogistics}</p>
+              </div>
+
+              {/* E-E-A-T Disclaimer Banner */}
+              <div className={styles.eeatDisclaimer}>
+                <span className={styles.eeatIcon}>⚖️</span>
+                <p className={styles.eeatText}>
+                  <strong>Engineering Protocol Note:</strong> Soil bearing figures, rock strata depths, and water table benchmarks stated for {location.name} represent empirical zonal averages from Construction Buddy&apos;s field logs across {location.zone}. Because sub-surface lithology can vary significantly between adjacent survey plots (especially near water bodies, valleys, or quarry zones), every Construction Buddy project includes a mandatory on-site IS 1892-compliant borehole test and structural vetting by our licensed structural engineers before excavation begins.
+                </p>
+              </div>
+            </div>
+          )}
 
           <div className={styles.specsGrid}>
             {/* Spec 1: Soil & Foundation */}
@@ -205,88 +318,98 @@ export default function LocationDetailClient({
               Construction Cost Benchmarks in {location.name}
             </h2>
             <p className={styles.sectionSubtitle}>
-              Current per-sq.ft turnkey building estimates in {location.name} across our 3 premier specification tiers:
+              Transparent turnkey rates for independent homes, multi-generational duplexes, and luxury villas in {location.name}, backed by a guaranteed 1,200-point locked BOQ:
             </p>
           </div>
 
           <div className={styles.pricingGrid}>
-            {/* Essential Tier */}
+            {/* Standard Package */}
             <div className={styles.pricingCard}>
-              <div className={styles.pricingTier}>Essential Tier</div>
+              <div className={styles.pricingTier}>Standard Package</div>
               <div className={styles.pricingRate}>
-                ₹{location.avgCostPerSqFt.essential}
+                ₹1,940
                 <span className={styles.pricingPer}>/sq.ft</span>
               </div>
               <p className={styles.pricingDesc}>
-                Ideal for modern high-yield rental units and smart budget independent residences.
+                A budget package with no compromise on quality that includes all construction essentials.
               </p>
               <ul className={styles.pricingFeatures}>
-                <li>✓ Standard RCC framed structure (M20 grade)</li>
-                <li>✓ Fe550D TMT steel &amp; solid concrete blocks</li>
-                <li>✓ Vitrified tile flooring (₹65/sq.ft)</li>
-                <li>✓ 5-Year waterproof warranty</li>
+                <li>✓ Fe 550 Steel &amp; 53 Grade Cement (Ultratech/ACC)</li>
+                <li>✓ Standard floor tiles up to ₹50/sq.ft</li>
+                <li>✓ Solid wood flush doors &amp; aluminum windows</li>
+                <li>✓ Internal wall paint: Tractor Emulsion (2 coats)</li>
+                <li>✓ 10-Year structural warranty &amp; Cera/Parryware fittings</li>
               </ul>
               <button
                 type="button"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => handleInquire('Standard')}
                 className={styles.pricingBtn}
               >
-                Get Essential Quote
+                Get Standard Quote
               </button>
             </div>
 
-            {/* Executive Tier (Featured) */}
+            {/* Premium Package (Featured) */}
             <div className={`${styles.pricingCard} ${styles.pricingCardFeatured}`}>
               <div className={styles.featuredBadge}>Most Popular in {location.name}</div>
-              <div className={styles.pricingTier}>Executive Tier</div>
+              <div className={styles.pricingTier}>Premium Package</div>
               <div className={styles.pricingRate}>
-                ₹{location.avgCostPerSqFt.executive}
+                ₹2,070
                 <span className={styles.pricingPer}>/sq.ft</span>
               </div>
               <p className={styles.pricingDesc}>
-                Premium family duplexes with designer sanitaryware, teak main door, and solar pre-wiring.
+                Our best seller package with upgraded brands like Jindal Steels, Jaquar, and Hindware.
               </p>
               <ul className={styles.pricingFeatures}>
-                <li>✓ Heavy-duty RCC M25 grade concrete</li>
-                <li>✓ Teakwood main door frame &amp; designer shutter</li>
-                <li>✓ Premium vitrified or granite flooring (₹110/sq.ft)</li>
-                <li>✓ Jaquar / Kohler concealed plumbing fixtures</li>
-                <li>✓ 10-Year structural warranty</li>
+                <li>✓ Superior brand steel (Jindal/TATA) &amp; Ultratech cement</li>
+                <li>✓ Refined vitrified tiles up to ₹100/sq.ft</li>
+                <li>✓ Elegant teakwood main door &amp; UPVC windows</li>
+                <li>✓ Stylish Jaquar / Hindware kitchen &amp; bath fittings</li>
+                <li>✓ 10-Year structural warranty &amp; Tractor Shyne Emulsion</li>
               </ul>
               <button
                 type="button"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => handleInquire('Premium')}
                 className={`${styles.pricingBtn} ${styles.pricingBtnPrimary}`}
               >
-                Get Executive Quote
+                Get Premium Quote
               </button>
             </div>
 
-            {/* Luxury Tier */}
+            {/* Luxury Package */}
             <div className={styles.pricingCard}>
-              <div className={styles.pricingTier}>Luxury Architectural</div>
+              <div className={styles.pricingTier}>Luxury Package</div>
               <div className={styles.pricingRate}>
-                ₹{location.avgCostPerSqFt.luxury}+
+                ₹2,400
                 <span className={styles.pricingPer}>/sq.ft</span>
               </div>
               <p className={styles.pricingDesc}>
-                Ultra-luxury bespoke villas with Italian marble, home automation, and acoustic glass facades.
+                An elegant package crafted for modern living with solar setup, designer teak doors, and premium finishes.
               </p>
               <ul className={styles.pricingFeatures}>
-                <li>✓ Bespoke 3D BIM clash-detected RCC engineering</li>
-                <li>✓ Italian marble or solid hardwood flooring</li>
-                <li>✓ Grohe / Hansgrohe luxury bath systems</li>
-                <li>✓ Double-height living spaces &amp; elevator core</li>
-                <li>✓ 10-Year structural &amp; 10-year waterproofing warranty</li>
+                <li>✓ TATA Tiscon Fe550D &amp; Ultratech Super structural concrete</li>
+                <li>✓ Double charge floor tiles up to ₹140/sq.ft</li>
+                <li>✓ Designer teak main &amp; puja doors, premium UPVC windows</li>
+                <li>✓ High-end Jaquar / Kohler luxury fixtures</li>
+                <li>✓ 10-Year structural warranty &amp; solar pre-wiring</li>
               </ul>
               <button
                 type="button"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => handleInquire('Luxury')}
                 className={styles.pricingBtn}
               >
-                Get Luxury Villa Quote
+                Get Luxury Quote
               </button>
             </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <p style={{ color: '#9fb0c7', fontSize: '0.95rem', marginBottom: '0.75rem' }}>
+              Also building custom luxury architectural residences in {location.name}: <strong>Elite (₹2,640)</strong>, <strong>Imperial (₹3,990)</strong>, <strong>Royal Estate (₹4,690)</strong>, and <strong>Palatial (₹5,490)</strong>.
+            </p>
+            <Link href="/compare-packages" className={styles.viewAllBtn}>
+              Compare All 7 Packages Side-by-Side →
+            </Link>
           </div>
 
           <div className={styles.calculatorBanner}>
@@ -328,7 +451,7 @@ export default function LocationDetailClient({
               Frequently Asked Questions for {location.name} Builds
             </h2>
             <p className={styles.sectionSubtitle}>
-              Everything you need to know about building a home, zoning laws, and costs in {location.name}.
+              Frequently asked engineering, costing, and municipal approval questions for prospective homeowners in {location.name} ({location.pincode}).
             </p>
           </div>
 
@@ -379,7 +502,7 @@ export default function LocationDetailClient({
                   <div className={styles.nearbyName}>{near.name}</div>
                   <div className={styles.nearbyTagline}>{near.tagline}</div>
                   <div className={styles.nearbyRate}>
-                    Starting at ₹{near.avgCostPerSqFt.essential}/sq.ft →
+                    Starting from ₹1,940/sq.ft →
                   </div>
                 </Link>
               ))}
@@ -396,7 +519,13 @@ export default function LocationDetailClient({
 
       {/* ── Consultation Modal ── */}
       {isModalOpen && (
-        <ContactModal onClose={() => setIsModalOpen(false)} />
+        <ContactModal
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedPackage(null);
+          }}
+          initialPackage={selectedPackage || undefined}
+        />
       )}
     </main>
   );

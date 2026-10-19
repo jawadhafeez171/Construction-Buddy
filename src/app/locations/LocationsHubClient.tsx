@@ -156,7 +156,7 @@ export default function LocationsHubClient({
                   <div className={styles.cardFooter}>
                     <div className={styles.cardPrice}>
                       <span>Starting from</span>
-                      <strong>₹{loc.avgCostPerSqFt.essential}/sq.ft</strong>
+                      <strong>₹1,940/sq.ft</strong>
                     </div>
                     <span className={styles.cardArrow}>Explore Specs →</span>
                   </div>

@@ -33,7 +33,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://constructionbuddy.in'),
+  metadataBase: new URL('https://www.constructionbuddy.in'),
   applicationName: "Construction Buddy",
   title: {
     default: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
   alternates: {
-    canonical: 'https://constructionbuddy.in',
+    canonical: 'https://www.constructionbuddy.in',
   },
   robots: {
     index: true,
@@ -64,14 +64,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
     description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
-    url: "https://constructionbuddy.in",
+    url: "https://www.constructionbuddy.in",
     siteName: "Construction Buddy",
     images: [
       {
-        url: "/logo.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Construction Buddy Logo",
+        alt: "Construction Buddy - Luxury Home Construction and Architecture in Bengaluru",
       },
     ],
     locale: "en_IN",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Construction Buddy - Premium Construction & Architecture in Bengaluru",
     description: "Bengaluru's premier building companion. Specialized in architectural drawings, premium home construction, interior design, and BIM services.",
-    images: ["/logo.png"],
+    images: ["/og-image.jpg"],
   },
   verification: {
     google: '-n5GdoCgJBBozpVE4FJ-GaeIBPetlO43wGz60fpffyw',
@@ -93,12 +93,12 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   name: 'Construction Buddy',
   alternateName: ['ConstructionBuddy', 'Construction Buddy Bengaluru'],
-  url: 'https://constructionbuddy.in',
+  url: 'https://www.constructionbuddy.in',
   publisher: {
     '@type': 'Organization',
     name: 'Construction Buddy',
-    url: 'https://constructionbuddy.in',
-    logo: 'https://constructionbuddy.in/logo.png',
+    url: 'https://www.constructionbuddy.in',
+    logo: 'https://www.constructionbuddy.in/logo.png',
     sameAs: [
       'https://www.instagram.com/construction_buddy1/',
       'https://www.youtube.com/@constructionbuddy-b3z',
@@ -115,52 +115,55 @@ const siteNavigationJsonLd = {
       position: 1,
       name: 'Turnkey Home Construction',
       description: 'End-to-end residential home construction with 10-year structural warranty in Bengaluru.',
-      url: 'https://constructionbuddy.in/services/home-construction',
+      url: 'https://www.constructionbuddy.in/services/home-construction',
     },
     {
       '@type': 'SiteNavigationElement',
       position: 2,
       name: 'Construction Cost Calculator',
       description: 'Dynamic home construction cost estimation based on plot dimensions and floor plans.',
-      url: 'https://constructionbuddy.in/calculator',
+      url: 'https://www.constructionbuddy.in/calculator',
     },
     {
       '@type': 'SiteNavigationElement',
       position: 3,
       name: 'Compare Construction Packages',
       description: 'Side-by-side technical comparison of Standard, Premium, Luxury, Elite, and Imperial packages.',
-      url: 'https://constructionbuddy.in/compare-packages',
+      url: 'https://www.constructionbuddy.in/compare-packages',
     },
     {
       '@type': 'SiteNavigationElement',
       position: 4,
       name: 'Bengaluru Service Localities',
       description: 'Turnkey construction and BBMP/BDA architectural sanction drawings across 76 Bengaluru localities.',
-      url: 'https://constructionbuddy.in/locations',
+      url: 'https://www.constructionbuddy.in/locations',
     },
     {
       '@type': 'SiteNavigationElement',
       position: 5,
       name: 'Architectural & Structural Plans',
       description: 'BDA and BBMP sanction-compliant architectural drawings, structural engineering, and 3D elevations.',
-      url: 'https://constructionbuddy.in/services/architectural-structural-drawings',
+      url: 'https://www.constructionbuddy.in/services/architectural-structural-drawings',
     },
     {
       '@type': 'SiteNavigationElement',
       position: 6,
       name: 'Vastu Plot Compass',
       description: 'Interactive digital compass tool for plotting rooms and entrances according to traditional Vastu Shastra.',
-      url: 'https://constructionbuddy.in/vastu-compass',
+      url: 'https://www.constructionbuddy.in/vastu-compass',
     },
   ],
 };
 
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'GeneralContractor',
+  '@type': ['GeneralContractor', 'LocalBusiness'],
   name: 'Construction Buddy',
-  image: 'https://constructionbuddy.in/logo.png',
-  url: 'https://constructionbuddy.in',
+  image: [
+    'https://www.constructionbuddy.in/og-image.jpg',
+    'https://www.constructionbuddy.in/logo.png',
+  ],
+  url: 'https://www.constructionbuddy.in',
   telephone: '+919902800693',
   email: 'constructionbuddyhq@gmail.com',
   priceRange: '₹₹ - ₹₹₹₹',
@@ -174,8 +177,8 @@ const localBusinessJsonLd = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: '13.0624',
-    longitude: '77.6256',
+    latitude: 13.0624,
+    longitude: 77.6256,
   },
   openingHoursSpecification: [
     {
@@ -189,6 +192,10 @@ const localBusinessJsonLd = {
     'https://www.instagram.com/construction_buddy1/',
     'https://www.youtube.com/@constructionbuddy-b3z',
   ],
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Bengaluru',
+  },
 };
 
 export default function RootLayout({

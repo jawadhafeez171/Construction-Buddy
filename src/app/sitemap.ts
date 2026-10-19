@@ -4,7 +4,7 @@ import { services } from '@/lib/servicesData';
 import { getAllLocations } from '@/lib/locationsData';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://constructionbuddy.in';
+  const baseUrl = 'https://www.constructionbuddy.in';
 
   // Static routes
   const staticRoutes = [
@@ -16,6 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/compare-packages',
     '/locations',
     '/vastu-compass',
+    '/privacy',
+    '/terms',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

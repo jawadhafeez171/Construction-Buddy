@@ -168,7 +168,7 @@ export default function BlogPostClient({ post, related }: Props) {
               <span className={styles.shareLabel}>Share this article</span>
               <div className={styles.shareBtns}>
                 <a
-                  href={`https://wa.me/?text=${encodeURIComponent(post.title + ' - https://constructionbuddy.in/blog/' + post.slug)}`}
+                  href={`https://wa.me/?text=${encodeURIComponent(post.title + ' - https://www.constructionbuddy.in/blog/' + post.slug)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.shareBtn}
@@ -178,7 +178,7 @@ export default function BlogPostClient({ post, related }: Props) {
                   WhatsApp
                 </a>
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://constructionbuddy.in/blog/' + post.slug)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://www.constructionbuddy.in/blog/' + post.slug)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.shareBtn}

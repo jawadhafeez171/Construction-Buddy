@@ -729,3 +729,203 @@
   border-color: #C8860A;
   color: #ffffff;
 }
+
+/* ── Chief Engineer's Geotechnical Advisory ── */
+.advisoryBox {
+  background: linear-gradient(180deg, rgba(16, 31, 48, 0.85) 0%, rgba(9, 18, 29, 0.95) 100%);
+  border: 1px solid rgba(200, 134, 10, 0.35);
+  border-radius: 14px;
+  padding: 2.25rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.advisoryBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #C8860A, #E5A93C, #1B4D8E);
+}
+
+.advisoryHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1.25rem;
+}
+
+.advisoryBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.advisoryChiefBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #E5A93C;
+  background: rgba(200, 134, 10, 0.15);
+  border: 1px solid rgba(200, 134, 10, 0.4);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.advisoryStandardBadge {
+  font-size: 0.75rem;
+  color: #8fa2bd;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+}
+
+.advisoryTitle {
+  font-family: var(--font-display, serif);
+  font-size: 1.45rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.advisoryZonalSub {
+  font-size: 0.88rem;
+  color: #9fb0c7;
+  margin: 0;
+}
+
+.advisoryZonalSub strong {
+  color: #c4d4eb;
+}
+
+/* Factsheet Quick Matrix */
+.factsheetGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (max-width: 850px) {
+  .factsheetGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.factsheetCard {
+  background: rgba(13, 24, 38, 0.7);
+  border: 1px solid rgba(27, 77, 142, 0.3);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+}
+
+.factsheetLabel {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #E5A93C;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.factsheetValue {
+  display: block;
+  font-size: 0.88rem;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Advisory Cards Grid */
+.advisoryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (max-width: 850px) {
+  .advisoryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.advisoryCard {
+  background: rgba(13, 24, 38, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.25rem 1.35rem;
+  transition: border-color 0.2s ease;
+}
+
+.advisoryCard:hover {
+  border-color: rgba(200, 134, 10, 0.3);
+}
+
+.advisoryCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.advisoryCardIcon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.advisoryCardTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.advisoryCardBody {
+  font-size: 0.85rem;
+  color: #9fb0c7;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* E-E-A-T Disclaimer Banner */
+.eeatDisclaimer {
+  background: rgba(200, 134, 10, 0.08);
+  border: 1px solid rgba(200, 134, 10, 0.25);
+  border-left: 4px solid #C8860A;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.eeatIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.eeatText {
+  font-size: 0.82rem;
+  color: #c4d4eb;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.eeatText strong {
+  color: #ffffff;
+}
+

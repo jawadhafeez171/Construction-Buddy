@@ -3,10 +3,10 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog & Insights | Construction Buddy Bengaluru',
+  title: 'Blog & Insights - Architecture & Home Construction',
   description: 'Expert construction guidance, cost tips, architectural trends, and industry insights from Bengaluru\'s premier builder.',
   openGraph: {
-    title: 'Blog & Insights | Construction Buddy Bengaluru',
+    title: 'Blog & Insights - Architecture & Home Construction | Construction Buddy',
     description: 'Expert construction guidance, cost tips, architectural trends, and industry insights from Bengaluru\'s premier builder.',
     url: '/blog',
     images: [
@@ -18,8 +18,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog & Insights - Architecture & Home Construction | Construction Buddy',
+    description: 'Expert construction guidance, cost tips, architectural trends, and industry insights from Bengaluru\'s premier builder.',
+    images: ['/blog_architect.webp'],
+  },
   alternates: {
-    canonical: 'https://constructionbuddy.in/blog',
+    canonical: 'https://www.constructionbuddy.in/blog',
   },
 };
 
