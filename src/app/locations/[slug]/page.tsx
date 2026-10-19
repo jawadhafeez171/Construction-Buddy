@@ -110,6 +110,12 @@ export default async function LocationDetailPage({ params }: PageProps) {
       addressRegion: 'Karnataka',
       addressCountry: 'IN',
     },
+    hasMap: 'https://share.google/JZP7UKHnmc4dZtNY3',
+    sameAs: [
+      'https://share.google/JZP7UKHnmc4dZtNY3',
+      'https://www.instagram.com/construction_buddy1/',
+      'https://www.youtube.com/@constructionbuddy-b3z',
+    ],
     description: `Turnkey residential building contractor, architectural blueprints, and BIM services in ${location.name}, Bengaluru.`,
   };
 

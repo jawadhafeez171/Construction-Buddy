@@ -400,6 +400,24 @@ export default function SiteFooter() {
                   <div>
                     <strong style={{ color: '#ffffff', display: 'block' }}>Bengaluru Operations Hub</strong>
                     <span>Thanisandra Main Rd, Sri Balaji Krupa Layout, RK Hegde Nagar, Bengaluru, Karnataka 560064</span>
+                    <a
+                      href="https://share.google/JZP7UKHnmc4dZtNY3"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.35rem',
+                        color: '#E5A93C',
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        marginTop: '0.45rem',
+                        textDecoration: 'none',
+                        transition: 'color 0.2s ease',
+                      }}
+                    >
+                      <span>📍 View on Google Maps →</span>
+                    </a>
                   </div>
                 </div>
 

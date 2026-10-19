@@ -92,7 +92,7 @@ const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Construction Buddy',
-  alternateName: ['ConstructionBuddy', 'Construction Buddy Bengaluru'],
+  alternateName: ['ConstructionBuddy', 'Construction Buddy Bengaluru', 'constructionbuddy.in'],
   url: 'https://www.constructionbuddy.in',
   publisher: {
     '@type': 'Organization',
@@ -100,6 +100,7 @@ const websiteJsonLd = {
     url: 'https://www.constructionbuddy.in',
     logo: 'https://www.constructionbuddy.in/logo.png',
     sameAs: [
+      'https://share.google/JZP7UKHnmc4dZtNY3',
       'https://www.instagram.com/construction_buddy1/',
       'https://www.youtube.com/@constructionbuddy-b3z',
     ],
@@ -188,7 +189,9 @@ const localBusinessJsonLd = {
       closes: '19:30',
     },
   ],
+  hasMap: 'https://share.google/JZP7UKHnmc4dZtNY3',
   sameAs: [
+    'https://share.google/JZP7UKHnmc4dZtNY3',
     'https://www.instagram.com/construction_buddy1/',
     'https://www.youtube.com/@constructionbuddy-b3z',
   ],
