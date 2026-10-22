@@ -115,7 +115,11 @@ export default function Packages() {
               >
                 {/* Card Header Image Banner */}
                 <div className={styles.cardHeaderImageContainer}>
-                  <img src={pkg.image} alt={pkg.name} className={styles.cardHeaderImage} />
+                  <img
+                    src={pkg.image}
+                    alt={`Construction Buddy ${pkg.name} package finishes and turnkey specifications in Bengaluru`}
+                    className={styles.cardHeaderImage}
+                  />
                   {pkg.popular && (
                     <div className={styles.popularBadge}>
                       ★ &nbsp;MOST POPULAR
@@ -205,24 +209,30 @@ export default function Packages() {
         {!isLuxury ? (
           <div className={styles.collectionBanner}>
             <span>Showing 4 Standard Living packages (₹1,940 – ₹2,640/sqft). Looking for Italian marble, private elevators &amp; double-height ceilings?</span>
-            <button
-              type="button"
-              onClick={() => setIsLuxury(true)}
+            <Link
+              href="/compare-packages"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsLuxury(true);
+              }}
               className={styles.switchTabLink}
             >
               View 3 Luxury Estates (Imperial, Royal Estate &amp; Palatial from ₹3,990/sqft) →
-            </button>
+            </Link>
           </div>
         ) : (
           <div className={styles.collectionBanner}>
             <span>Showing 3 Luxury Estate packages: Imperial (₹3,990), Royal Estate (₹4,690) &amp; Palatial (₹5,490/sqft).</span>
-            <button
-              type="button"
-              onClick={() => setIsLuxury(false)}
+            <Link
+              href="/compare-packages"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsLuxury(false);
+              }}
               className={styles.switchTabLink}
             >
               ← View 4 Standard Living Packages (from ₹1,940/sqft)
-            </button>
+            </Link>
           </div>
         )}
 

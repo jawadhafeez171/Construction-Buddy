@@ -29,7 +29,11 @@ export default function Services() {
             >
               {/* Background photo */}
               <div className={styles.cardBg}>
-                <img src={service.image} alt={service.title} className={styles.cardBgImg} />
+                <img
+                  src={service.image}
+                  alt={`${service.title} turnkey building and architecture services in Bengaluru`}
+                  className={styles.cardBgImg}
+                />
                 <div className={styles.cardScrim} />
               </div>
 

@@ -105,23 +105,23 @@ export default function Home() {
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
+            {/* Desktop Navigation Links */}
           <nav className="nav-desktop">
             <Link href="/services" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Services</Link>
-            <button
-              type="button"
+            <Link
+              href="/#packages"
               onClick={(e) => scrollToSection('packages', e)}
-              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}
+              style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease', textDecoration: 'none' }}
             >
               Packages
-            </button>
-            <button
-              type="button"
+            </Link>
+            <Link
+              href="/#projects"
               onClick={(e) => scrollToSection('projects', e)}
-              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}
+              style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease', textDecoration: 'none' }}
             >
               Projects
-            </button>
+            </Link>
             <NavMoreDropdown scrolled={scrolled} />
             <Link href="/refer" style={{ color: scrolled ? 'var(--text-muted)' : 'rgba(255, 255, 255, 0.9)', fontWeight: 600, fontSize: '0.95rem', transition: 'color 0.3s ease' }}>Refer &amp; Earn</Link>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
@@ -207,30 +207,30 @@ export default function Home() {
                 <span className="nav-mobile-num">01</span>
                 <span className="nav-mobile-text">Services</span>
               </Link>
-              <button
-                type="button"
+              <Link
+                href="/#packages"
                 onClick={(e) => {
                   setIsMenuOpen(false);
                   scrollToSection('packages', e);
                 }}
                 className="nav-mobile-link"
-                style={{ '--index': 2, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
+                style={{ '--index': 2, width: '100%', textAlign: 'left', cursor: 'pointer', textDecoration: 'none' } as React.CSSProperties}
               >
                 <span className="nav-mobile-num">02</span>
                 <span className="nav-mobile-text">Packages</span>
-              </button>
-              <button
-                type="button"
+              </Link>
+              <Link
+                href="/#projects"
                 onClick={(e) => {
                   setIsMenuOpen(false);
                   scrollToSection('projects', e);
                 }}
                 className="nav-mobile-link"
-                style={{ '--index': 3, background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' } as React.CSSProperties}
+                style={{ '--index': 3, width: '100%', textAlign: 'left', cursor: 'pointer', textDecoration: 'none' } as React.CSSProperties}
               >
                 <span className="nav-mobile-num">03</span>
                 <span className="nav-mobile-text">Projects</span>
-              </button>
+              </Link>
               <Link
                 href="/calculator"
                 onClick={() => setIsMenuOpen(false)}

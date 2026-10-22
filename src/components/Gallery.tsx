@@ -255,25 +255,29 @@ export default function Gallery() {
               }}
               onTransitionEnd={handleTransitionEnd}
             >
-              {extendedProjects.map((project, idx) => (
-                <div 
-                  key={`${project.name}-${idx}`} 
-                  className={styles.carouselSlide}
-                  style={{
-                    flex: `0 0 ${100 / visibleItems}%`,
-                  }}
-                >
-                  <div className={styles.imageCard}>
-                    <img src={project.src} alt={project.alt || project.name} className={styles.image} loading="lazy" />
-                    <div className={styles.overlay}>
-                      <div className={styles.meta}>
-                        <span className={styles.categoryBadge}>{project.category}</span>
-                        <h3 className={styles.projectName}>{project.name}</h3>
+              {extendedProjects.map((project, idx) => {
+                const isClone = idx < visibleItems || idx >= filteredProjects.length + visibleItems;
+                return (
+                  <div 
+                    key={`${project.name}-${idx}`} 
+                    className={styles.carouselSlide}
+                    aria-hidden={isClone ? 'true' : undefined}
+                    style={{
+                      flex: `0 0 ${100 / visibleItems}%`,
+                    }}
+                  >
+                    <div className={styles.imageCard}>
+                      <img src={project.src} alt={project.alt || project.name} className={styles.image} loading="lazy" />
+                      <div className={styles.overlay}>
+                        <div className={styles.meta}>
+                          <span className={styles.categoryBadge}>{project.category}</span>
+                          <h3 className={styles.projectName}>{project.name}</h3>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

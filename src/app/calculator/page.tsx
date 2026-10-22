@@ -23,5 +23,32 @@ export const metadata: Metadata = {
 };
 
 export default function CalculatorPage() {
-  return <CalculatorClient />;
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.constructionbuddy.in',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Cost Calculator',
+        item: 'https://www.constructionbuddy.in/calculator',
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <CalculatorClient />
+    </>
+  );
 }

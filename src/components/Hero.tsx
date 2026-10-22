@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import styles from './Hero.module.css';
 import ContactModal from './ContactModal';
 import { scrollToSection } from '@/lib/navigation';
@@ -101,14 +102,14 @@ export default function Hero() {
               >
                 Start My Dream Home
               </button>
-              <button
-                type="button"
+              <Link
+                href="/#projects"
                 onClick={(e) => scrollToSection('projects', e)}
                 className="btn btn-outline"
-                style={{ color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.4)', cursor: 'pointer' }}
+                style={{ color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.4)', cursor: 'pointer', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
               >
                 See Our Work
-              </button>
+              </Link>
             </div>
 
             {/* Stage Badge */}

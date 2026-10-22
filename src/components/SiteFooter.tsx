@@ -344,34 +344,27 @@ export default function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <button
-                    type="button"
-                    onClick={(e) => scrollToSection('packages', e)}
-                    className={styles.footerLink}
-                    style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', textAlign: 'left' }}
-                  >
+                  <Link href="/compare-packages" className={styles.footerLink}>
                     <span>Package Pricing</span>
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    type="button"
+                  <Link
+                    href="/#projects"
                     onClick={(e) => scrollToSection('projects', e)}
                     className={styles.footerLink}
-                    style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', textAlign: 'left' }}
                   >
                     <span>Project Portfolio</span>
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    type="button"
+                  <Link
+                    href="/#how-it-works"
                     onClick={(e) => scrollToSection('how-it-works', e)}
                     className={styles.footerLink}
-                    style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', textAlign: 'left' }}
                   >
                     <span>7-Step Build Process</span>
-                  </button>
+                  </Link>
                 </li>
                 <li>
                   <Link href="/refer" className={styles.footerLink}>

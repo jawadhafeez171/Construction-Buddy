@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         : `https://www.constructionbuddy.in${post.image}`,
     ],
     datePublished: publishedIso,
-    dateModified: new Date().toISOString(),
+    dateModified: publishedIso,
     author: {
       '@type': 'Person',
       name: post.author,

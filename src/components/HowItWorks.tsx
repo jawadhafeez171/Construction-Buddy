@@ -7,36 +7,43 @@ const steps = [
   {
     num: '01',
     image: '/how_it_works_1.webp',
+    alt: 'Construction Buddy project engineer discussing house construction inquiry in Bengaluru',
     text: 'Fill out a short form and our team will call you within 20 minutes to begin.',
   },
   {
     num: '02',
     image: '/how_it_works_2.webp',
+    alt: 'Architect and client reviewing customized residential floor plans and turnkey quotation in Bangalore',
     text: 'Meet our technical expert and architect to discuss your needs and receive an initial quotation.',
   },
   {
     num: '03',
     image: '/how_it_works_3.webp',
+    alt: 'Homeowner confirming booking token for turnkey house construction in Bengaluru',
     text: 'Pay a small token to confirm your booking and start pre-construction work.',
   },
   {
     num: '04',
     image: '/how_it_works_4.webp',
+    alt: 'Civil engineers performing geotechnical site survey and 3D BIM structural elevation drafting',
     text: 'We survey your site, run tests, and create drawings and 3D models for your review.',
   },
   {
     num: '05',
     image: '/how_it_works_5.webp',
+    alt: 'Signing transparent milestone-based construction agreement and itemized BOQ specification',
     text: 'Sign a transparent contract with clear timelines and milestone-based payments.',
   },
   {
     num: '06',
     image: '/how_it_works_6.webp',
+    alt: 'Ongoing residential structural brickwork and digital quality inspection on mobile app',
     text: 'Construction begins with daily quality checks and full progress tracking on our app.',
   },
   {
     num: '07',
     image: '/how_it_works_7.webp',
+    alt: 'Delighted homeowners receiving final keys and 10-year structural warranty certificate in Bengaluru',
     text: 'After final checks, your home is handed over with a 10-year warranty.',
   },
 ];
@@ -212,23 +219,27 @@ export default function HowItWorks() {
             }}
             onTransitionEnd={handleTransitionEnd}
           >
-            {extendedSteps.map((step, idx) => (
-              <div 
-                key={`${step.num}-${idx}`}
-                className={styles.carouselSlide}
-                style={{
-                  flex: `0 0 ${100 / visibleItems}%`,
-                }}
-              >
-                <div className={styles.stepCard}>
-                  <div className={styles.imageContainer}>
-                    <img src={step.image} alt={`Step ${step.num}`} className={styles.cardImage} />
+            {extendedSteps.map((step, idx) => {
+              const isClone = idx < visibleItems || idx >= steps.length + visibleItems;
+              return (
+                <div 
+                  key={`${step.num}-${idx}`}
+                  className={styles.carouselSlide}
+                  aria-hidden={isClone ? 'true' : undefined}
+                  style={{
+                    flex: `0 0 ${100 / visibleItems}%`,
+                  }}
+                >
+                  <div className={styles.stepCard}>
+                    <div className={styles.imageContainer}>
+                      <img src={step.image} alt={step.alt} className={styles.cardImage} />
+                    </div>
+                    <span className={styles.stepNum}>{step.num}</span>
+                    <p className={styles.stepText}>{step.text}</p>
                   </div>
-                  <span className={styles.stepNum}>{step.num}</span>
-                  <p className={styles.stepText}>{step.text}</p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

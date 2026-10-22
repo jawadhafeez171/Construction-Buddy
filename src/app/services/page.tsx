@@ -25,8 +25,31 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.constructionbuddy.in',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://www.constructionbuddy.in/services',
+      },
+    ],
+  };
+
   return (
     <main className={styles.pageWrapper}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ── Page Header ── */}
       <section className={styles.pageHeader}>
         <div className={styles.headerBg} />
@@ -54,7 +77,11 @@ export default function ServicesPage() {
             {services.map((service) => (
               <Link key={service.slug} href={`/services/${service.slug}`} className={styles.card}>
                 <div className={styles.cardImageWrap}>
-                  <img src={service.image} alt={service.title} className={styles.cardImg} />
+                  <img
+                    src={service.image}
+                    alt={`${service.title} turnkey building and architecture services in Bengaluru`}
+                    className={styles.cardImg}
+                  />
                   <div className={styles.cardImgOverlay} />
                   <span className={styles.iconBadge}>{service.icon}</span>
                 </div>
