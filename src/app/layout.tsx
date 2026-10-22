@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.constructionbuddy.in'),
   applicationName: "Construction Buddy",
   title: {
-    default: "Construction Company in Bangalore | Turnkey Home Builders | Construction Buddy",
+    default: "Construction Buddy | Turnkey Home Builders & Construction Company in Bangalore",
     template: "%s | Construction Buddy",
   },
   description: "Top-rated turnkey house construction company in Bangalore & Bengaluru. Architectural blueprints, BBMP/BDA plan sanctions, 3D BIM modeling, and luxury residential building with a 10-year warranty.",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     apple: { url: '/icon.webp', sizes: '512x512', type: 'image/webp' },
   },
   openGraph: {
-    title: "Construction Company in Bangalore | Turnkey Home Builders | Construction Buddy",
+    title: "Construction Buddy | Turnkey Home Builders & Construction Company in Bangalore",
     description: "Top-rated turnkey house construction company in Bangalore & Bengaluru. Architectural blueprints, BBMP/BDA plan sanctions, 3D BIM modeling, and luxury residential building with a 10-year warranty.",
     url: "https://www.constructionbuddy.in",
     siteName: "Construction Buddy",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Construction Company in Bangalore | Turnkey Home Builders | Construction Buddy",
+    title: "Construction Buddy | Turnkey Home Builders & Construction Company in Bangalore",
     description: "Top-rated turnkey house construction company in Bangalore & Bengaluru. Architectural blueprints, BBMP/BDA plan sanctions, 3D BIM modeling, and luxury residential building with a 10-year warranty.",
     images: ["/og-image.jpg"],
   },
@@ -94,10 +94,8 @@ const websiteJsonLd = {
   name: 'Construction Buddy',
   alternateName: [
     'ConstructionBuddy',
-    'Construction Company in Bangalore',
     'Construction Buddy Bangalore',
     'Construction Buddy Bengaluru',
-    'constructionbuddy.in',
   ],
   url: 'https://www.constructionbuddy.in',
   publisher: {
